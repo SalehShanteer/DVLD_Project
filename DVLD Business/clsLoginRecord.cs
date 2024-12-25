@@ -10,6 +10,11 @@ namespace DVLD_Business
 {
     public class clsLoginRecord
     {
+
+        private enum enMode { AddNew = 0, Update = 1 }
+
+        private enMode _Mode;
+
         public int ID { get; set; }
         public clsUser User { get; set; }
         public DateTime LoginTime { get; set; }
@@ -23,6 +28,8 @@ namespace DVLD_Business
             this.LoginTime = DateTime.MinValue;
             this.LoginStatus = false;
             this.FailureReason = string.Empty;
+
+            _Mode = enMode.AddNew;
         }
 
         private bool _AddNewLoginRecord()
@@ -33,7 +40,15 @@ namespace DVLD_Business
 
         public bool Save()
         {
-            return _AddNewLoginRecord();    
+            if (_AddNewLoginRecord())
+            {
+                _Mode = enMode.Update;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public static DataTable GetAllLoginRecords()

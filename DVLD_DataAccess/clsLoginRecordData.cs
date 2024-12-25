@@ -53,7 +53,7 @@ namespace DVLD_DataAccess
     
         public static DataTable GetAllLoginRecords()
         {
-            return clsGenericData.GetAllRecords("LoginRecords");
+            return clsGenericData.GetDataTable("LoginRecords");
         }
 
     }

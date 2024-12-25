@@ -86,7 +86,7 @@ namespace DVLD_DataAccess
         {
             string query = "SELECT * FROM TestTypes";
 
-            return clsGenericData.GetAllRecords(query);
+            return clsGenericData.GetDataTable(query);
         }
 
 

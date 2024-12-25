@@ -124,7 +124,7 @@ namespace DVLD_DataAccess
         public static DataTable GetAllLocalDrivingLicenseApplications()
         {
             string query = "SELECT * FROM LocalDrivingLicenseApplications";
-            return clsGenericData.GetAllRecords(query);
+            return clsGenericData.GetDataTable(query);
         }
 
 

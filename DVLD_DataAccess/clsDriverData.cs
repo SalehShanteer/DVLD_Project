@@ -8,14 +8,13 @@ using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
-    public class clsApplicationTypeData
+    public class clsDriverData
     {
-
-        public static bool FindApplicationTypeByID(int ID, ref string Title, ref short Fees)
+        public static bool FindDriverByID(int ID, ref int PersonID, ref DateTime CreatedDate, ref int CreatedByUserID)
         {
             bool IsFound = false;
 
-            string query = "SELECT * FROM ApplicationTypes WHERE ApplicationTypeID = @ID";
+            string query = "SELECT * FROM Drivers WHERE DriverID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -23,6 +22,7 @@ namespace DVLD_DataAccess
                 {
                     // Add the parameters
                     command.Parameters.AddWithValue("@ID", ID);
+
                     try
                     {
                         connection.Open();
@@ -30,8 +30,9 @@ namespace DVLD_DataAccess
 
                         if (reader.Read())
                         {
-                            Title = reader["Title"].ToString();
-                            Fees = Convert.ToInt16(reader["Fees"]);
+                            PersonID = Convert.ToInt32(reader["PersonID"]);
+                            CreatedDate = Convert.ToDateTime(reader["CreatedDate"]);
+                            CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
 
                             IsFound = true;
                         }
@@ -44,44 +45,57 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
-        public static bool IsApplicationTypeExists(int ID)
+        public static bool IsDriverExist(int ID)
         {
-            return clsGenericData.IsRecordExist("ApplicationTypes", "ApplicationTypeID", ID);
+            return clsGenericData.IsRecordExist("Drivers", "DriverID", ID);
         }
 
-        public static bool UpdateApplicationType(int ID, string Title, short Fees)
+        public static int AddNewDriver(int PersonID, int CreatedByUserID)
         {
-            bool IsUpdated = false;
+            int ID = -1;
 
-            string query = "UPDATE ApplicationTypes SET Title = @Title, Fees = @Fees WHERE ApplicationTypeID = @ID";
+            string query = "INSERT INTO Drivers (PersonID, CreatedDate, CreatedByUserID) " +
+                "VALUES (@PersonID, GETDATE(), @CreatedByUserID); " +
+                "SELECT SCOPE_IDENTITY();";
+
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Add the parameters
-                    command.Parameters.AddWithValue("@ID", ID);
-                    command.Parameters.AddWithValue("@Title", Title);
-                    command.Parameters.AddWithValue("@Fees", Fees);
+                    command.Parameters.AddWithValue("@PersonID", PersonID);
+                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+
                     try
                     {
                         connection.Open();
-                        int RowsAffected = command.ExecuteNonQuery();
-                        if (RowsAffected > 0)
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int NewID))
                         {
-                            IsUpdated = true;
+                            ID = NewID;
                         }
                     }
-                    catch (Exception ex) {}
+                    catch (Exception ex) { }
                     finally { connection.Close(); }
                 }
             }
-            return IsUpdated;
+            return ID;
         }
 
-        public static DataTable GetAllApplicationTypes()
+        public static bool DeleteDriver(int ID)
         {
-            return clsGenericData.GetDataTable("SELECT * FROM ApplicationTypes");
+            return clsGenericData.DeleteRecord("Drivers", "DriverID", ID);
         }
+
+        public static DataTable GetAllDrivers()
+        {
+            string query = "SELECT * FROM Drivers";
+
+            return clsGenericData.GetDataTable(query);
+        }
+
 
     }
 }

@@ -80,7 +80,7 @@ namespace DVLD_DataAccess
             return IsDeleted;
         }
 
-        public static DataTable GetAllRecords(string query)
+        public static DataTable GetDataTable(string query)
         {
             DataTable dt = new DataTable();
 

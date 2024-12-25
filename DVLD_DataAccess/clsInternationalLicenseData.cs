@@ -4,17 +4,19 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
-    public class clsTestAppointmentData
+    public class clsInternationalLicenseData
     {
-        public static bool FindTestAppointmentByID(int ID, ref int TestTypeID, ref int LocalDrivingLicenseApplicationID
-            , ref DateTime AppointmentDate, ref int CreatedByUserID, ref bool IsLocked)
+
+        public static bool FindInternationalLicenseByID(int ID, ref int ApplicationID, ref int IssuedUsingLocalLicenseID, ref DateTime IssueDate
+            , ref DateTime ExpireDate, ref bool IsActive, ref int CreatedByUserID)
         {
             bool IsFound = false;
-            string query = "SELECT * FROM TestAppointments WHERE TestAppointmentID = @ID";
+
+            string query = "SELECT * FROM InternationalLicenses WHERE ID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -29,11 +31,12 @@ namespace DVLD_DataAccess
 
                         if (reader.Read())
                         {
-                            TestTypeID = Convert.ToInt32(reader["TestTypeID"]);
-                            LocalDrivingLicenseApplicationID = Convert.ToInt32(reader["LocalDrivingLicenseApplicationID"]);
-                            AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]);
+                            ApplicationID = Convert.ToInt32(reader["ApplicationID"]);
+                            IssuedUsingLocalLicenseID = Convert.ToInt32(reader["IssuedUsingLocalLicenseID"]);
+                            IssueDate = Convert.ToDateTime(reader["IssueDate"]);
+                            ExpireDate = Convert.ToDateTime(reader["ExpireDate"]);
+                            IsActive = Convert.ToBoolean(reader["IsActive"]);
                             CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
-                            IsLocked = Convert.ToBoolean(reader["IsLocked"]);
 
                             IsFound = true;
                         }
@@ -46,26 +49,28 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
-        public static bool IsTestAppointmentExist(int ID)
+        public static bool IsInternationalLicenseExist(int ID)
         {
-            return clsGenericData.IsRecordExist("TestAppointments", "TestAppointmentID", ID);
+            return clsGenericData.IsRecordExist("InternationalLicenses", "ID", ID);
         }
 
-        public static int AddNewTestAppointment(int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, int CreatedByUserID)
+        public static int AddNewInternationalLicense(int ApplicationID, int IssuedUsingLocalLicenseID, DateTime ExpireDate, int CreatedByUserID)
         {
             int ID = -1;
-            string query = "INSERT INTO TestAppointments (TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, CreatedByUserID, IsLocked) " +
-                           "VALUES (@TestTypeID, @LocalDrivingLicenseApplicationID, @AppointmentDate, @CreatedByUserID, 0); " +
-                           "SELECT SCOPE_IDENTITY();";
+
+            // Set IsActive to true by default and IssueDate to current date
+            string query = "INSERT INTO InternationalLicenses (ApplicationID, IssuedUsingLocalLicenseID, IssueDate, ExpireDate, IsActive, CreatedByUserID) " +
+                           "VALUES (@ApplicationID, @IssuedUsingLocalLicenseID, GETDATE(), @ExpireDate, 1, @CreatedByUserID)" +
+                           "; SELECT SCOPE_IDENTITY();";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Add the parameters
-                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
-                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-                    command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                    command.Parameters.AddWithValue("@IssuedUsingLocalLicenseID", IssuedUsingLocalLicenseID);
+                    command.Parameters.AddWithValue("@ExpireDate", ExpireDate);
                     command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
                     try
@@ -86,12 +91,11 @@ namespace DVLD_DataAccess
             return ID;
         }
 
-        public static bool UpdateTestAppointment(int ID, DateTime AppointmentDate, bool IsLocked)
+        public static bool UpdateInternationalLicense(int ID, DateTime ExpireDate, bool IsActive)
         {
             bool IsUpdated = false;
-            string query = "UPDATE TestAppointments SET TestTypeID = @TestTypeID, " +
-                           "AppointmentDate = @AppointmentDate, IsLocked = @IsLocked " +
-                           "WHERE TestAppointmentID = @ID";
+
+            string query = "UPDATE InternationalLicenses SET ExpireDate = @ExpireDate, IsActive = @IsActive WHERE ID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -99,18 +103,15 @@ namespace DVLD_DataAccess
                 {
                     // Add the parameters
                     command.Parameters.AddWithValue("@ID", ID);
-                    command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
-                    command.Parameters.AddWithValue("@IsLocked", IsLocked);
+                    command.Parameters.AddWithValue("@ExpireDate", ExpireDate);
+                    command.Parameters.AddWithValue("@IsActive", IsActive);
 
                     try
                     {
                         connection.Open();
-                        int RowsAffected = command.ExecuteNonQuery();
 
-                        if (RowsAffected > 0)
-                        {
-                            IsUpdated = true;
-                        }
+                        int rowsAffected = command.ExecuteNonQuery();
+                        IsUpdated = rowsAffected > 0;
                     }
                     catch (Exception ex) { }
                     finally { connection.Close(); }
@@ -119,16 +120,17 @@ namespace DVLD_DataAccess
             return IsUpdated;
         }
 
-        public static bool DeleteTestAppointment(int ID)
+        public static bool DeleteInternationalLicense(int ID)
         {
-            return clsGenericData.DeleteRecord("TestAppointments", "TestAppointmentID", ID);
+            return clsGenericData.DeleteRecord("InternationalLicenses", "InternationalLicenseID", ID);
         }
 
-        public static DataTable GetAllTestAppointments()
+        public static DataTable GetAllInternationalLicenses()
         {
-            string query = "SELECT * FROM TestAppointments";
+            string query = "SELECT * FROM InternationalLicenses";
             return clsGenericData.GetDataTable(query);
         }
+
 
     }
 }

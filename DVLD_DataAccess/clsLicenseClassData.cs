@@ -58,14 +58,8 @@ namespace DVLD_DataAccess
         public static DataTable GetAllLicenseClasses()
         {
             string query = "SELECT * FROM LicenseClasses";
-            return clsGenericData.GetAllRecords(query);
+            return clsGenericData.GetDataTable(query);
         }
-
-
-
-
-
-
 
     }
 }

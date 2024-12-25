@@ -58,7 +58,7 @@ namespace DVLD_DataAccess
         {
             string query = "SELECT * FROM Roles";
 
-            return clsGenericData.GetAllRecords(query);
+            return clsGenericData.GetDataTable(query);
         }
 
     }

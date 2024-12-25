@@ -51,7 +51,7 @@ namespace DVLD_DataAccess
         public static DataTable GetAllApplicationStatus()
         {
             string query = "SELECT * FROM ApplicationStatuses";
-            return clsGenericData.GetAllRecords(query);
+            return clsGenericData.GetDataTable(query);
         }
 
     }

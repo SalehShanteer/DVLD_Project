@@ -149,7 +149,6 @@
   <ItemGroup>
     <None Include="Resources\license.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="Resources\Female.png" />
   </ItemGroup>

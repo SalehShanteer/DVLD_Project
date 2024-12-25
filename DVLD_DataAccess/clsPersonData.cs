@@ -218,7 +218,7 @@ namespace DVLD_DataAccess
         {
             string query = "SELECT * FROM View_PeopleList";
 
-            return clsGenericData.GetAllRecords(query);
+            return clsGenericData.GetDataTable(query);
         }
 
 

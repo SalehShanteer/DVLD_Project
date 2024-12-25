@@ -2,38 +2,46 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
-    public class clsTestAppointmentData
+    public class clsLicenseData
     {
-        public static bool FindTestAppointmentByID(int ID, ref int TestTypeID, ref int LocalDrivingLicenseApplicationID
-            , ref DateTime AppointmentDate, ref int CreatedByUserID, ref bool IsLocked)
+
+        public static bool FindLicenseByID(int ID, ref int ApplicationID, ref int DriverID, ref string Notes, ref DateTime IssueDate
+            , ref DateTime ExpireDate, ref short PaidFees, ref bool IsActive, ref int CreatedByUserID)
         {
             bool IsFound = false;
-            string query = "SELECT * FROM TestAppointments WHERE TestAppointmentID = @ID";
+
+            string query = "SELECT * FROM Licenses WHERE LicesneID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Add the parameters
+                    // Add the parameter
                     command.Parameters.AddWithValue("@ID", ID);
+
                     try
                     {
                         connection.Open();
+
                         SqlDataReader reader = command.ExecuteReader();
 
                         if (reader.Read())
                         {
-                            TestTypeID = Convert.ToInt32(reader["TestTypeID"]);
-                            LocalDrivingLicenseApplicationID = Convert.ToInt32(reader["LocalDrivingLicenseApplicationID"]);
-                            AppointmentDate = Convert.ToDateTime(reader["AppointmentDate"]);
-                            CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
-                            IsLocked = Convert.ToBoolean(reader["IsLocked"]);
+                            ApplicationID = (int)reader["ApplicationID"];
+                            DriverID = (int)reader["DriverID"];
+                            Notes = reader["Notes"] != DBNull.Value ? (string)reader["Notes"] : string.Empty;
+                            IssueDate = (DateTime)reader["IssueDate"];
+                            ExpireDate = (DateTime)reader["ExpireDate"];
+                            PaidFees = (short)reader["PaidFees"];
+                            IsActive = (bool)reader["IsActive"];
+                            CreatedByUserID = (int)reader["CreatedByUserID"];
 
                             IsFound = true;
                         }
@@ -46,26 +54,29 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
-        public static bool IsTestAppointmentExist(int ID)
+        public static bool IsLicenseExist(int ID)
         {
-            return clsGenericData.IsRecordExist("TestAppointments", "TestAppointmentID", ID);
+            return clsGenericData.IsRecordExist("Licenses", "LicenseID", ID); 
         }
 
-        public static int AddNewTestAppointment(int TestTypeID, int LocalDrivingLicenseApplicationID, DateTime AppointmentDate, int CreatedByUserID)
+        public static int AddNewLicense(int ApplicationID, int DriverID, string Notes, DateTime ExpireDate, short PaidFees, int CreatedByUserID)
         {
             int ID = -1;
-            string query = "INSERT INTO TestAppointments (TestTypeID, LocalDrivingLicenseApplicationID, AppointmentDate, CreatedByUserID, IsLocked) " +
-                           "VALUES (@TestTypeID, @LocalDrivingLicenseApplicationID, @AppointmentDate, @CreatedByUserID, 0); " +
-                           "SELECT SCOPE_IDENTITY();";
+
+            string query = "INSERT INTO Licenses (ApplicationID, DriverID, Notes, IssueDate, ExpireDate, PaidFees, IsActive, CreatedByUserID) " +
+                           "VALUES (@ApplicationID, @DriverID, @Notes, GETDATE(), @ExpireDate, @PaidFees, 1, @CreatedByUserID); " +
+                           "SELECT SCOPE_IDENTITY()";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Add the parameters
-                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
-                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
-                    command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
+                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+                    command.Parameters.AddWithValue("@Notes", Notes != string.Empty ? Notes : (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@ExpireDate", ExpireDate);
+                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
                     command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
                     try
@@ -86,12 +97,12 @@ namespace DVLD_DataAccess
             return ID;
         }
 
-        public static bool UpdateTestAppointment(int ID, DateTime AppointmentDate, bool IsLocked)
+        public static bool UpdateLicense(int ID, string Notes, DateTime ExpireDate, short PaidFees)
         {
             bool IsUpdated = false;
-            string query = "UPDATE TestAppointments SET TestTypeID = @TestTypeID, " +
-                           "AppointmentDate = @AppointmentDate, IsLocked = @IsLocked " +
-                           "WHERE TestAppointmentID = @ID";
+
+            string query = "UPDATE Licenses SET Notes = @Notes, ExpireDate = @ExpireDate, PaidFees = @PaidFees " +
+                           "WHERE LicenseID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -99,8 +110,9 @@ namespace DVLD_DataAccess
                 {
                     // Add the parameters
                     command.Parameters.AddWithValue("@ID", ID);
-                    command.Parameters.AddWithValue("@AppointmentDate", AppointmentDate);
-                    command.Parameters.AddWithValue("@IsLocked", IsLocked);
+                    command.Parameters.AddWithValue("@Notes", Notes != string.Empty ? Notes : (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@ExpireDate", ExpireDate);
+                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
 
                     try
                     {
@@ -119,14 +131,14 @@ namespace DVLD_DataAccess
             return IsUpdated;
         }
 
-        public static bool DeleteTestAppointment(int ID)
+        public static bool DeleteLicense(int ID)
         {
-            return clsGenericData.DeleteRecord("TestAppointments", "TestAppointmentID", ID);
+            return clsGenericData.DeleteRecord("Licenses", "LicenseID", ID);
         }
 
-        public static DataTable GetAllTestAppointments()
+        public static DataTable GetAllLicenses()
         {
-            string query = "SELECT * FROM TestAppointments";
+            string query = "SELECT * FROM Licenses";
             return clsGenericData.GetDataTable(query);
         }
 

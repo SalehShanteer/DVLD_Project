@@ -85,7 +85,7 @@ namespace DVLD_DataAccess
         public static DataTable GetAllCountries()
         {
            string query = "SELECT * FROM Countries";    
-            return clsGenericData.GetAllRecords(query);
+            return clsGenericData.GetDataTable(query);
         }
 
     }

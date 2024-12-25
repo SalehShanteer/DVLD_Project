@@ -62,7 +62,7 @@ namespace DVLD_Business
 
         public static DataTable GetList()
         {
-            return clsGenericData.GetAllRecords("SELECT * FROM ApplicationTypes");
+            return clsGenericData.GetDataTable("SELECT * FROM ApplicationTypes");
         }
 
 

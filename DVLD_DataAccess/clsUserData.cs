@@ -176,7 +176,7 @@ namespace DVLD_DataAccess
 
         public static DataTable GetAllUsers()
         {
-            return clsGenericData.GetAllRecords("SELECT * FROM Users");
+            return clsGenericData.GetDataTable("SELECT * FROM Users");
         }
             
     }
