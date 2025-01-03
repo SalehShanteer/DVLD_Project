@@ -105,5 +105,10 @@ namespace DVLD_Business
             return clsLocalDrivingLicenseApplicationData.GetAllLocalDrivingLicenseApplications();
         }
 
+        public static bool IsPersonAppliedForLicenseClass(int PersonID, int LicenseClassID)
+        {
+            return clsLocalDrivingLicenseApplicationData.CheckIfPersonAppliedForLicenseClass(PersonID, LicenseClassID);
+        }
+
     }
-}
+}   

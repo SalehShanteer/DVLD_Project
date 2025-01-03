@@ -70,5 +70,10 @@ namespace DVLD_Business
             return clsApplicationTypeData.CountNumberApplicationTypes();
         }
 
+        public static short GetFees(int ID)
+        {
+            return clsApplicationTypeData.GetApplicationTypeFees(ID);
+        }
+
     }
 }

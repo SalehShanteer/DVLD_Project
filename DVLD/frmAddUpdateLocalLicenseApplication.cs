@@ -49,11 +49,11 @@ namespace DVLD
         private bool _CheckIfPersonAppliedForSameLicenseClass()
         {
             // Check if person applied for local driving license on same license class before
-            return true;
+            return clsLocalDrivingLicenseApplication.IsPersonAppliedForLicenseClass(_PersonID, cbxLicenseClass.SelectedIndex + 1);
         }
 
         private bool _SetApplicationInfo()
-        {
+        {  
             clsApplication application = new clsApplication();
 
             application.ApplicationType = clsApplicationType.Find(1); // New Local Driving License Application
@@ -61,6 +61,7 @@ namespace DVLD
             application.ApplicantPerson = clsPerson.Find(_PersonID);
 
             application.CreatedByUser = clsUser.Find(clsUserSetting.GetCurrentUserID()); // CurrentUser
+            
 
             if(application.Save())
             {
@@ -83,7 +84,7 @@ namespace DVLD
         {
             _SetLicenseClassInfo();
 
-            return _SetApplicationInfo() ? true : false;      
+            return _SetApplicationInfo() ? true : false;
         }
 
         private void _SaveLocalDrivingLicenseApplication()
@@ -131,7 +132,7 @@ namespace DVLD
             lblDrivingLicenseApplicationID.Text = _LocalDrivingLicenseApplication.ID.ToString();
             lblApplicationDate.Text = _LocalDrivingLicenseApplication.Application.ApplicationDate.ToShortDateString();
             lblApplicationFees.Text = _LocalDrivingLicenseApplication.Application.PaidFees.ToString();
-            lblCreatedBy.Text = _LocalDrivingLicenseApplication.Application.CreatedByUser.Person.FullName;
+            lblCreatedBy.Text = _LocalDrivingLicenseApplication.Application.CreatedByUser.Person.PartialName;
 
             // Display the license class
             cbxLicenseClass.SelectedIndex = cbxLicenseClass.FindStringExact(_LocalDrivingLicenseApplication.LicenseClass.Title);
@@ -158,7 +159,8 @@ namespace DVLD
         private void _DisplayInitialApplicationInfo()
         {
             lblApplicationDate.Text = DateTime.Now.ToShortDateString();
-            lblApplicationFees.Text = 
+            lblApplicationFees.Text = clsApplicationType.GetFees(1).ToString();// Fees For New Local Driving License Application 
+            lblCreatedBy.Text = clsUserSetting.GetCurrentUserFullName();
         }
 
         private void _LoadLocalDrivingLicenseApplication()
@@ -190,7 +192,15 @@ namespace DVLD
             if (MessageBox.Show(clsUtility.askForSaveMessage("local driving license application"), "Save?"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _SaveLocalDrivingLicenseApplication();
+                if (!_CheckIfPersonAppliedForSameLicenseClass())
+                {
+                    _SaveLocalDrivingLicenseApplication();
+                }
+                else
+                {                   
+                    MessageBox.Show("Person already applied for local driving license on the same license class before."
+                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

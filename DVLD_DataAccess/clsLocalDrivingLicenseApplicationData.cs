@@ -128,6 +128,36 @@ namespace DVLD_DataAccess
             return clsGenericData.GetDataTable(query);
         }
 
+        public static bool CheckIfPersonAppliedForLicenseClass(int ApplicantPersonID, int SelectedLicenseClassID)
+        {
+            bool IsFound = false;
+
+            string query = "DECLARE @Result BIT " +
+                           "EXEC @Result = SP_CheckIfPersonAppliedForLicenseClass @PersonID = @ApplicantPersonID, @LicenseClassID = @SelectedLicenseClassID " +
+                           "SELECT @Result AS Result";
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add the parameters
+                    command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
+                    command.Parameters.AddWithValue("@SelectedLicenseClassID", SelectedLicenseClassID);
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            IsFound = Convert.ToBoolean(result);
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return IsFound;
+        }
 
     }
 }

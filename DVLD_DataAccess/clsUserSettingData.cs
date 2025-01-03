@@ -127,5 +127,33 @@ namespace DVLD_DataAccess
             return ID;
         }
 
+        public static string GetCurrentUserFullName()
+        {
+            string FullName = string.Empty;
+
+            string query = "DECLARE @Name NVARCHAR(101) " +
+                           "EXEC SP_GetCurrentUserFullName @FullName = @Name OUTPUT " +
+                           "SELECT @Name AS FullName";
+                
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        object Result = command.ExecuteScalar();
+                        if (Result != null)
+                        {
+                            FullName = Result.ToString();
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return FullName;
+        }
+
     }
 }

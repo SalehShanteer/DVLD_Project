@@ -3,18 +3,21 @@
   "WorkspaceRootPath": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{3AC75B99-F401-45FB-909E-C3773154D71C}|..\\DVLD_DataAccess\\DVLD_DataAccess.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld_dataaccess\\clsapplicationtypedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AC75B99-F401-45FB-909E-C3773154D71C}|..\\DVLD_DataAccess\\DVLD_DataAccess.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld_dataaccess\\clsapplicationstatusdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmaddupdatelocallicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmaddupdatelocallicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmaddupdatelocallicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmaddupdatelocallicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{C6DD46F9-CA97-4163-A396-09F8A703D996}|..\\DVLD Business\\DVLD_Business.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld business\\clsapplicationtype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6DD46F9-CA97-4163-A396-09F8A703D996}|..\\DVLD Business\\DVLD_Business.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld business\\clslocaldrivinglicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\frmaddupdatelocallicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmaddupdatelocallicenseapplication.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{3AC75B99-F401-45FB-909E-C3773154D71C}|..\\DVLD_DataAccess\\DVLD_DataAccess.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld_dataaccess\\clslocaldrivinglicenseapplicationdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,17 +27,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "frmAddUpdateLocalLicenseApplication.cs",
               "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmAddUpdateLocalLicenseApplication.cs",
               "RelativeDocumentMoniker": "frmAddUpdateLocalLicenseApplication.cs",
               "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmAddUpdateLocalLicenseApplication.cs",
               "RelativeToolTip": "frmAddUpdateLocalLicenseApplication.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAAAcwKAAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAMgAAABOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-02T10:25:40.339Z",
               "IsPinned": true,
@@ -42,7 +45,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "frmAddUpdateLocalLicenseApplication.cs [Design]",
               "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmAddUpdateLocalLicenseApplication.cs",
               "RelativeDocumentMoniker": "frmAddUpdateLocalLicenseApplication.cs",
@@ -55,28 +58,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "clsApplicationTypeData.cs",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsApplicationTypeData.cs",
-              "RelativeDocumentMoniker": "..\\DVLD_DataAccess\\clsApplicationTypeData.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsApplicationTypeData.cs",
-              "RelativeToolTip": "..\\DVLD_DataAccess\\clsApplicationTypeData.cs",
-              "ViewState": "AgIAAE8AAAAAAAAAAAA5wGkAAAAqAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "clsLocalDrivingLicenseApplication.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsLocalDrivingLicenseApplication.cs",
+              "RelativeDocumentMoniker": "..\\DVLD Business\\clsLocalDrivingLicenseApplication.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsLocalDrivingLicenseApplication.cs",
+              "RelativeToolTip": "..\\DVLD Business\\clsLocalDrivingLicenseApplication.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAswHEAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T17:06:11.567Z",
+              "WhenOpened": "2025-01-03T18:43:30.968Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "clsApplicationType.cs",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsApplicationType.cs",
-              "RelativeDocumentMoniker": "..\\DVLD Business\\clsApplicationType.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsApplicationType.cs",
-              "RelativeToolTip": "..\\DVLD Business\\clsApplicationType.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "clsLocalDrivingLicenseApplicationData.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsLocalDrivingLicenseApplicationData.cs",
+              "RelativeDocumentMoniker": "..\\DVLD_DataAccess\\clsLocalDrivingLicenseApplicationData.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsLocalDrivingLicenseApplicationData.cs",
+              "RelativeToolTip": "..\\DVLD_DataAccess\\clsLocalDrivingLicenseApplicationData.cs",
+              "ViewState": "AgIAAHsAAAAAAAAAAAA5wIIAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T17:06:45.543Z",
+              "WhenOpened": "2025-01-03T18:43:26.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "clsApplicationStatusData.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsApplicationStatusData.cs",
+              "RelativeDocumentMoniker": "..\\DVLD_DataAccess\\clsApplicationStatusData.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsApplicationStatusData.cs",
+              "RelativeToolTip": "..\\DVLD_DataAccess\\clsApplicationStatusData.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T17:23:54.865Z",
               "EditorCaption": ""
             }
           ]

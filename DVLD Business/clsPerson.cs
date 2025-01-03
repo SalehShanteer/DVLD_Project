@@ -22,6 +22,7 @@ namespace DVLD_Business
         public string SecondName { get; set; }
         public string ThirdName { get; set; }
         public string LastName { get; set; }
+        public string PartialName { get { return FirstName + " " + LastName; }  }
         public string FullName { get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; } }
         public bool Gender { get; set; }// Male : true | Female : false
         public DateTime DateOfBirth { get; set; }
