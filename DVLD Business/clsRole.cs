@@ -56,6 +56,21 @@ namespace DVLD_Business
                 return null;
         }
 
+        public static clsRole Find(string Title)
+        {
+            //Prepare the data
+            int ID = -1;
+            int Permissions = 0;
+            string Description = string.Empty;
+
+            if (clsRoleData.FindRoleByTitle(ref ID, Title, ref Permissions, ref Description))
+            {
+                return new clsRole(ID, Title, Permissions, Description);
+            }
+            else
+                return null;
+        }
+
         public static bool IsExist(int ID)
         {
             return clsRoleData.IsRoleExist(ID);

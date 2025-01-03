@@ -16,30 +16,27 @@ namespace DVLD_Business
         public byte MinimumAllowedAge { get; }
         public byte DefaultValidityLength { get; }
         public short Fees { get; }
-        public string Description { get; }
 
-        private clsLicenseClass(int ID, string Title, byte MinimumAllowedAge, byte DefaultValidityLength, short Fees, string Description)
+        private clsLicenseClass(int ID, string Title, byte MinimumAllowedAge, byte DefaultValidityLength, short Fees)
         {
             this.ID = ID;
             this.Title = Title;
             this.MinimumAllowedAge = MinimumAllowedAge;
             this.DefaultValidityLength = DefaultValidityLength;
             this.Fees = Fees;
-            this.Description = Description;
         }
 
         public static clsLicenseClass Find(int ID)
         {
             //Prepare the data
             string Title = string.Empty;
-            string MinimumAllowedAge = string.Empty;
+            byte MinimumAllowedAge = 0;
             byte DefaultValidityLength = 0;
             short Fees = 0;
-            string Description = string.Empty;
 
-            if (clsLicenseClassData.FindLicenseClassByID(ID, ref Title, ref MinimumAllowedAge, ref DefaultValidityLength, ref Fees, ref Description))
+            if (clsLicenseClassData.FindLicenseClassByID(ID, ref Title, ref MinimumAllowedAge, ref DefaultValidityLength, ref Fees))
             {
-                return new clsLicenseClass(ID, Title, Convert.ToByte(MinimumAllowedAge), DefaultValidityLength, Fees, Description);
+                return new clsLicenseClass(ID, Title, Convert.ToByte(MinimumAllowedAge), DefaultValidityLength, Fees);
             }
             else
                 return null;

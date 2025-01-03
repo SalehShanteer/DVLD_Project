@@ -18,3 +18,16 @@ C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frm
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmManageUsers.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlPersonManager.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmAddUpdatePerson.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlPersonInfo.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlPersonInfoWithFilter.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmAddUpdateUser.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmPersonDetails.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmUserInfo.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlUserInfo.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmChangePassword.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmManageTestTypes.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmUpdateTestType.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmManageApplicationTypes.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmUpdateApplicationType.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmAddUpdateLocalDrivingLicenseApplication.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmLogin.resources

@@ -19,7 +19,6 @@ namespace DVLD_Business
         public clsPerson ApplicantPerson { get; set; }
         public DateTime ApplicationDate { get; set; }
         public clsApplicationType ApplicationType { get; set; }
-        public clsLicenseClass LicenseClass { get; set; }
         public short PaidFees { get; set; }
         public DateTime LastStatusDate { get; set; }
         public clsApplicationStatus Status { get; set; }
@@ -31,7 +30,6 @@ namespace DVLD_Business
             this.ApplicantPerson = null;
             this.ApplicationDate = DateTime.MinValue;
             this.ApplicationType = null;
-            this.LicenseClass = null;
             this.PaidFees = -1;
             this.LastStatusDate = DateTime.MinValue;
             this.Status = null;
@@ -40,13 +38,12 @@ namespace DVLD_Business
             _Mode = enMode.AddNew;
         }
 
-        public clsApplication(int iD, clsPerson applicantPerson, DateTime applicationDate, clsApplicationType applicationType, clsLicenseClass licenseClass, short paidFees, DateTime lastStatusDate, clsApplicationStatus status, clsUser createdByUser)
+        public clsApplication(int iD, clsPerson applicantPerson, DateTime applicationDate, clsApplicationType applicationType, short paidFees, DateTime lastStatusDate, clsApplicationStatus status, clsUser createdByUser)
         {
             this.ID = iD;
             this.ApplicantPerson = applicantPerson;
             this.ApplicationDate = applicationDate;
             this.ApplicationType = applicationType;
-            this.LicenseClass = licenseClass;
             this.PaidFees = paidFees;
             this.LastStatusDate = lastStatusDate;
             this.Status = status;
@@ -57,15 +54,14 @@ namespace DVLD_Business
 
         private bool _AddNewApplication()
         {
-            this.ID = clsApplicationData.AddNewApplication(this.ApplicantPerson.ID, this.ApplicationDate, this.ApplicationType.ID
-                , this.LicenseClass.ID, this.PaidFees, this.LastStatusDate, this.Status.ID, this.CreatedByUser.ID);
+            this.ID = clsApplicationData.AddNewApplication(this.ApplicantPerson.ID, this.ApplicationType.ID, this.CreatedByUser.ID);
 
             return this.ID != -1;
         }
 
         private bool _UpdateApplication()
         {
-            return clsApplicationData.UpdateApplication(this.ID, this.PaidFees, this.LastStatusDate, this.Status.ID);
+            return clsApplicationData.UpdateApplication(this.ID, this.LastStatusDate, this.Status.ID);
         }
 
         public bool Save()
@@ -97,22 +93,21 @@ namespace DVLD_Business
             int ApplicantPersonID = -1;
             DateTime ApplicationDate = DateTime.MinValue;
             int ApplicationTypeID = -1;
-            int LicenseClassID = -1;
             short PaidFees = -1;
             DateTime LastStatusDate = DateTime.MinValue;
             int StatusID = -1;
             int CreatedByUserID = -1;
 
-            if (clsApplicationData.AddNewApplication(ApplicantPersonID, ApplicationDate, ApplicationTypeID, LicenseClassID, PaidFees, LastStatusDate, StatusID, CreatedByUserID) != -1)
+            if (clsApplicationData.FindApplicationByID(ID, ref ApplicantPersonID, ref ApplicationDate, ref ApplicationTypeID, ref PaidFees
+                , ref LastStatusDate, ref StatusID, ref CreatedByUserID))
             {
                 // Find the related objects
                 clsPerson Person = clsPerson.Find(ApplicantPersonID);
                 clsApplicationType ApplicationType = clsApplicationType.Find(ApplicationTypeID);
-                clsLicenseClass LicenseClass = clsLicenseClass.Find(LicenseClassID);
                 clsApplicationStatus Status = clsApplicationStatus.Find(StatusID);
                 clsUser CreatedByUser = clsUser.Find(CreatedByUserID);
 
-                return new clsApplication(ApplicantPersonID, Person, ApplicationDate, ApplicationType, LicenseClass
+                return new clsApplication(ApplicantPersonID, Person, ApplicationDate, ApplicationType
                     , PaidFees, LastStatusDate, Status, CreatedByUser);
             }
             else

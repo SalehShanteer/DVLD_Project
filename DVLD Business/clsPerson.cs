@@ -22,7 +22,7 @@ namespace DVLD_Business
         public string SecondName { get; set; }
         public string ThirdName { get; set; }
         public string LastName { get; set; }
-        public string FullName { get { return FirstName + " " + LastName; } }
+        public string FullName { get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; } }
         public bool Gender { get; set; }// Male : true | Female : false
         public DateTime DateOfBirth { get; set; }
         public byte Age { get; }
@@ -79,6 +79,7 @@ namespace DVLD_Business
         {
             this.ID = clsPersonData.AddNewPerson(this.NationalNumber, this.FirstName, this.SecondName, this.ThirdName, this.LastName
                 , this.Gender, this.DateOfBirth, this.Address, this.Phone, this.Email, this.Country.ID, this.ImagePath);
+
             return this.ID != -1;
         }
 
@@ -194,9 +195,19 @@ namespace DVLD_Business
             return clsPersonData.DeletePerson(ID);
         }
 
+        public static int GetPersonID(string NationalNumber)
+        {
+            return clsPersonData.GetPersonIDByNationalNumber(NationalNumber);
+        }
+
         public static DataTable GetPeopleList()
         {
             return clsPersonData.GetAllPeople();
+        }
+
+        public static int GetPeopleCount()
+        {
+            return clsPersonData.CountNumberOfPeople();
         }
 
     }

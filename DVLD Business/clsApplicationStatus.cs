@@ -11,7 +11,7 @@ namespace DVLD_Business
     public class clsApplicationStatus
     {
 
-        public int ID { get; }
+        public int ID { get; }// -1 : Cancelled | 0 : New | 1 : Complete
         public string Title { get; }
 
         private clsApplicationStatus(int ID, string Title)

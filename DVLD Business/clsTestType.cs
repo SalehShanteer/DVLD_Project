@@ -65,8 +65,14 @@ namespace DVLD_Business
 
         public static DataTable GetTestTypesList()
         {
-            return clsGenericData.GetDataTable("TestTypes");
+            return clsTestTypeData.GetAllTestTypes();
         }
+
+        public static int GetTestTypesCount()
+        {
+            return clsTestTypeData.CountNumberOfTestTypes();
+        }
+
 
     }
 }

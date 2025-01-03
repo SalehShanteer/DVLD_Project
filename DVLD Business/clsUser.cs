@@ -50,14 +50,18 @@ namespace DVLD_Business
 
         private bool _AddNewUser()
         {
-            this.ID = clsUserData.AddNewUser(this.Person.ID, this.Username, this.Password, this.Role.ID, this.IsActive);
+            string EncryptedPassword = clsUtility.Encrypt(this.Password);
+
+            this.ID = clsUserData.AddNewUser(this.Person.ID, this.Username, EncryptedPassword, this.Role.ID, this.IsActive);
 
             return this.ID != -1;
         }
 
         private bool _UpdateUser()
         {
-            return clsUserData.UpdateUser(this.ID, this.Person.ID, this.Username, this.Password, this.Role.ID, this.IsActive);
+            string EncryptedPassword = clsUtility.Encrypt(this.Password);
+
+            return clsUserData.UpdateUser(this.ID, this.Person.ID, this.Username, EncryptedPassword, this.Role.ID, this.IsActive);
         }
 
         public bool Save()
@@ -90,10 +94,10 @@ namespace DVLD_Business
         public static clsUser Find(int ID)
         {
             // Prepare the object
-            int PersonID = 0;
+            int PersonID = -1;
             string Username = string.Empty;
             string Password = string.Empty;
-            int RoleID = 0;
+            int RoleID = -1;
             DateTime DateCreated = DateTime.MinValue;
             bool IsActive = false;
 
@@ -102,28 +106,33 @@ namespace DVLD_Business
                 clsPerson person = clsPerson.Find(PersonID);
                 clsRole role = clsRole.Find(RoleID);
 
-                return new clsUser(ID, person, Username, Password, role, DateCreated, IsActive);
+                string DecryptedPassword = clsUtility.Decrypt(Password);
+
+                return new clsUser(ID, person, Username, DecryptedPassword, role, DateCreated, IsActive);
             }
             else
                 return null;
         }
 
-        public static clsUser Find(string Username, string Password)
+        public static clsUser Find(string Username)
         {
             //Prepare the object
             int ID = -1;
             int PersonID = -1;
+            string Password = string.Empty;
             int RoleID = -1;
             DateTime DateCreated = DateTime.MinValue;
             bool IsActive = false;
 
-            if (clsUserData.FindUserByUsernameAndPassword(ref ID, ref PersonID, Username, Password, ref RoleID, ref DateCreated, ref IsActive))
+            if (clsUserData.FindUserByUsername(ref ID, ref PersonID, Username, ref Password, ref RoleID, ref DateCreated, ref IsActive))
             {
                 //Find person and role
                 clsPerson person = clsPerson.Find(PersonID);
                 clsRole role = clsRole.Find(RoleID);
 
-                return new clsUser(ID, person, Username, Password, role, DateCreated, IsActive);
+                string DecryptedPassword = clsUtility.Decrypt(Password);
+
+                return new clsUser(ID, person, Username, DecryptedPassword, role, DateCreated, IsActive);
             }
             else
                 return null;
@@ -134,6 +143,11 @@ namespace DVLD_Business
             return clsUserData.IsUserExist(ID);
         }
 
+        public static int GetUserID(string Username)
+        {
+            return clsUserData.GetUserID(Username);
+        }
+
         public static bool Delete(int ID)
         {
             return clsUserData.DeleteUser(ID);
@@ -142,6 +156,11 @@ namespace DVLD_Business
         public static DataTable GetUsersList()
         {
             return clsUserData.GetAllUsers();
+        }
+
+        public static int GetUsersCount()
+        {
+            return clsUserData.CountNumberOfUsers();
         }
 
     }

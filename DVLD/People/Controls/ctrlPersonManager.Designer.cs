@@ -57,6 +57,7 @@
             this.txtSecondName = new System.Windows.Forms.TextBox();
             this.txtFirstName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.openFileDialogForImage = new System.Windows.Forms.OpenFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,6 +91,7 @@
             this.llblRemove.TabStop = true;
             this.llblRemove.Text = "Remove";
             this.llblRemove.Visible = false;
+            this.llblRemove.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblRemove_LinkClicked);
             // 
             // llblSetImage
             // 
@@ -100,6 +102,7 @@
             this.llblSetImage.TabIndex = 55;
             this.llblSetImage.TabStop = true;
             this.llblSetImage.Text = "Set Image";
+            this.llblSetImage.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblSetImage_LinkClicked);
             // 
             // pbImage
             // 
@@ -140,6 +143,7 @@
             this.rbMale.TabStop = true;
             this.rbMale.Text = "Male";
             this.rbMale.UseVisualStyleBackColor = true;
+            this.rbMale.CheckedChanged += new System.EventHandler(this.rbMale_CheckedChanged);
             // 
             // cbxCountry
             // 
@@ -323,6 +327,10 @@
             this.label1.TabIndex = 30;
             this.label1.Text = "Name:";
             // 
+            // openFileDialogForImage
+            // 
+            this.openFileDialogForImage.FileName = "openFileDialogForImage";
+            // 
             // ctrlPersonManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -399,5 +407,6 @@
         private System.Windows.Forms.TextBox txtSecondName;
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog openFileDialogForImage;
     }
 }

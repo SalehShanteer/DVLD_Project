@@ -93,7 +93,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmAddUpdatePerson";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmAddUpdatePerson";
+            this.Text = "Add New Person";
             this.Load += new System.EventHandler(this.frmAddUpdatePerson_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

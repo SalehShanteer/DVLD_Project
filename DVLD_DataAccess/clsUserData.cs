@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace DVLD_DataAccess
                             RoleID = Convert.ToInt32(reader["RoleID"]);
                             DateCreated = Convert.ToDateTime(reader["DateCreated"]);
                             IsActive = Convert.ToBoolean(reader["IsActive"]);
+
                             IsFound = true;
                         }
 
@@ -50,12 +52,12 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
-        public static bool FindUserByUsernameAndPassword(ref int ID, ref int PersonID, string Username, string Password
+        public static bool FindUserByUsername(ref int ID, ref int PersonID, string Username, ref string Password
             , ref int RoleID, ref DateTime DateCreated, ref bool IsActive)
         {
             bool IsFound = false;
 
-            string query = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
+            string query = "SELECT * FROM Users WHERE Username = @Username";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -63,7 +65,6 @@ namespace DVLD_DataAccess
                 {
                     // Add the parameters
                     command.Parameters.AddWithValue("@Username", Username);
-                    command.Parameters.AddWithValue("@Password", Password);
 
                     try
                     {
@@ -74,6 +75,7 @@ namespace DVLD_DataAccess
                         {
                             ID = Convert.ToInt32(reader["UserID"]);
                             PersonID = Convert.ToInt32(reader["PersonID"]);
+                            Password = reader["Password"].ToString();
                             RoleID = Convert.ToInt32(reader["RoleID"]);
                             DateCreated = Convert.ToDateTime(reader["DateCreated"]);
                             IsActive = Convert.ToBoolean(reader["IsActive"]);
@@ -94,6 +96,37 @@ namespace DVLD_DataAccess
         public static bool IsUserExist(int ID)
         {
             return clsGenericData.IsRecordExist("Users", "UserID", ID);
+        }
+
+        public static int GetUserID(string Username)
+        {
+            int ID = -1;
+
+            string query = "SELECT UserID FROM Users WHERE Username = @Username";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameter to query
+                    command.Parameters.AddWithValue("@Username", Username);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int id))
+                        {
+                            ID = id;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return ID;
         }
 
         public static int AddNewUser(int PersonID, string Username, string Password, int RoleID, bool IsActive)
@@ -176,7 +209,12 @@ namespace DVLD_DataAccess
 
         public static DataTable GetAllUsers()
         {
-            return clsGenericData.GetDataTable("SELECT * FROM Users");
+            return clsGenericData.GetDataTable("SELECT * FROM VIEW_UsersList");
+        }
+
+        public static int CountNumberOfUsers()
+        {
+            return clsGenericData.CountRecords("Users");
         }
             
     }

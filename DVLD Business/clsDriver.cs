@@ -95,7 +95,10 @@ namespace DVLD_Business
             return clsDriverData.GetAllDrivers();
         }
 
-
-
+        public static int GetDriversCount()
+        {
+            return clsDriverData.GetNumberOfDrivers();
+        }
+        
     }
 }

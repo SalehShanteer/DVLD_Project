@@ -84,11 +84,15 @@ namespace DVLD_DataAccess
 
         public static DataTable GetAllTestTypes()
         {
-            string query = "SELECT * FROM TestTypes";
+            string query = "SELECT TestTypeID AS ID, Title, Description, Fees FROM TestTypes";
 
             return clsGenericData.GetDataTable(query);
         }
 
+        public static int CountNumberOfTestTypes()
+        {
+            return clsGenericData.CountRecords("TestTypes");
+        }
 
 
     }

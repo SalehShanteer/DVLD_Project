@@ -80,7 +80,42 @@ namespace DVLD_DataAccess
 
         public static DataTable GetAllApplicationTypes()
         {
-            return clsGenericData.GetDataTable("SELECT * FROM ApplicationTypes");
+            return clsGenericData.GetDataTable("SELECT ApplicationTypeID AS ID, Title, Fees FROM ApplicationTypes");
+        }
+
+        public static int CountNumberApplicationTypes()
+        {
+            return clsGenericData.CountRecords("ApplicationTypes");
+        }
+
+        public static short GetApplicationTypeFees(int ID)
+        {
+            short Fees = -1;
+
+            string query = "SELECT Fees FROM ApplicationTypes WHERE ApplicationTypeID = @ID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add the parameters
+                    command.Parameters.AddWithValue("@ID", ID);
+
+                    try
+                    {
+                        connection.Open();                     
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && short.TryParse(result.ToString(), out short fees))
+                        {
+                            Fees = fees;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return Fees;
         }
 
     }

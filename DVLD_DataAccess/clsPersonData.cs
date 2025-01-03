@@ -178,6 +178,7 @@ namespace DVLD_DataAccess
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     // Add parameters to the command
+                    command.Parameters.AddWithValue("@ID", ID);
                     command.Parameters.AddWithValue("@NationalNumber", NationalNumber);
                     command.Parameters.AddWithValue("@FirstName", FirstName);
                     command.Parameters.AddWithValue("@SecondName", SecondName);
@@ -214,6 +215,38 @@ namespace DVLD_DataAccess
             return clsGenericData.DeleteRecord("People", "PersonID", ID);
         }
 
+        public static int GetPersonIDByNationalNumber(string NationalNumber)
+        {
+            int ID = -1;
+
+            string query = "SELECT PersonID FROM People WHERE NationalNumber = @NationalNumber";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the command
+                    command.Parameters.AddWithValue("@NationalNumber", NationalNumber);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int PersonID))
+                        {
+                            ID = PersonID;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+
+            return ID;
+        }
+
         public static DataTable GetAllPeople()
         {
             string query = "SELECT * FROM View_PeopleList";
@@ -221,6 +254,10 @@ namespace DVLD_DataAccess
             return clsGenericData.GetDataTable(query);
         }
 
+        public static int CountNumberOfPeople()
+        {
+            return clsGenericData.CountRecords("People");
+        }
 
     }
 }

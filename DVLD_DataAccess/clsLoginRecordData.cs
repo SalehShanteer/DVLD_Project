@@ -16,11 +16,11 @@ namespace DVLD_DataAccess
             return clsGenericData.IsRecordExist("LoginRecords", "LoginRecordID", ID);
         }
 
-        public static int AddNewLoginRecord(int UserID, DateTime LoginTime, bool LoginStatus, string FailureReason)
+        public static int AddNewLoginRecord(int UserID, bool LoginStatus, string FailureReason) 
         {
             int ID = -1;
             string query = "INSERT INTO LoginRecords (UserID, LoginTime, LoginStatus, FailureReason)" +
-                           " VALUES (@UserID, @LoginTime, @LoginStatus, @FailureReason); " +
+                           " VALUES (@UserID, GETDATE(), @LoginStatus, @FailureReason); " +
                            "SELECT SCOPE_IDENTITY();";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
@@ -29,7 +29,6 @@ namespace DVLD_DataAccess
                 {
                     // Add the parameters
                     command.Parameters.AddWithValue("@UserID", UserID);
-                    command.Parameters.AddWithValue("@LoginTime", LoginTime);
                     command.Parameters.AddWithValue("@LoginStatus", LoginStatus);
                     command.Parameters.AddWithValue("@FailureReason", FailureReason != string.Empty ? FailureReason : (object)DBNull.Value);
 

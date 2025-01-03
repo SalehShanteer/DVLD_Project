@@ -96,6 +96,11 @@ namespace DVLD_DataAccess
             return clsGenericData.GetDataTable(query);
         }
 
+        public static int GetNumberOfDrivers()
+        {
+            return clsGenericData.CountRecords("Drivers");
+        }
+
 
     }
 }

@@ -12,7 +12,7 @@ namespace DVLD_DataAccess
     {
 
         public static bool FindApplicationByID(int ID, ref int ApplicantPersonID, ref DateTime ApplicationDate, ref int ApplicationTypeID
-            , ref int LicenseClassID, ref short PaidFees, ref DateTime LastStatusDate, ref int StatusID, ref int CreatedByUserID)
+            , ref short PaidFees, ref DateTime LastStatusDate, ref int StatusID, ref int CreatedByUserID)
         {
             bool IsFound = false;
 
@@ -35,7 +35,6 @@ namespace DVLD_DataAccess
                             ApplicantPersonID = Convert.ToInt32(reader["ApplicantPersonID"]);
                             ApplicationDate = Convert.ToDateTime(reader["ApplicationDate"]);
                             ApplicationTypeID = Convert.ToInt32(reader["ApplicationTypeID"]);
-                            LicenseClassID = Convert.ToInt32(reader["LicenseClassID"]);
                             PaidFees = Convert.ToInt16(reader["PaidFees"]);
                             LastStatusDate = Convert.ToDateTime(reader["LastStatusDate"]);
                             StatusID = Convert.ToInt32(reader["StatusID"]);
@@ -58,14 +57,17 @@ namespace DVLD_DataAccess
             return clsGenericData.IsRecordExist("Applications", "ApplicationID", ID);
         }
 
-        public static int AddNewApplication(int ApplicantPersonID, DateTime ApplicationDate, int ApplicationTypeID
-            , int LicenseClassID, short PaidFees, DateTime LastStatusDate, int StatusID, int CreatedByUserID)
+        public static int AddNewApplication(int ApplicantPersonID, int ApplicationTypeID, int CreatedByUserID)
         {
             int ID = -1;
 
-            string query = "INSERT INTO Applications (ApplicantPersonID, ApplicationDate, ApplicationTypeID, LicenseClassID, PaidFees, LastStatusDate, StatusID, CreatedByUserID) " +
-                "VALUES (@ApplicantPersonID, @ApplicationDate, @ApplicationTypeID, @LicenseClassID, @PaidFees, @LastStatusDate, @StatusID, @CreatedByUserID); " +
-                "SELECT SCOPE_IDENTITY();";
+            string query = "DECLARE @PaidFees SMALLINT " +
+                           "EXEC SP_GetApplicationTypeFees " +
+                           "@ApplicationTypeID = @ApplicationTypeId, " +
+                           "@Fees = @PaidFees OUTPUT " +
+                           "INSERT INTO Applications (ApplicantPersonID, ApplicationDate, ApplicationTypeID, PaidFees, LastStatusDate, StatusID, CreatedByUserID) " +
+                           "VALUES (@ApplicantPersonID, GETDATE(), @ApplicationTypeId, @PaidFees, GETDATE(), @StatusID, @CreatedByUserID); " +
+                           "SELECT SCOPE_IDENTITY();";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -73,12 +75,8 @@ namespace DVLD_DataAccess
                 {
                     // Add the parameters
                     command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
-                    command.Parameters.AddWithValue("@ApplicationDate", ApplicationDate);
-                    command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
-                    command.Parameters.AddWithValue("@LicenseClassID", LicenseClassID);
-                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
-                    command.Parameters.AddWithValue("@LastStatusDate", LastStatusDate);
-                    command.Parameters.AddWithValue("@StatusID", StatusID);
+                    command.Parameters.AddWithValue("@ApplicationTypeId", ApplicationTypeID);
+                    command.Parameters.AddWithValue("@StatusID", 0);// 0 : (New)
                     command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
                     try
@@ -98,10 +96,10 @@ namespace DVLD_DataAccess
             return ID;
         }
 
-        public static bool UpdateApplication(int ID, short PaidFees, DateTime LastStatusDate, int StatusID)
+        public static bool UpdateApplication(int ID, DateTime LastStatusDate, int StatusID)
         {
             bool IsUpdated = false;
-            string query = "UPDATE Applications SET PaidFees = @PaidFees, LastStatusDate = @LastStatusDate, StatusID = @StatusID WHERE ApplicationID = @ID";
+            string query = "UPDATE Applications SET LastStatusDate = @LastStatusDate, StatusID = @StatusID WHERE ApplicationID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -109,7 +107,6 @@ namespace DVLD_DataAccess
                 {
                     // Add the parameters
                     command.Parameters.AddWithValue("@ID", ID);
-                    command.Parameters.AddWithValue("@PaidFees", PaidFees);
                     command.Parameters.AddWithValue("@LastStatusDate", LastStatusDate);
                     command.Parameters.AddWithValue("@StatusID", StatusID);
 

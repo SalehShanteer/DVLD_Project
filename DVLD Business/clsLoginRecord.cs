@@ -34,7 +34,7 @@ namespace DVLD_Business
 
         private bool _AddNewLoginRecord()
         {
-            this.ID = clsLoginRecordData.AddNewLoginRecord(this.User.ID, this.LoginTime, this.LoginStatus, this.FailureReason);
+            this.ID = clsLoginRecordData.AddNewLoginRecord(this.User.ID, this.LoginStatus, this.FailureReason);
             return this.ID != -1;
         }
 

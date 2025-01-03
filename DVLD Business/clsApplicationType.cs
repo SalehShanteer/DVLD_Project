@@ -60,11 +60,15 @@ namespace DVLD_Business
             return clsApplicationTypeData.IsApplicationTypeExists(ID);
         }
 
-        public static DataTable GetList()
+        public static DataTable GetApplicationTypesList()
         {
-            return clsGenericData.GetDataTable("SELECT * FROM ApplicationTypes");
+            return clsApplicationTypeData.GetAllApplicationTypes();
         }
 
+        public static int GetApplicationTypesCount()
+        {
+            return clsApplicationTypeData.CountNumberApplicationTypes();
+        }
 
     }
 }

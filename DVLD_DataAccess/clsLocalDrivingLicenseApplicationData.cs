@@ -53,6 +53,7 @@ namespace DVLD_DataAccess
         public static int AddNewLocalDrivingLicenseApplication(int ApplicationID, int LicenseClassID)
         {
             int ID = -1;
+
             string query = "INSERT INTO LocalDrivingLicenseApplications (ApplicationID, LicenseClassID) " +
                 "VALUES (@ApplicationID, @LicenseClassID); " +
                 "SELECT SCOPE_IDENTITY();";

@@ -114,6 +114,40 @@ namespace DVLD_DataAccess
             return dt;
         }
 
+        public static int CountRecords(string table)
+        {          
+            int count = 0;
+            
+            // Ensure table is valid to prevent SQL injection
+            if (!IsValidIdentifier(table))
+            {
+                throw new ArgumentException("Invalid table or column name.");
+            }
+
+            string query = $"SELECT COUNT(*) FROM {table}";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int TotalRecords))
+                        {
+                            count = TotalRecords;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return count;
+        }
+
 
         // Helper method to validate identifiers (table and column names)
         private static bool IsValidIdentifier(string identifier)

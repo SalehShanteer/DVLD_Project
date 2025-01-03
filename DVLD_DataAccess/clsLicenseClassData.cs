@@ -11,8 +11,7 @@ namespace DVLD_DataAccess
     public class clsLicenseClassData
     {
 
-        public static bool FindLicenseClassByID(int ID, ref string Title, ref string MinimumAllowedAge, ref byte DefaultValidityLength
-            , ref short Fees, ref string Description)
+        public static bool FindLicenseClassByID(int ID, ref string Title, ref byte MinimumAllowedAge, ref byte DefaultValidityLength, ref short Fees)
         {
             bool IsFound = false;
 
@@ -33,10 +32,9 @@ namespace DVLD_DataAccess
                         if (reader.Read())
                         {
                             Title = (string)reader["Title"];
-                            MinimumAllowedAge = (string)reader["MinimumAllowedAge"];
+                            MinimumAllowedAge = (byte)reader["MinimumAllowedAge"];
                             DefaultValidityLength = (byte)reader["DefaultValidityLength"];
                             Fees = (short)reader["Fees"];
-                            Description = (string)reader["Description"];
 
                             IsFound = true;
                         }

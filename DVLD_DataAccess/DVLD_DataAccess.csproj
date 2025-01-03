@@ -50,6 +50,7 @@
     <Compile Include="clsDVLD_Settings.cs" />
     <Compile Include="clsGenericData.cs" />
     <Compile Include="clsInternationalLicenseData.cs" />
+    <Compile Include="clsKeySettingsData.cs" />
     <Compile Include="clsLicenseClassData.cs" />
     <Compile Include="clsLicenseData.cs" />
     <Compile Include="clsLocalDrivingLicenseApplicationData.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="clsTestData.cs" />
     <Compile Include="clsTestTypeData.cs" />
     <Compile Include="clsUserData.cs" />
+    <Compile Include="clsUserSettingData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

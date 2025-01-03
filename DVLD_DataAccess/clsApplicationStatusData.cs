@@ -14,7 +14,7 @@ namespace DVLD_DataAccess
         public static bool FindApplicationStatusByID(int ID, ref string Title)
         {
             bool IsFound = false;
-            string query = "SELECT * FROM ApplicationStatus where ApplicationStatusID = @ID";
+            string query = "SELECT * FROM ApplicationStatuses where ApplicationStatusID = @ID";
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
