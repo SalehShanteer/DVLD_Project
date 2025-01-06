@@ -61,6 +61,7 @@
             this.tcDrivingLicenseApplicationInfo.SelectedIndex = 0;
             this.tcDrivingLicenseApplicationInfo.Size = new System.Drawing.Size(844, 461);
             this.tcDrivingLicenseApplicationInfo.TabIndex = 0;
+            this.tcDrivingLicenseApplicationInfo.SelectedIndexChanged += new System.EventHandler(this.tcDrivingLicenseApplicationInfo_SelectedIndexChanged);
             // 
             // tabPersonInfo
             // 
@@ -239,6 +240,7 @@
             // 
             // btnSave
             // 
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(733, 554);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(110, 40);

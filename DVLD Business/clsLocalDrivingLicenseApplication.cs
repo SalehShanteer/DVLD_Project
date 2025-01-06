@@ -100,6 +100,11 @@ namespace DVLD_Business
             return clsLocalDrivingLicenseApplicationData.DeleteLocalDrivingLicenseApplication(ID);
         }
 
+        public static bool Cancel(int ID)
+        {
+            return clsLocalDrivingLicenseApplicationData.CancelLocalDrivingLicenseApplication(ID);
+        }
+
         public static DataTable GetLocalDrivingLicenseApplicationsList()
         {
             return clsLocalDrivingLicenseApplicationData.GetAllLocalDrivingLicenseApplications();
@@ -108,6 +113,11 @@ namespace DVLD_Business
         public static bool IsPersonAppliedForLicenseClass(int PersonID, int LicenseClassID)
         {
             return clsLocalDrivingLicenseApplicationData.CheckIfPersonAppliedForLicenseClass(PersonID, LicenseClassID);
+        }
+
+        public static int GetLocalDrivingLicenseApplicationsCount()
+        {
+            return clsLocalDrivingLicenseApplicationData.CountNumberOfLocalDrivingLicenseApplications();
         }
 
     }

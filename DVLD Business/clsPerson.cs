@@ -201,14 +201,24 @@ namespace DVLD_Business
             return clsPersonData.GetPersonIDByNationalNumber(NationalNumber);
         }
 
-        public static DataTable GetPeopleList()
+        public static DataTable GetPeopleListPerPage(short PageNumber, short RowsPerPage)
         {
-            return clsPersonData.GetAllPeople();
+            return clsPersonData.GetPeopleListPerPage(PageNumber, RowsPerPage);
+        }
+
+        public static DataTable GetPeopleListPerPageWithFilter(short PageNumber, short RowsPerPage, string FilterAttribute, string Filter)
+        {
+            return clsPersonData.GetPeopleListPerPageWithFilter(PageNumber, RowsPerPage, FilterAttribute, Filter);
         }
 
         public static int GetPeopleCount()
         {
             return clsPersonData.CountNumberOfPeople();
+        }
+
+        public static int GetFilteredPeopleCount(string FilterAttribute, string Filter)
+        {
+            return clsPersonData.CountNumberOfPeople(FilterAttribute, Filter);
         }
 
     }

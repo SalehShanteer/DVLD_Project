@@ -54,6 +54,7 @@
     <Compile Include="clsLoginRecord.cs" />
     <Compile Include="clsPerson.cs" />
     <Compile Include="clsRole.cs" />
+    <Compile Include="clsSettings.cs" />
     <Compile Include="clsTest.cs" />
     <Compile Include="clsTestAppointment.cs" />
     <Compile Include="clsTestType.cs" />

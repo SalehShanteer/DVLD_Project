@@ -85,7 +85,7 @@ namespace DVLD_DataAccess
             DataTable dt = new DataTable();
 
             //Ensure table and filter are valid to prevent SQL injection
-            if (string.IsNullOrWhiteSpace(query) || !IsSelectQuery(query))
+            if (string.IsNullOrWhiteSpace(query))
             { 
                 throw new ArgumentException("Invalid or unsafe SQL query.", nameof(query));
             }
@@ -148,6 +148,7 @@ namespace DVLD_DataAccess
             return count;
         }
 
+       
 
         // Helper method to validate identifiers (table and column names)
         private static bool IsValidIdentifier(string identifier)
@@ -156,12 +157,7 @@ namespace DVLD_DataAccess
             return !string.IsNullOrWhiteSpace(identifier) && identifier.All(char.IsLetterOrDigit);
         }
 
-        // Helper method to validate that the query is a SELECT statement
-        private static bool IsSelectQuery(string query)
-        {
-            // Simple validation to ensure the query starts with "SELECT"
-            return query.Trim().StartsWith("SELECT", StringComparison.OrdinalIgnoreCase);
-        }
+       
 
     }
 }

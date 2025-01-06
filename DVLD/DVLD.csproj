@@ -46,10 +46,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmAddUpdateLocalLicenseApplication.cs">
+    <Compile Include="frmLoginRecordsList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAddUpdateLocalLicenseApplication.Designer.cs">
+    <Compile Include="frmLoginRecordsList.Designer.cs">
+      <DependentUpon>frmLoginRecordsList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="L.D.L Applications\frmManageLocalDrivingLicenseApplications.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="L.D.L Applications\frmManageLocalDrivingLicenseApplications.Designer.cs">
+      <DependentUpon>frmManageLocalDrivingLicenseApplications.cs</DependentUpon>
+    </Compile>
+    <Compile Include="L.D.L Applications\frmAddUpdateLocalLicenseApplication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="L.D.L Applications\frmAddUpdateLocalLicenseApplication.Designer.cs">
       <DependentUpon>frmAddUpdateLocalLicenseApplication.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
@@ -162,7 +174,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmAddUpdateLocalLicenseApplication.resx">
+    <EmbeddedResource Include="frmLoginRecordsList.resx">
+      <DependentUpon>frmLoginRecordsList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="L.D.L Applications\frmManageLocalDrivingLicenseApplications.resx">
+      <DependentUpon>frmManageLocalDrivingLicenseApplications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="L.D.L Applications\frmAddUpdateLocalLicenseApplication.resx">
       <DependentUpon>frmAddUpdateLocalLicenseApplication.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
@@ -346,6 +364,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\show.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\History.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Records.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

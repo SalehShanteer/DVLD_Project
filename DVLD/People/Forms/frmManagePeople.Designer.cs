@@ -41,6 +41,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.lblPeopleCount = new System.Windows.Forms.Label();
+            this.btnPreviousPage = new System.Windows.Forms.Button();
+            this.btnNextPage = new System.Windows.Forms.Button();
+            this.lblPageNumber = new System.Windows.Forms.Label();
+            this.lblNumberOfPages = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbxFilter = new System.Windows.Forms.ComboBox();
+            this.txtFilter = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeopleList)).BeginInit();
             this.cmsManagePeople.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -53,11 +61,11 @@
             this.dgvPeopleList.AllowUserToOrderColumns = true;
             this.dgvPeopleList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPeopleList.ContextMenuStrip = this.cmsManagePeople;
-            this.dgvPeopleList.Location = new System.Drawing.Point(21, 315);
+            this.dgvPeopleList.Location = new System.Drawing.Point(21, 362);
             this.dgvPeopleList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPeopleList.Name = "dgvPeopleList";
             this.dgvPeopleList.ReadOnly = true;
-            this.dgvPeopleList.Size = new System.Drawing.Size(1206, 352);
+            this.dgvPeopleList.Size = new System.Drawing.Size(1180, 318);
             this.dgvPeopleList.TabIndex = 2;
             // 
             // cmsManagePeople
@@ -114,7 +122,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(467, 257);
+            this.label1.Location = new System.Drawing.Point(457, 256);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(294, 42);
@@ -123,9 +131,9 @@
             // 
             // btnAddNewPerson
             // 
-            this.btnAddNewPerson.Location = new System.Drawing.Point(1065, 264);
+            this.btnAddNewPerson.Location = new System.Drawing.Point(1065, 312);
             this.btnAddNewPerson.Name = "btnAddNewPerson";
-            this.btnAddNewPerson.Size = new System.Drawing.Size(162, 44);
+            this.btnAddNewPerson.Size = new System.Drawing.Size(136, 37);
             this.btnAddNewPerson.TabIndex = 5;
             this.btnAddNewPerson.Text = "Add New Person";
             this.btnAddNewPerson.UseVisualStyleBackColor = true;
@@ -146,7 +154,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(17, 684);
+            this.label2.Location = new System.Drawing.Point(20, 705);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 6;
@@ -156,18 +164,120 @@
             // 
             this.lblPeopleCount.AutoSize = true;
             this.lblPeopleCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeopleCount.Location = new System.Drawing.Point(112, 685);
+            this.lblPeopleCount.Location = new System.Drawing.Point(115, 706);
             this.lblPeopleCount.Name = "lblPeopleCount";
             this.lblPeopleCount.Size = new System.Drawing.Size(19, 20);
             this.lblPeopleCount.TabIndex = 7;
             this.lblPeopleCount.Text = "0";
+            // 
+            // btnPreviousPage
+            // 
+            this.btnPreviousPage.Location = new System.Drawing.Point(464, 696);
+            this.btnPreviousPage.Name = "btnPreviousPage";
+            this.btnPreviousPage.Size = new System.Drawing.Size(121, 33);
+            this.btnPreviousPage.TabIndex = 8;
+            this.btnPreviousPage.Text = "Previous Page";
+            this.btnPreviousPage.UseVisualStyleBackColor = true;
+            this.btnPreviousPage.Click += new System.EventHandler(this.btnPreviousPage_Click);
+            // 
+            // btnNextPage
+            // 
+            this.btnNextPage.Location = new System.Drawing.Point(686, 696);
+            this.btnNextPage.Name = "btnNextPage";
+            this.btnNextPage.Size = new System.Drawing.Size(121, 33);
+            this.btnNextPage.TabIndex = 9;
+            this.btnNextPage.Text = "Next Page";
+            this.btnNextPage.UseVisualStyleBackColor = true;
+            this.btnNextPage.Click += new System.EventHandler(this.btnNextPage_Click);
+            // 
+            // lblPageNumber
+            // 
+            this.lblPageNumber.AutoSize = true;
+            this.lblPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPageNumber.Location = new System.Drawing.Point(627, 702);
+            this.lblPageNumber.Name = "lblPageNumber";
+            this.lblPageNumber.Size = new System.Drawing.Size(21, 24);
+            this.lblPageNumber.TabIndex = 10;
+            this.lblPageNumber.Text = "1";
+            // 
+            // lblNumberOfPages
+            // 
+            this.lblNumberOfPages.AutoSize = true;
+            this.lblNumberOfPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumberOfPages.Location = new System.Drawing.Point(843, 702);
+            this.lblNumberOfPages.Name = "lblNumberOfPages";
+            this.lblNumberOfPages.Size = new System.Drawing.Size(21, 24);
+            this.lblNumberOfPages.TabIndex = 11;
+            this.lblNumberOfPages.Text = "1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(35, 325);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 20);
+            this.label3.TabIndex = 12;
+            this.label3.Text = "Filter By:";
+            // 
+            // cbxFilter
+            // 
+            this.cbxFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxFilter.FormattingEnabled = true;
+            this.cbxFilter.Items.AddRange(new object[] {
+            "None",
+            "Person ID",
+            "National No.",
+            "First Name",
+            "Second Name",
+            "Third Name",
+            "Last Name",
+            "Nationality",
+            "Phone",
+            "Email"});
+            this.cbxFilter.Location = new System.Drawing.Point(136, 319);
+            this.cbxFilter.Name = "cbxFilter";
+            this.cbxFilter.Size = new System.Drawing.Size(186, 28);
+            this.cbxFilter.TabIndex = 96;
+            this.cbxFilter.SelectedIndexChanged += new System.EventHandler(this.cbxFilter_SelectedIndexChanged);
+            // 
+            // txtFilter
+            // 
+            this.txtFilter.Location = new System.Drawing.Point(346, 321);
+            this.txtFilter.MaxLength = 50;
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(207, 26);
+            this.txtFilter.TabIndex = 97;
+            this.txtFilter.Visible = false;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
+            this.txtFilter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtFilter_KeyDown);
+            this.txtFilter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtFilter_KeyPress);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(584, 319);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(121, 33);
+            this.btnSearch.TabIndex = 98;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Visible = false;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // frmManagePeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1238, 703);
+            this.ClientSize = new System.Drawing.Size(1238, 741);
+            this.Controls.Add(this.btnSearch);
+            this.Controls.Add(this.txtFilter);
+            this.Controls.Add(this.cbxFilter);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lblNumberOfPages);
+            this.Controls.Add(this.lblPageNumber);
+            this.Controls.Add(this.btnNextPage);
+            this.Controls.Add(this.btnPreviousPage);
             this.Controls.Add(this.lblPeopleCount);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnAddNewPerson);
@@ -202,5 +312,13 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblPeopleCount;
+        private System.Windows.Forms.Button btnPreviousPage;
+        private System.Windows.Forms.Button btnNextPage;
+        private System.Windows.Forms.Label lblPageNumber;
+        private System.Windows.Forms.Label lblNumberOfPages;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox cbxFilter;
+        private System.Windows.Forms.TextBox txtFilter;
+        private System.Windows.Forms.Button btnSearch;
     }
 }

@@ -31,3 +31,5 @@ C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frm
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmUpdateApplicationType.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmAddUpdateLocalDrivingLicenseApplication.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmLogin.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmManageLocalDrivingLicenseApplications.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmLoginRecordsList.resources

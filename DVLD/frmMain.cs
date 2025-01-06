@@ -50,15 +50,43 @@ namespace DVLD
             frm.ShowDialog();
         }
 
-        private void _ShowAddNewLocalLicenseApplication()
+        private void _ShowAddNewLocalDrivingLicenseApplicationScreen()
         {
             frmAddUpdateLocalDrivingLicenseApplication frm = new frmAddUpdateLocalDrivingLicenseApplication(-1);
+            frm.ShowDialog();
+        }
+
+        private void _ShowManageLocalDrivingLicenseApplicationsScreen()
+        {
+            frmManageLocalDrivingLicenseApplications frm = new frmManageLocalDrivingLicenseApplications();
+            frm.ShowDialog();
+        }
+
+        private void _ShowCurrentUserInfo()
+        {
+            int CurrentUserID = clsUserSetting.GetCurrentUserID();
+
+            frmUserInfo frm = new frmUserInfo(CurrentUserID);
+            frm.ShowDialog();
+        }
+        
+        private void _ShowChangePasswordScreen()
+        {
+            int CurrentUserID = clsUserSetting.GetCurrentUserID();
+
+            frmChangePassword frm = new frmChangePassword(CurrentUserID);
             frm.ShowDialog();
         }
 
         private void _Logout()
         {
             this.Close();
+        }
+
+        private void _ShowLoginRecordsScreen()
+        {
+            frmLoginRecordsList frm = new frmLoginRecordsList();
+            frm.ShowDialog();
         }
 
         private void peopleStripDropDownButton_Click(object sender, EventArgs e)
@@ -71,11 +99,7 @@ namespace DVLD
             _ShowManageDriversScreen();
         }
 
-        private void usersStripDropDownButton_Click(object sender, EventArgs e)
-        {
-            _ShowManageUsersScreen();
-        }
-
+      
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _Logout();
@@ -93,7 +117,12 @@ namespace DVLD
 
         private void localLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            _ShowAddNewLocalLicenseApplication();
+            _ShowAddNewLocalDrivingLicenseApplicationScreen();
+        }
+
+        private void currentUserInfoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowCurrentUserInfo();
         }
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
@@ -104,6 +133,26 @@ namespace DVLD
             CurrentUser.User = null;
             CurrentUser.Permissions = 0;
             CurrentUser.Save();
+        }
+
+        private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowChangePasswordScreen();
+        }
+
+        private void localDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowManageLocalDrivingLicenseApplicationsScreen();
+        }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowManageUsersScreen();
+        }
+
+        private void loginRecordsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowLoginRecordsScreen();
         }
     }
 }

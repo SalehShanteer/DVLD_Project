@@ -107,7 +107,7 @@ namespace DVLD_Business
                 clsApplicationStatus Status = clsApplicationStatus.Find(StatusID);
                 clsUser CreatedByUser = clsUser.Find(CreatedByUserID);
 
-                return new clsApplication(ApplicantPersonID, Person, ApplicationDate, ApplicationType
+                return new clsApplication(ID, Person, ApplicationDate, ApplicationType
                     , PaidFees, LastStatusDate, Status, CreatedByUser);
             }
             else
@@ -124,6 +124,11 @@ namespace DVLD_Business
         public static bool Delete(int ID)
         {
             return clsApplicationData.DeleteApplication(ID);
+        }
+
+        public static bool Cancel(int ID)
+        {
+            return clsApplicationData.CancelApplication(ID);
         }
 
         public static DataTable GetApplicationsList()

@@ -247,16 +247,68 @@ namespace DVLD_DataAccess
             return ID;
         }
 
-        public static DataTable GetAllPeople()
+        public static DataTable GetPeopleListPerPage(short PageNumber, short RowsPerPage)
         {
-            string query = "SELECT * FROM View_PeopleList";
+            string query = "EXEC SP_GetPeopleInfoPerPage " +
+                           "@PageNumber = " + PageNumber + ", @RowsPerPage = " + RowsPerPage;
 
             return clsGenericData.GetDataTable(query);
         }
 
+        public static DataTable GetPeopleListPerPageWithFilter(short PageNumber, short RowsPerPage, string FilterAttribute, string Filter)
+        {
+            string query = "EXEC SP_GetPeopleInfoPerPageWithFilter " +
+                           "@PageNumber = " + PageNumber.ToString() + ", " +
+                           "@RowsPerPage = " + RowsPerPage.ToString() + ", " +
+                           "@FilterAttribute = [" + FilterAttribute + "], " +
+                           "@Filter = '" + Filter + "'";
+
+            return clsGenericData.GetDataTable(query);
+        }
+
+
+
         public static int CountNumberOfPeople()
         {
             return clsGenericData.CountRecords("People");
+        }
+
+
+        public static int CountNumberOfPeople(string FilterAttribute, string Filter)
+        {
+            int count = 0;
+
+            string query = $"SELECT COUNT(*) FROM View_PeopleList WHERE [{FilterAttribute}] ";
+
+            if (FilterAttribute != "Person ID" && FilterAttribute != "National No.")
+            {
+                query += $"LIKE '{Filter}%'";
+            }
+            else
+            {
+                query += $"= '{Filter}'";
+            }
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int TotalRecords))
+                        {
+                            count = TotalRecords;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return count;
         }
 
     }

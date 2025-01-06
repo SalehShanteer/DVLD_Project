@@ -65,8 +65,9 @@ namespace DVLD
 
             if(application.Save())
             {
-                clsApplication NewApplication = clsApplication.Find(application.ID);
-                _LocalDrivingLicenseApplication.Application = NewApplication;
+                //clsApplication NewApplication = clsApplication.Find(application.ID);
+                _LocalDrivingLicenseApplication.Application = clsApplication.Find(application.ID);
+
                 return true;
             }
             else
@@ -140,7 +141,8 @@ namespace DVLD
 
         private void _DisplayPersonInfo()
         {
-            ctrlPersonInfoWithFilter1.FindPersonFromOutside(_LocalDrivingLicenseApplication.ID);
+            int PersonID = _LocalDrivingLicenseApplication.Application.ApplicantPerson.ID;
+            ctrlPersonInfoWithFilter1.FindPersonFromOutside(PersonID);
            
             // Disable the filter
             ctrlPersonInfoWithFilter1.DisableFilterFromOutside();
@@ -218,5 +220,12 @@ namespace DVLD
         {
             _PersonID = personID;
         }
+
+        private void tcDrivingLicenseApplicationInfo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Enable save button only the tab page at application info page
+            btnSave.Enabled = tcDrivingLicenseApplicationInfo.SelectedIndex == 1 ? true : false;
+        }
+
     }
 }

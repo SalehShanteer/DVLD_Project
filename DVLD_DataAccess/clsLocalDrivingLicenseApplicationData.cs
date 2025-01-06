@@ -119,12 +119,58 @@ namespace DVLD_DataAccess
 
         public static bool DeleteLocalDrivingLicenseApplication(int ID)
         {
-            return clsGenericData.DeleteRecord("LocalDrivingLicenseApplications", "LocalDrivingLicenseApplicationID", ID);
+            int RowsAffected = 0;
+
+            string query = "EXEC SP_DeleteLocalDrivingLicenseApplication @LocalDrivingLicenseApplicationID = @ID ";                           
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", ID);
+                    try
+                    {
+                        connection.Open();
+
+                        RowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return RowsAffected > 1;// Two records should affected 1- application 2- L.D.L.App
+        }
+
+        public static bool CancelLocalDrivingLicenseApplication(int ID)
+        {
+            int RowsAffected = 0;
+
+            string query = "EXEC SP_CancelApplicationByLocalDrivingLicenseApplicationID " +
+                           "@LocalDrivingLicenseApplicationID = @ID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add the parameters
+                    command.Parameters.AddWithValue("@ID", ID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        RowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return RowsAffected > 0;
         }
 
         public static DataTable GetAllLocalDrivingLicenseApplications()
         {
-            string query = "SELECT * FROM LocalDrivingLicenseApplications";
+            string query = "SELECT * FROM VIEW_LocalDrivingLicenseApplicationsList";
             return clsGenericData.GetDataTable(query);
         }
 
@@ -157,6 +203,11 @@ namespace DVLD_DataAccess
                 }
             }
             return IsFound;
+        }
+
+        public static int CountNumberOfLocalDrivingLicenseApplications()
+        {
+            return clsGenericData.CountRecords("LocalDrivingLicenseApplications");
         }
 
     }

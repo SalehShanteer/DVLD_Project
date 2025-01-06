@@ -132,6 +132,32 @@ namespace DVLD_DataAccess
             return clsGenericData.DeleteRecord("Applications", "ApplicationID", ID);
         }
 
+        public static bool CancelApplication(int ID)
+        {
+            int RowsAffected = 0;
+
+            string query = "EXEC SP_CancelApplication @ApplicationID = @ID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand (query, connection))
+                {
+                    // Add the parameters
+                    command.Parameters.AddWithValue("@ID", ID);
+                    
+                    try
+                    {
+                        connection.Open();
+
+                        RowsAffected = command.ExecuteNonQuery();
+                    }
+                    catch(Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+             return RowsAffected > 0;
+        }
+
         public static DataTable GetAllApplications()
         {
             string query = "SELECT * FROM Applications";

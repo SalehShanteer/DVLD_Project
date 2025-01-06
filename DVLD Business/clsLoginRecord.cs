@@ -56,5 +56,11 @@ namespace DVLD_Business
             return clsLoginRecordData.GetAllLoginRecords();
         }
 
+        public static int GetAllLoginCount()
+        {
+            return clsLoginRecordData.GetLoginRecordsCount();
+        }
+
+
     }
 }
