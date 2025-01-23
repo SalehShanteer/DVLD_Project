@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using DVLD_Business;
 
@@ -13,6 +6,10 @@ namespace DVLD
 {
     public partial class frmAddUpdatePerson : Form
     {
+
+        public delegate void SavePersonEventHandler(object sender, bool IsSaved);
+
+        public event SavePersonEventHandler SavePerson;
 
         private enum enMode { AddNew = 0, Update = 1 }
 
@@ -74,6 +71,9 @@ namespace DVLD
             lblAddUpdatePerson.Text = "Update Person";
 
             _Mode = enMode.Update;
+
+            // Fire the event
+            SavePerson?.Invoke(this, IsSaved : true);
         }
 
         private void ctrlPersonManager1_OnClose()

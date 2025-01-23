@@ -22,8 +22,30 @@ namespace DVLD_Business
         public string SecondName { get; set; }
         public string ThirdName { get; set; }
         public string LastName { get; set; }
-        public string PartialName { get { return FirstName + " " + LastName; }  }
-        public string FullName { get { return FirstName + " " + SecondName + " " + ThirdName + " " + LastName; } }
+        public string PartialName 
+        {
+            get 
+            {
+                StringBuilder sbPartialName = new StringBuilder();
+                sbPartialName.Append(FirstName + " ");
+                sbPartialName.Append(LastName);
+
+                return sbPartialName.ToString();
+            }  
+        }
+        public string FullName 
+        { 
+            get 
+            {
+                StringBuilder sbFullName = new StringBuilder();
+                sbFullName.Append(FirstName + " ");
+                sbFullName.Append(SecondName + " ");
+                sbFullName.Append(ThirdName + " ");
+                sbFullName.Append(LastName);
+
+                return sbFullName.ToString();
+            } 
+        }
         public bool Gender { get; set; }// Male : true | Female : false
         public DateTime DateOfBirth { get; set; }
         public byte Age { get; }

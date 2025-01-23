@@ -31,15 +31,15 @@
             this.components = new System.ComponentModel.Container();
             this.lblAddUpdatePerson = new System.Windows.Forms.Label();
             this.dgvTestTypesList = new System.Windows.Forms.DataGridView();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblTestTypesCount = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.cmsManageTestTypes = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblTestTypesCount = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypesList)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.cmsManageTestTypes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblAddUpdatePerson
@@ -66,6 +66,28 @@
             this.dgvTestTypesList.ReadOnly = true;
             this.dgvTestTypesList.Size = new System.Drawing.Size(703, 170);
             this.dgvTestTypesList.TabIndex = 6;
+            // 
+            // cmsManageTestTypes
+            // 
+            this.cmsManageTestTypes.ImageScalingSize = new System.Drawing.Size(30, 30);
+            this.cmsManageTestTypes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem});
+            this.cmsManageTestTypes.Name = "cmsManagePeople";
+            this.cmsManageTestTypes.Size = new System.Drawing.Size(129, 46);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::DVLD.Properties.Resources.EditPerson;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(128, 36);
+            this.editToolStripMenuItem.Text = "Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // pictureBox1
             // 
@@ -97,28 +119,6 @@
             this.label2.TabIndex = 8;
             this.label2.Text = "# Records:";
             // 
-            // cmsManageTestTypes
-            // 
-            this.cmsManageTestTypes.ImageScalingSize = new System.Drawing.Size(30, 30);
-            this.cmsManageTestTypes.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator1,
-            this.editToolStripMenuItem});
-            this.cmsManageTestTypes.Name = "cmsManagePeople";
-            this.cmsManageTestTypes.Size = new System.Drawing.Size(195, 68);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(191, 6);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Image = global::DVLD.Properties.Resources.EditPerson;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(194, 36);
-            this.editToolStripMenuItem.Text = "Edit";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
             // frmManageTestTypes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -130,14 +130,15 @@
             this.Controls.Add(this.dgvTestTypesList);
             this.Controls.Add(this.lblAddUpdatePerson);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmManageTestTypes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Manage Test Types";
             this.Load += new System.EventHandler(this.frmManageTestTypes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTestTypesList)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.cmsManageTestTypes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

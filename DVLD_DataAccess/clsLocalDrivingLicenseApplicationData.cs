@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
@@ -208,6 +204,36 @@ namespace DVLD_DataAccess
         public static int CountNumberOfLocalDrivingLicenseApplications()
         {
             return clsGenericData.CountRecords("LocalDrivingLicenseApplications");
+        }
+
+        public static byte GetLocalDrivingLicenseApplicationPassedTests(int ID)
+        {
+            byte PassedTests = 255;
+
+            string query = "SELECT dbo.GetLocalDrivingLicenseApplicationPassedTests(@ID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to query
+                    command.Parameters.AddWithValue("@ID", ID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && byte.TryParse(result.ToString(), out byte passedTests))
+                        {
+                            PassedTests = passedTests;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return PassedTests;
         }
 
     }

@@ -50,6 +50,7 @@
     <Compile Include="clsDVLD_Settings.cs" />
     <Compile Include="clsGenericData.cs" />
     <Compile Include="clsInternationalLicenseData.cs" />
+    <Compile Include="clsInternationLicenseSettingData.cs" />
     <Compile Include="clsKeySettingsData.cs" />
     <Compile Include="clsLicenseClassData.cs" />
     <Compile Include="clsLicenseData.cs" />
@@ -57,6 +58,7 @@
     <Compile Include="clsLoginRecordData.cs" />
     <Compile Include="clsPersonData.cs" />
     <Compile Include="clsRoleData.cs" />
+    <Compile Include="clsSettingsData.cs" />
     <Compile Include="clsTestAppointmentData.cs" />
     <Compile Include="clsTestData.cs" />
     <Compile Include="clsTestTypeData.cs" />

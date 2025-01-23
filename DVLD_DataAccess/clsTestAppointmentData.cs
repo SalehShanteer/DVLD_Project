@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks; 
 
 namespace DVLD_DataAccess
 {
@@ -14,6 +10,7 @@ namespace DVLD_DataAccess
             , ref DateTime AppointmentDate, ref int CreatedByUserID, ref bool IsLocked)
         {
             bool IsFound = false;
+
             string query = "SELECT * FROM TestAppointments WHERE TestAppointmentID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
@@ -89,8 +86,8 @@ namespace DVLD_DataAccess
         public static bool UpdateTestAppointment(int ID, DateTime AppointmentDate, bool IsLocked)
         {
             bool IsUpdated = false;
-            string query = "UPDATE TestAppointments SET TestTypeID = @TestTypeID, " +
-                           "AppointmentDate = @AppointmentDate, IsLocked = @IsLocked " +
+
+            string query = "UPDATE TestAppointments SET AppointmentDate = @AppointmentDate, IsLocked = @IsLocked " +
                            "WHERE TestAppointmentID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
@@ -124,10 +121,96 @@ namespace DVLD_DataAccess
             return clsGenericData.DeleteRecord("TestAppointments", "TestAppointmentID", ID);
         }
 
-        public static DataTable GetAllTestAppointments()
+        public static DataTable GetTestAppointmentsListByLDLAppIDAndTestTypeID(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
-            string query = "SELECT * FROM TestAppointments";
-            return clsGenericData.GetDataTable(query);
+
+            DataTable dt = new DataTable();
+
+            string query = "SELECT * FROM GetTestAppointmentsByLDLAppAndTestType(@LocalDrivingLicenseApplicationID, @TestTypeID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to query
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        if (reader.HasRows)
+                        {
+                            dt.Load(reader);
+                        }
+                        reader.Close();
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+
+            return dt;
+        }
+
+        public static bool CheckTestAppointmentAvailability(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            bool IsAvailable = false;
+
+            string query = "SELECT dbo.CheckTestAppointmentAvailability(@LocalDrivingLicenseApplicationID, @TestTypeID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to query
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            IsAvailable = Convert.ToBoolean(result);
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return IsAvailable;
+        }
+
+        public static short GetRetakeFees()
+        {
+            short Fees = 0;
+
+            string query = "SELECT dbo.GetRetakeFees()";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && short.TryParse(result.ToString(), out short fees))
+                        {
+                            Fees = fees;
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+            return Fees;
         }
 
     }

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;    
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
@@ -39,7 +36,6 @@ namespace DVLD_DataAccess
                         }
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }
                 }
             }
             return IsFound;
@@ -74,7 +70,6 @@ namespace DVLD_DataAccess
                         }
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }
                 }
             }
             return IsDeleted;
@@ -108,7 +103,6 @@ namespace DVLD_DataAccess
                         reader.Close();
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }                  
                 }
             }
             return dt;
@@ -142,13 +136,10 @@ namespace DVLD_DataAccess
                         }
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }
                 }
             }
             return count;
         }
-
-       
 
         // Helper method to validate identifiers (table and column names)
         private static bool IsValidIdentifier(string identifier)

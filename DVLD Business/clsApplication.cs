@@ -54,7 +54,7 @@ namespace DVLD_Business
 
         private bool _AddNewApplication()
         {
-            this.ID = clsApplicationData.AddNewApplication(this.ApplicantPerson.ID, this.ApplicationType.ID, this.CreatedByUser.ID);
+            this.ID = clsApplicationData.AddNewApplication(this.ApplicantPerson.ID, this.ApplicationType.ID);
 
             return this.ID != -1;
         }
@@ -131,6 +131,7 @@ namespace DVLD_Business
             return clsApplicationData.CancelApplication(ID);
         }
 
+       
         public static DataTable GetApplicationsList()
         {
             return clsApplicationData.GetAllApplications();

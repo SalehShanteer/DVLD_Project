@@ -13,7 +13,12 @@ namespace DVLD
 {
     public partial class frmUpdateApplicationType : Form
     {
-        
+        // Declare delegate
+        public delegate void IsUpdatedEventHandler(object sender, bool IsUpdated);
+
+        // Declare event using event
+        public event IsUpdatedEventHandler IsUpdated;
+
         private int _ApplicationTypeID;
 
         private clsApplicationType _ApplicationType;
@@ -42,7 +47,11 @@ namespace DVLD
 
             if (_ApplicationType.Save())
             {
-                MessageBox.Show(clsUtility.saveMessage("application type"), clsUtility.saveTitle("Application type"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(clsUtility.saveMessage("application type"), clsUtility.saveTitle("Application type")
+                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Raise event showing that the application type is updated
+                IsUpdated?.Invoke(this, IsUpdated : true);
             }
             else
             {

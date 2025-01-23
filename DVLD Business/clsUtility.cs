@@ -123,5 +123,36 @@ namespace DVLD_Business
         public static string errorLoginRegisterCurrentUser = "Error: Failed to register current user";
 
 
+        // License
+        
+        public static string GetLicenseIssueReason(byte ApplicationTypeID)
+        {
+            switch (ApplicationTypeID)
+            {
+
+                case 1: { return "First Time"; }
+                case 2: { return "Renew"; }
+                case 3: { return "Replacement For Lost"; }
+                case 4: { return "Replacement For Damaged"; }
+                case 5: { return "Release Detained"; }
+                case 6: { return "International License"; }
+                default: { return "No Result"; }
+            }
+        }
+
+        //public static string GetLicenseRenewStatus(byte Status)
+        //{
+        //    switch (Status)
+        //    {
+
+        //        case 1: { return "Not Latest Driver license"; }
+
+        //        case 2: { return "The license is already active"; }
+
+        //        case 3: { return "The license need to renew"; }
+
+        //        default: { return "No Result"; }
+        //    }
+        //}
     }
 }

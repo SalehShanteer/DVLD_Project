@@ -83,7 +83,7 @@ namespace DVLD_Business
             }
         }
 
-        public static clsTestAppointment FindTestAppointmentByID(int ID)
+        public static clsTestAppointment Find(int ID)
         {
             // Prepare the variables
             int TestTypeID = -1;
@@ -116,9 +116,19 @@ namespace DVLD_Business
             return clsTestAppointmentData.DeleteTestAppointment(ID);
         }
 
-        public static DataTable GetTestAppointmentsList()
+        public static DataTable GetTestAppointmentsListByLDLAppIDAndTestTypeID(int LocalDrivingLicenseApplicationID, int TestTypeID)
         {
-            return clsTestAppointmentData.GetAllTestAppointments();
+            return clsTestAppointmentData.GetTestAppointmentsListByLDLAppIDAndTestTypeID(LocalDrivingLicenseApplicationID, TestTypeID);
+        }
+
+        public static bool CheckTestAppointmentAvailability(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            return clsTestAppointmentData.CheckTestAppointmentAvailability(LocalDrivingLicenseApplicationID, TestTypeID);
+        }
+
+        public static short GetRetakeFees()
+        {
+            return clsTestAppointmentData.GetRetakeFees();
         }
 
     }

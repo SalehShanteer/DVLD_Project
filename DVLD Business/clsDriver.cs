@@ -42,7 +42,7 @@ namespace DVLD_Business
 
         private bool _AddNewDriver()
         {
-            this.ID = clsDriverData.AddNewDriver(this.Person.ID, this.CreatedByUser.ID);
+            this.ID = clsDriverData.AddNewDriver(this.Person.ID);
 
             return this.ID != -1;
         }
@@ -80,9 +80,29 @@ namespace DVLD_Business
             }
         }
 
-        public static bool IsExist(int ID)
+        public static clsDriver FindByPersonID(int PersonID)
         {
-            return clsDriverData.IsDriverExist(ID);
+            // Prepare the variables
+            int ID = -1;
+            DateTime CreatedDate = DateTime.MinValue;
+            int CreatedByUserID = -1;
+
+            if (clsDriverData.FindDriverByPersonID(ref ID, PersonID, ref CreatedDate, ref CreatedByUserID))
+            {
+                clsPerson person = clsPerson.Find(PersonID);
+                clsUser user = clsUser.Find(CreatedByUserID);
+
+                return new clsDriver(ID, person, CreatedDate, user);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static bool IsExist(int PersonID)
+        {
+            return clsDriverData.IsDriverExistByPersonID(PersonID);
         }
 
         public static bool Delete(int ID)
@@ -100,5 +120,15 @@ namespace DVLD_Business
             return clsDriverData.GetNumberOfDrivers();
         }
         
+        public static int GetIDByNationalNumber(string NationalNumber)
+        {
+            return clsDriverData.GetDriverIDByNationalNumber(NationalNumber);
+        }
+
+        public static bool HasInternationalLicense(int DriverID)
+        {
+            return clsDriverData.IsDriverHasActiveInternationalLicense(DriverID);
+        }
+
     }
 }

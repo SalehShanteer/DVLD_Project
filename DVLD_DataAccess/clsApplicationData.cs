@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Global_Variables_Data;
 
 namespace DVLD_DataAccess
 {
@@ -57,40 +55,42 @@ namespace DVLD_DataAccess
             return clsGenericData.IsRecordExist("Applications", "ApplicationID", ID);
         }
 
-        public static int AddNewApplication(int ApplicantPersonID, int ApplicationTypeID, int CreatedByUserID)
+        public static int AddNewApplication(int ApplicantPersonID, int ApplicationTypeID)
         {
             int ID = -1;
-
-            string query = "DECLARE @PaidFees SMALLINT " +
-                           "EXEC SP_GetApplicationTypeFees " +
-                           "@ApplicationTypeID = @ApplicationTypeId, " +
-                           "@Fees = @PaidFees OUTPUT " +
-                           "INSERT INTO Applications (ApplicantPersonID, ApplicationDate, ApplicationTypeID, PaidFees, LastStatusDate, StatusID, CreatedByUserID) " +
-                           "VALUES (@ApplicantPersonID, GETDATE(), @ApplicationTypeId, @PaidFees, GETDATE(), @StatusID, @CreatedByUserID); " +
-                           "SELECT SCOPE_IDENTITY();";
-
+          
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand("SP_AddNewApplication", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
+
                     // Add the parameters
-                    command.Parameters.AddWithValue("@ApplicantPersonID", ApplicantPersonID);
-                    command.Parameters.AddWithValue("@ApplicationTypeId", ApplicationTypeID);
-                    command.Parameters.AddWithValue("@StatusID", 0);// 0 : (New)
-                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+                    command.Parameters.AddWithValue("@AppPersonID", ApplicantPersonID);
+                    command.Parameters.AddWithValue("@AppTypeId", ApplicationTypeID);
+
+                    SqlParameter outputIDParamete = new SqlParameter("@NewApplicationID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+
+                    command.Parameters.Add(outputIDParamete);
 
                     try
                     {
                         connection.Open();
-                        object result = command.ExecuteScalar();
+                        command.ExecuteNonQuery();
 
-                        if (result != null && int.TryParse(result.ToString(), out int NewID))
-                        {
-                            ID = NewID;
-                        }
+                        ID = (int)command.Parameters["@NewApplicationID"].Value;
+
+                        // Log the event to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, "New Application was added successfully", EventLogEntryType.Information);
                     }
-                    catch (Exception ex) { }
-                    finally { connection.Close(); }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
             return ID;
@@ -158,6 +158,7 @@ namespace DVLD_DataAccess
              return RowsAffected > 0;
         }
 
+     
         public static DataTable GetAllApplications()
         {
             string query = "SELECT * FROM Applications";

@@ -3,12 +3,22 @@
   "WorkspaceRootPath": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\frmloginrecordslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmloginrecordslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\frmdetainlicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmdetainlicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmloginrecordslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmloginrecordslist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{3AC75B99-F401-45FB-909E-C3773154D71C}|..\\DVLD_DataAccess\\DVLD_DataAccess.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld_dataaccess\\clsdetainedlicensedata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C6DD46F9-CA97-4163-A396-09F8A703D996}|..\\DVLD Business\\DVLD_Business.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld business\\clsdetainedlicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\frmdetainlicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmdetainlicense.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\people\\forms\\frmmanagepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:people\\forms\\frmmanagepeople.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,31 +28,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmLoginRecordsList.cs",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmLoginRecordsList.cs",
-              "RelativeDocumentMoniker": "frmLoginRecordsList.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmLoginRecordsList.cs",
-              "RelativeToolTip": "frmLoginRecordsList.cs",
-              "ViewState": "AgIAACoAAAAAAAAAAAAgwDIAAABmAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "frmManagePeople.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\People\\Forms\\frmManagePeople.cs",
+              "RelativeDocumentMoniker": "People\\Forms\\frmManagePeople.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\People\\Forms\\frmManagePeople.cs",
+              "RelativeToolTip": "People\\Forms\\frmManagePeople.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAIBBwAEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T15:52:31.388Z",
+              "WhenOpened": "2025-01-23T19:57:02.169Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "frmLoginRecordsList.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmLoginRecordsList.cs",
-              "RelativeDocumentMoniker": "frmLoginRecordsList.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmLoginRecordsList.cs [Design]",
-              "RelativeToolTip": "frmLoginRecordsList.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "frmDetainLicense.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmDetainLicense.cs",
+              "RelativeDocumentMoniker": "frmDetainLicense.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmDetainLicense.cs",
+              "RelativeToolTip": "frmDetainLicense.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAswFYAAABgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-06T13:51:12.846Z"
+              "WhenOpened": "2025-01-23T19:33:29.137Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmDetainLicense.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmDetainLicense.cs",
+              "RelativeDocumentMoniker": "frmDetainLicense.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmDetainLicense.cs [Design]",
+              "RelativeToolTip": "frmDetainLicense.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-23T19:27:57.857Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "clsDetainedLicenseData.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsDetainedLicenseData.cs",
+              "RelativeDocumentMoniker": "..\\DVLD_DataAccess\\clsDetainedLicenseData.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD_DataAccess\\clsDetainedLicenseData.cs",
+              "RelativeToolTip": "..\\DVLD_DataAccess\\clsDetainedLicenseData.cs",
+              "ViewState": "AgIAAGgAAAAAAAAAAAAUwHcAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T20:48:47.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "clsDetainedLicense.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsDetainedLicense.cs",
+              "RelativeDocumentMoniker": "..\\DVLD Business\\clsDetainedLicense.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsDetainedLicense.cs",
+              "RelativeToolTip": "..\\DVLD Business\\clsDetainedLicense.cs",
+              "ViewState": "AgIAADEAAAAAAAAAAAA7wDoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-22T20:51:06.273Z",
+              "EditorCaption": ""
             }
           ]
         }

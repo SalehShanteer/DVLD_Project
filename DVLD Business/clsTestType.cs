@@ -73,6 +73,10 @@ namespace DVLD_Business
             return clsTestTypeData.CountNumberOfTestTypes();
         }
 
+        public static short GetFees(int ID)
+        {
+            return clsTestTypeData.GetTestTypeFees(ID);
+        }
 
     }
 }

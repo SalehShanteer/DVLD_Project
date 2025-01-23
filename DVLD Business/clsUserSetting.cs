@@ -62,5 +62,11 @@ namespace DVLD_Business
         {
             return clsUserSettingData.GetCurrentUserFullName();
         }
+
+        public static string GetCurrentUserUsername()
+        {
+            return clsUserSettingData.GetCurrentUserUsername();
+        }
+
     }
 }

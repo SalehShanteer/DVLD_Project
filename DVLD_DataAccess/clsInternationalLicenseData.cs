@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
@@ -16,7 +12,7 @@ namespace DVLD_DataAccess
         {
             bool IsFound = false;
 
-            string query = "SELECT * FROM InternationalLicenses WHERE ID = @ID";
+            string query = "SELECT * FROM InternationalLicenses WHERE InternationalLicenseID = @ID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
@@ -43,7 +39,6 @@ namespace DVLD_DataAccess
                         reader.Close();
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }
                 }
             }
             return IsFound;
@@ -54,24 +49,21 @@ namespace DVLD_DataAccess
             return clsGenericData.IsRecordExist("InternationalLicenses", "ID", ID);
         }
 
-        public static int AddNewInternationalLicense(int ApplicationID, int IssuedUsingLocalLicenseID, DateTime ExpireDate, int CreatedByUserID)
+        public static int AddNewInternationalLicense(int IssuedUsingLocalLicenseID)
         {
             int ID = -1;
 
-            // Set IsActive to true by default and IssueDate to current date
-            string query = "INSERT INTO InternationalLicenses (ApplicationID, IssuedUsingLocalLicenseID, IssueDate, ExpireDate, IsActive, CreatedByUserID) " +
-                           "VALUES (@ApplicationID, @IssuedUsingLocalLicenseID, GETDATE(), @ExpireDate, 1, @CreatedByUserID)" +
-                           "; SELECT SCOPE_IDENTITY();";
+            string query = "DECLARE @NewInternationalLicense INT " +
+                           "EXEC SP_AddNewInternationalLicenseTransaction " +
+                           "@LocalLicenseID = @IssuedUsingLocalLicenseID, @InternationalLicenseID = @NewInternationalLicense OUTPUT " +
+                           "SELECT @NewInternationalLicense";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Add the parameters
-                    command.Parameters.AddWithValue("@ApplicationID", ApplicationID);
+                    // Add the parameter to query
                     command.Parameters.AddWithValue("@IssuedUsingLocalLicenseID", IssuedUsingLocalLicenseID);
-                    command.Parameters.AddWithValue("@ExpireDate", ExpireDate);
-                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
 
                     try
                     {
@@ -85,7 +77,6 @@ namespace DVLD_DataAccess
                         }
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }
                 }
             }
             return ID;
@@ -114,7 +105,6 @@ namespace DVLD_DataAccess
                         IsUpdated = rowsAffected > 0;
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }
                 }
             }
             return IsUpdated;
@@ -125,12 +115,161 @@ namespace DVLD_DataAccess
             return clsGenericData.DeleteRecord("InternationalLicenses", "InternationalLicenseID", ID);
         }
 
-        public static DataTable GetAllInternationalLicenses()
+        public static DataTable GetDriverInternationalLicenses(int DriverID)
         {
-            string query = "SELECT * FROM InternationalLicenses";
-            return clsGenericData.GetDataTable(query);
+            DataTable dtLicenses = new DataTable();
+
+            string query = "EXEC SP_GetDriverInternationalLicenses @DriverID = @SelectedDriverID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameter to query
+                    command.Parameters.AddWithValue("@SelectedDriverID", DriverID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dtLicenses.Load(reader);
+                            }
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+            return dtLicenses;
         }
 
+        public static DataTable GetAllInternationalLicenses()
+        {
+            DataTable dtLicenses = new DataTable();
+
+            string query = "SELECT * FROM View_InternationalLicenses";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.HasRows)
+                            {
+                                dtLicenses.Load(reader);
+                            }
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+            return dtLicenses;
+        }
+
+        public static byte CanIssueInternationalLicense(int LocalLicenseID)
+        {
+            // 0 => cant issue  Reason => license is not active or is not class 3 license
+            // 1 => can issue
+            // 2 => cant issue  Reason => license has an active international license
+            
+            byte IssueStatus = 0;
+
+            string query = "EXEC SP_CanIssueInternationalLicense @LicenseID = @LocalLicenseID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to query
+                    command.Parameters.AddWithValue("@LocalLicenseID", LocalLicenseID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            IssueStatus = Convert.ToByte(result);
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+            return IssueStatus;
+        }
+
+        public static int GetInternationalLicenseIDByLocalLicenseID(int LocalLicenseID)
+        {
+            int InternationalLicenseID = -1;
+
+            string query = "SELECT dbo.GetInternationalLicenseIDByLocalLicenseID(@LocalLicenseID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameter to query
+                    command.Parameters.AddWithValue("@LocalLicenseID", LocalLicenseID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int internationalLicenseID))
+                        {
+                            InternationalLicenseID = internationalLicenseID;
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+            return InternationalLicenseID;
+        }
+
+        public static int GetInternationalLicensesRecordsCountByDriverID(int DriverID)
+        {
+            int Count = 0;
+
+            string query = "SELECT dbo.GetInternationalLicensesRecordsCountByDriverID(@DriverID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query,connection))
+                {
+                    // Add parameter to query
+                    command.Parameters.AddWithValue("@DriverID", DriverID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int count))
+                        {
+                            Count = count;
+                        }
+                    }
+                    catch (Exception ex) { }
+                }
+            }
+            return Count;
+        }
+
+        public static int GetInternationalLicensesRecordsCount()
+        {
+            return clsGenericData.CountRecords("InternationalLicenses");
+        }
 
     }
 }

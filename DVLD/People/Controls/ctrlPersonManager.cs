@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.IO;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -88,7 +89,20 @@ namespace DVLD
         private void _SetPersonImagePath()
         {
             // Set Imagepath if does not have default image
-            _Person.ImagePath = pbImage.ImageLocation != null ? pbImage.ImageLocation : string.Empty;
+            string SourceFilePath = pbImage.ImageLocation;
+
+            if (SourceFilePath != null)
+            {
+                string Extension = Path.GetExtension(SourceFilePath);
+                string DestinationFilePath = $"C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD People Images\\{Guid.NewGuid()}.{Extension}";
+
+                File.Copy(SourceFilePath, DestinationFilePath, true);
+                _Person.ImagePath = DestinationFilePath;
+            }
+            else
+            {
+                _Person.ImagePath = string.Empty;
+            }
         }
 
         private void _SetPersonDetails()
@@ -105,7 +119,6 @@ namespace DVLD
 
             _SetPersonNationalityCountry();
             _SetPersonGender();
-            _SetPersonImagePath();
         }
 
         private void _SavePerson()
@@ -154,7 +167,20 @@ namespace DVLD
         {
             if (_Person.ImagePath != string.Empty)
             {
-                pbImage.Load(_Person.ImagePath);
+                if (File.Exists(_Person.ImagePath))
+                {
+                    pbImage.Load(_Person.ImagePath);
+
+                    // Show remove link label
+                    llblRemove.Visible = true;
+                }
+                else
+                {
+                    MessageBox.Show($"Image with path '{_Person.ImagePath}' not found!", "Error"
+                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    pbImage.Image = rbMale.Checked ? Resources.Male : Resources.Female;
+                }
             }
             else
             {
@@ -195,9 +221,16 @@ namespace DVLD
             cbxCountry.SelectedIndex = cbxCountry.FindString("Jordan");
         }
 
+        private void _SetMaxBirthDate()
+        {
+            // Set max date to ensure only people with 18 years old or older are allowed
+            dtpDateOfBirth.MaxDate = DateTime.Now.AddYears(-18);
+        }
+
         private void _LoadPersonInfo()
         {
             _LoadCountriesControlBox();
+            _SetMaxBirthDate();
 
             if (_Mode == enMode.AddNew)
             {
@@ -219,22 +252,70 @@ namespace DVLD
 
             if (openFileDialogForImage.ShowDialog() == DialogResult.OK)
             {
+
+                if (_Person.ImagePath != string.Empty)
+                {
+                    _RemovePersonImage();
+                    
+                }
                 //Display person image
                 string SelectedPath = openFileDialogForImage.FileName;
                 pbImage.Load(SelectedPath);
+
+                _SetPersonImagePath();
 
                 // Show remove link label
                 llblRemove.Visible = true;
             }
         }
-       
+
+        private bool _DeleteImage()
+        {
+            string filePath = _Person.ImagePath;
+
+            try
+            {
+                
+                if (pbImage.Image != null)
+                {
+                    // Load default image to prevent file in use error
+                    pbImage.Load("C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD People Images\\Male.png");
+                    pbImage.Image = null;
+                }
+
+                // Move the file to a temporary location to release the lock
+                if (File.Exists(filePath))
+                {
+                    // Delete the file from the temporary location
+                    File.Delete(filePath);
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("File does not exist!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Image delete operation failed! " + ex.Message, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
         private void _RemovePersonImage()
         {
-            // Set default image for male or female
-            pbImage.Image = rbMale.Checked ? Resources.Male : Resources.Female;
 
-            // Hide remove link label
-            llblRemove.Visible = false;
+            if (_DeleteImage())
+            {
+                // Set default image for male or female
+                pbImage.Image = rbMale.Checked ? Properties.Resources.Male : Properties.Resources.Female;
+
+                _Person.ImagePath = string.Empty;
+
+                // Hide remove link label
+                llblRemove.Visible = false;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)

@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
@@ -92,6 +88,36 @@ namespace DVLD_DataAccess
         public static int CountNumberOfTestTypes()
         {
             return clsGenericData.CountRecords("TestTypes");
+        }
+
+        public static short GetTestTypeFees(int ID)
+        {
+            short Fees = -1;
+
+            string query = "SELECT dbo.GetTestTypeFees(@ID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@ID", ID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && short.TryParse(result.ToString(), out short fees))
+                        {
+                            Fees = fees;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return Fees;
         }
 
 

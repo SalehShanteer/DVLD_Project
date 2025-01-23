@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
@@ -153,6 +149,32 @@ namespace DVLD_DataAccess
                 }
             }
             return FullName;
+        }
+
+        public static string GetCurrentUserUsername()
+        {
+            string Username = string.Empty;
+
+            string query = "SELECT dbo.GetCurrentUserUsername()";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    try
+                    {
+                        connection.Open();
+                        object Result = command.ExecuteScalar();
+                        if (Result != null)
+                        {
+                            Username = Result.ToString();
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return Username;
         }
 
     }

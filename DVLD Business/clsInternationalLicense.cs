@@ -16,7 +16,7 @@ namespace DVLD_Business
 
         public int ID { get; set; }
         public clsApplication Application { get; set; }
-        public clsLocalDrivingLicenseApplication IssuedUsingLocalLicense { get; set; }
+        public clsLicense IssuedUsingLocalLicense { get; set; }
         public DateTime IssueDate { get; set; }
         public DateTime ExpireDate { get; set; }
         public bool IsActive { get; set; }
@@ -35,7 +35,7 @@ namespace DVLD_Business
             _Mode = enMode.AddNew;
         }
 
-        private clsInternationalLicense(int iD, clsApplication application, clsLocalDrivingLicenseApplication issuedUsingLocalLicense
+        private clsInternationalLicense(int iD, clsApplication application, clsLicense issuedUsingLocalLicense
             , DateTime issueDate, DateTime expireDate, bool isActive, clsUser createdByUser)
         {
             ID = iD;
@@ -51,8 +51,7 @@ namespace DVLD_Business
 
         private bool _AddNewInternationalLicense()
         {
-            this.ID = clsInternationalLicenseData.AddNewInternationalLicense(this.Application.ID, this.IssuedUsingLocalLicense.ID
-                , this.ExpireDate, this.CreatedByUser.ID);
+            this.ID = clsInternationalLicenseData.AddNewInternationalLicense(this.IssuedUsingLocalLicense.ID);
 
             return this.ID != -1;
         }
@@ -102,7 +101,7 @@ namespace DVLD_Business
             {
                 // Prepare the objects
                 clsApplication application = clsApplication.Find(ApplicationID);
-                clsLocalDrivingLicenseApplication issuedUsingLocalLicense = clsLocalDrivingLicenseApplication.Find(IssuedUsingLocalLicenseID);
+                clsLicense issuedUsingLocalLicense = clsLicense.Find(IssuedUsingLocalLicenseID);
                 clsUser createdByUser = clsUser.Find(CreatedByUserID);
 
                 return new clsInternationalLicense(ID, application, issuedUsingLocalLicense, IssueDate, ExpireDate, IsActive, createdByUser);
@@ -123,12 +122,35 @@ namespace DVLD_Business
             return clsInternationalLicenseData.DeleteInternationalLicense(ID);
         }
 
+        public static DataTable GetDriverInternationalLicenses(int DriverID)
+        {
+            return clsInternationalLicenseData.GetDriverInternationalLicenses(DriverID);
+        }
+
         public static DataTable GetInternationalLicensesList()
         {
             return clsInternationalLicenseData.GetAllInternationalLicenses();
         }
 
+        public static byte CanIssueInternationalLicense(int LocalLicenseID)
+        {
+            return clsInternationalLicenseData.CanIssueInternationalLicense(LocalLicenseID);
+        }
 
+        public static int GetIDByLocalLicenseID(int LocalLicenseID)
+        {
+            return clsInternationalLicenseData.GetInternationalLicenseIDByLocalLicenseID(LocalLicenseID);
+        }
+
+        public static int GetInternationalLicensesCountByDriverID(int DriverID)
+        {
+            return clsInternationalLicenseData.GetInternationalLicensesRecordsCountByDriverID(DriverID);
+        }
+
+        public static int GetRecordsCount()
+        {
+            return clsInternationalLicenseData.GetInternationalLicensesRecordsCount();
+        }
 
     }
 }

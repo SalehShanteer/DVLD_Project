@@ -90,7 +90,7 @@ namespace DVLD_Business
                 return null;
         }
 
-        public static bool IsLocalDrivingLicenseApplicationExists(int ID)
+        public static bool IsExists(int ID)
         {
             return clsLocalDrivingLicenseApplicationData.IsLocalDrivingLicenseApplicationExists(ID);
         }
@@ -118,6 +118,11 @@ namespace DVLD_Business
         public static int GetLocalDrivingLicenseApplicationsCount()
         {
             return clsLocalDrivingLicenseApplicationData.CountNumberOfLocalDrivingLicenseApplications();
+        }
+
+        public static byte GetPassedTests(int ID)
+        {
+            return clsLocalDrivingLicenseApplicationData.GetLocalDrivingLicenseApplicationPassedTests(ID);
         }
 
     }

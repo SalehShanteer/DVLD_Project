@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Diagnostics;
+using Global_Variables_Data;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
     public class clsDetainedLicenseData
     {
-        public static bool FindDetainedLicenseByID(int ID, ref int LicenseID, ref DateTime DetainDate, ref string DetainReason
+        public static bool FindDetainedLicenseByID(int ID, ref int LicenseID, ref DateTime DetainDate
             , ref short FineFees, ref bool IsReleased, ref DateTime ReleaseDate, ref int ReleaseApplicationID
             , ref int ReleasedByUserID, ref int CreatedByUserID)
         {
@@ -34,7 +32,6 @@ namespace DVLD_DataAccess
                         {
                             LicenseID = Convert.ToInt32(reader["LicenseID"]);
                             DetainDate = Convert.ToDateTime(reader["DetainDate"]);
-                            DetainReason = reader["DetainReason"].ToString();
                             FineFees = Convert.ToInt16(reader["FineFees"]);
                             IsReleased = Convert.ToBoolean(reader["IsReleased"]);
                             ReleaseDate = reader["ReleaseDate"] != DBNull.Value ? Convert.ToDateTime(reader["ReleaseDate"]) : DateTime.MinValue;
@@ -58,23 +55,18 @@ namespace DVLD_DataAccess
             return clsGenericData.IsRecordExist("DetainedLicenses", "DetainedLicenseID", ID);
         }
 
-        public static int AddNewDetainedLicense(int LicenseID, string DetainReason, short FineFees, int CreatedByUserID)
+        public static bool IsLicenseDetained(int LicenseID)
         {
-            int ID = -1;
+            bool IsDetained = false;
 
-            string query = "INSERT INTO DetainedLicenses (LicenseID, DetainDate, DetainReason, FineFees, IsReleased, ReleaseDate, ReleaseApplicationID, ReleasedByUserID, CreatedByUserID) " +
-                "VALUES (@LicenseID, GETDATE(), @DetainReason, @FineFees, 0, NULL, NULL, NULL, @CreatedByUserID); " +
-                "SELECT SCOPE_IDENTITY();";
+            string query = "EXEC SP_IsLicenseDetained @LicenseID = @SelectedLicenseID";
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    // Add the parameters
-                    command.Parameters.AddWithValue("@LicenseID", LicenseID);
-                    command.Parameters.AddWithValue("@DetainReason", DetainReason);
-                    command.Parameters.AddWithValue("@FineFees", FineFees);
-                    command.Parameters.AddWithValue("@CreatedByUserID", CreatedByUserID);
+                    // Add parameter to query
+                    command.Parameters.AddWithValue("@SelectedLicenseID", LicenseID);
 
                     try
                     {
@@ -82,53 +74,97 @@ namespace DVLD_DataAccess
 
                         object result = command.ExecuteScalar();
 
-                        if (result != null && int.TryParse(result.ToString(), out int NewID))
+                        if (result != null)
                         {
-                            ID = NewID;
+                            IsDetained = Convert.ToBoolean(result);
                         }
                     }
                     catch (Exception ex) { }
                     finally { connection.Close(); }
+                }
+            }
+            return IsDetained;
+        }
+
+        public static int AddNewDetainedLicense(int LicenseID, short FineFees)
+        {
+            int ID = -1;
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("SP_AddNewDetainLicense", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Add the parameters
+                    command.Parameters.AddWithValue("@LicenseID", LicenseID);
+                    command.Parameters.AddWithValue("@FineFees", FineFees);
+
+                    // Add the output parameter
+                    SqlParameter outputIDParameter = new SqlParameter("@NewDetainID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    command.Parameters.Add(outputIDParameter);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+
+                        ID = (int)command.Parameters["@NewDetainID"].Value;
+
+                        // Log the event to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, "New Detained License Added Successfully", EventLogEntryType.Information);
+                    }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
             return ID;
         }
 
-        public static bool UpdateDetainedLicense(int ID, string DetainReason, short FineFees, bool IsReleased, DateTime ReleaseDate, int ReleaseApplicationID, int ReleasedByUserID)
+        public static bool ReleaseDetainedLicense(int ID)
         {
-            bool IsUpdated = false;
-
-            string query = "UPDATE DetainedLicenses SET DetainReason = @DetainReason, FineFees = @FineFees, IsReleased = @IsReleased" +
-                           ", ReleaseDate = @ReleaseDate, ReleaseApplicationID = @ReleaseApplicationID, ReleasedByUserID = @ReleasedByUserID " +
-                           "WHERE ID = @ID";
+            bool IsReleased = false;
 
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand("SP_ReleaseDetainedLicense", connection))
                 {
+                    command.CommandType = CommandType.StoredProcedure;
+
                     // Add the parameters
-                    command.Parameters.AddWithValue("@ID", ID);
-                    command.Parameters.AddWithValue("@DetainReason", DetainReason);
-                    command.Parameters.AddWithValue("@FineFees", FineFees);
-                    command.Parameters.AddWithValue("@IsReleased", IsReleased);
-                    command.Parameters.AddWithValue("@ReleaseDate", ReleaseDate);
-                    command.Parameters.AddWithValue("@ReleaseApplicationID", ReleaseApplicationID);
-                    command.Parameters.AddWithValue("@ReleasedByUserID", ReleasedByUserID);
+                    command.Parameters.AddWithValue("@DetainID", ID);
+
+                    SqlParameter outputIDParameter = new SqlParameter("@IsReleased", SqlDbType.Bit)
+                    {
+                        Direction = ParameterDirection.Output,
+                    };
+
+                    command.Parameters.Add(outputIDParameter);
 
                     try
                     {
                         connection.Open();
-                        int RowsAffected = command.ExecuteNonQuery();
-                        if (RowsAffected > 0)
-                        {
-                            IsUpdated = true;
-                        }
+                        command.ExecuteNonQuery();
+                        
+                        IsReleased = (bool)command.Parameters["@IsReleased"].Value;
+
+                        // Log the event to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, "Detained License Released Successfully", EventLogEntryType.Information);
                     }
-                    catch (Exception ex) { }
-                    finally { connection.Close(); }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
-            return IsUpdated;
+            return IsReleased;
         }
 
         public static bool DeleteDetainedLicense(int ID)

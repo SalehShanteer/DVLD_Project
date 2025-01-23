@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using DVLD_Business;
 
@@ -67,14 +62,26 @@ namespace DVLD
 
         private void _ShowPage(short PageNumber)
         {
-            _dvPeopleList = clsPerson.GetPeopleListPerPage(PageNumber, clsSettings.peopleListRowsPerPage).DefaultView;
-            dgvPeopleList.DataSource = _dvPeopleList;
+            Thread GetPeopleListThread = new Thread(() =>
+            {
+                _dvPeopleList = clsPerson.GetPeopleListPerPage(PageNumber, clsSettings.peopleListRowsPerPage).DefaultView;
+
+                // To ensure that the data grid view is updated from the main thread
+                this.Invoke(new Action(() => { dgvPeopleList.DataSource = _dvPeopleList; }));
+            });
+       
+            GetPeopleListThread.Start();
         }
 
         private void _DisplayPeopleListPageWithFilter(short PageNumber, string FilterAttribute, string Filter)
         {
-            _dvPeopleList = clsPerson.GetPeopleListPerPageWithFilter(PageNumber, clsSettings.peopleListRowsPerPage, FilterAttribute, Filter).DefaultView;
-            dgvPeopleList.DataSource= _dvPeopleList;
+            Thread GetPeopleListThread = new Thread(() =>
+            {
+                _dvPeopleList = clsPerson.GetPeopleListPerPageWithFilter(PageNumber
+                    , clsSettings.peopleListRowsPerPage, FilterAttribute, Filter).DefaultView;
+
+                this.Invoke(new Action(() => { dgvPeopleList.DataSource = _dvPeopleList; }));
+            });
         }
 
         private void _ShowFilteredPage(short PageNumber)
@@ -114,9 +121,13 @@ namespace DVLD
         {
             //Open add/update person form
             frmAddUpdatePerson frm = new frmAddUpdatePerson(-1);
-            frm.ShowDialog();
 
-            _RefreshPeopleList();
+            frm.SavePerson += (sender, IsSaved) =>
+            {
+                _RefreshPeopleList(); // Refresh the people list after saving the new person
+            };
+
+            frm.ShowDialog();
         }
 
         private void _UpdatePerson()
@@ -127,9 +138,13 @@ namespace DVLD
 
                 //Open add/update person form
                 frmAddUpdatePerson frm = new frmAddUpdatePerson(SelectedPersonID);
-                frm.ShowDialog();
 
-                _RefreshPeopleList();
+                frm.SavePerson += (sender, IsSaved) =>
+                {
+                    _RefreshPeopleList(); // Refresh the people list after saving the new person
+                };
+
+                frm.ShowDialog();
             }
         }
 

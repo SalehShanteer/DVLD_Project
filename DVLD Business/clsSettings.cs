@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DVLD_DataAccess;
+using Global_Variables_Data;
 
 namespace DVLD_Business
 {
-    public class clsSettings
+    public static class clsSettings
     {
-        // Manage People
-
-        public static short peopleListRowsPerPage = 12;
+        public const string SourceName = clsSettingsData.SourceName;
+        public static short peopleListRowsPerPage = clsSettingsData.peopleListRowsPerPage;
     }
 }

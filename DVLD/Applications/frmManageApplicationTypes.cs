@@ -1,11 +1,7 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -33,11 +29,22 @@ namespace DVLD
 
         private void _RefreshApplicationTypes()
         {
-            dvApplicationTypes = clsApplicationType.GetApplicationTypesList().DefaultView;
-            dgvApplicationTypesList.DataSource = dvApplicationTypes;
+            Thread RefreshApplicationTypesThread = new Thread(() =>
+            {
+                dvApplicationTypes = clsApplicationType.GetApplicationTypesList().DefaultView;
 
-            //Display number of records
-            dgvApplicationTypesList.Text = clsApplicationType.GetApplicationTypesCount().ToString();
+                // To ensure that the data grid view is updated from the main thread
+                this.Invoke(new Action(() =>
+                {
+                    dgvApplicationTypesList.DataSource = dvApplicationTypes;
+
+                    //Display number of records
+                    dgvApplicationTypesList.Text = clsApplicationType.GetApplicationTypesCount().ToString();
+                }));
+
+            });
+
+            RefreshApplicationTypesThread.Start();
         }
 
         private void _UpdateApplicationType()
@@ -47,9 +54,17 @@ namespace DVLD
                 int SelectedApplicationTypeID = (int)dgvApplicationTypesList.CurrentRow.Cells["ID"].Value;
 
                 frmUpdateApplicationType frm = new frmUpdateApplicationType(SelectedApplicationTypeID);
-                frm.ShowDialog();
 
-                _RefreshApplicationTypes();
+                frm.IsUpdated += (sender, IsUpdated) =>
+                {
+
+                    if (IsUpdated)
+                    {
+                        _RefreshApplicationTypes(); // Refresh if the application updated
+                    }
+                };
+
+                frm.ShowDialog();
             }
         }
 

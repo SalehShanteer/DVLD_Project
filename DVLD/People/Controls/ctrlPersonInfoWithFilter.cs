@@ -16,7 +16,6 @@ namespace DVLD
 
         private clsPerson _Person;
 
-
         public delegate void DataBackEventHandler(object sender, clsPerson Person);
 
         public event DataBackEventHandler DataBack;
@@ -24,7 +23,7 @@ namespace DVLD
         // Define the event
         public event Action<int> OnFindPersonComplete;
 
-        //Create method to raise event
+        // Create method to raise event
         protected virtual void FindPersonComplete(int PersonID)
         {
             Action<int> handler = OnFindPersonComplete;
@@ -84,6 +83,15 @@ namespace DVLD
             cbxFilters.SelectedIndex = 1; //Set comboBox at person ID
 
             txtFilter.Text = PersonID.ToString();
+
+            _FindPerson();
+        }
+
+        public void FindPersonFromOutside(string NationalNumber)
+        {
+            cbxFilters.SelectedIndex = 0; //Set comboBox at National Number
+
+            txtFilter.Text = NationalNumber;
 
             _FindPerson();
         }

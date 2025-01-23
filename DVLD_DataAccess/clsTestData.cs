@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DVLD_DataAccess
 {
@@ -99,6 +95,68 @@ namespace DVLD_DataAccess
             return clsGenericData.GetDataTable(query);
         }
 
+        public static byte GetTestTrialsByTestTypeIDAndLocalDrivingLicenseApplication(int TestTypeID, int LocalDrivingLicenseApplicationID)
+        {
+            byte Trials = 0;
 
+            string query = "SELECT dbo.GetTestTrials(@TestTypeID, @LocalDrivingLicenseApplication)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters for query
+                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplication", LocalDrivingLicenseApplicationID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && byte.TryParse(result.ToString(),out byte trials))
+                        {
+                            Trials = trials;
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return Trials;
+        }
+
+        public static bool CheckIfRetakeTest(int TestAppointmentID, int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            bool IsRetakeTest = false;
+
+            string query = "SELECT dbo.CheckIfRetakeTest(@TestAppointmentID, @LocalDrivingLicenseApplicationID, @TestTypeID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to query
+                    command.Parameters.AddWithValue("@TestAppointmentID", TestAppointmentID);
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            IsRetakeTest = Convert.ToBoolean(result);
+                        }
+                    }
+                    catch (Exception ex) { }
+                    finally { connection.Close(); }
+                }
+            }
+            return IsRetakeTest;
+        }
     }
 }

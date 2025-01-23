@@ -13,7 +13,13 @@ namespace DVLD
 {
     public partial class frmUpdateTestType : Form
     {
-       
+
+        // Define a delegate
+        public delegate void UpdateTestTypeEventHandler(object sender, bool IsUpdated);
+
+        // Define an event based on that delegate
+        public event UpdateTestTypeEventHandler UpdateTestType;
+
         private int _TestTypeID;
 
         private clsTestType _TestType;
@@ -43,7 +49,11 @@ namespace DVLD
 
             if (_TestType.Save())
             {
-                MessageBox.Show(clsUtility.saveMessage("test type"), clsUtility.saveTitle("Test Type"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(clsUtility.saveMessage("test type"), clsUtility.saveTitle("Test Type")
+                    , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Raise the event
+                UpdateTestType?.Invoke(this, IsUpdated : true);
             }
             else
             {

@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +21,24 @@ namespace DVLD
             InitializeComponent();
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+
+            Thread LicensesRefreshThread = new Thread(() =>
+            {                
+
+                if (clsLicense.RefreshAllLicensesToCheckActivation())
+                {
+#if DEBUG
+                    MessageBox.Show("Some licenses got inactive!", "Attention");
+#endif
+
+                }
+                
+            });
+
+            LicensesRefreshThread.Start();
+        }
 
         private void _ShowManagePeopleScreen()
         {
@@ -89,6 +109,36 @@ namespace DVLD
             frm.ShowDialog();
         }
 
+        private void _ShowAddNewInternationalLicenseApplicationScreen()
+        {
+            frmNewInternationalLicenseApplication frm = new frmNewInternationalLicenseApplication();
+            frm.ShowDialog();
+        }
+
+        private void _ShowInternationalLicenseApplicationsScreen()
+        {
+            frmInternationalLicenseApplications frm = new frmInternationalLicenseApplications();
+            frm.ShowDialog();
+        }
+
+        private void _ShowRenewLocalLicenseApplicationScreen()
+        {
+            frmRenewLocalDrivingLicense frm = new frmRenewLocalDrivingLicense();
+            frm.ShowDialog();
+        }
+
+        private void _ShowReplacementForLostOrDamagedLicenseScreen()
+        {
+            frmReplacementForDamagedOfLostLicenseApplication frm = new frmReplacementForDamagedOfLostLicenseApplication();
+            frm.ShowDialog();
+        }
+
+        private void _ShowDetainLicenseScreen()
+        {
+            frmDetainLicense frm = new frmDetainLicense();
+            frm.ShowDialog();
+        }
+
         private void peopleStripDropDownButton_Click(object sender, EventArgs e)
         {
             _ShowManagePeopleScreen();
@@ -98,7 +148,6 @@ namespace DVLD
         {
             _ShowManageDriversScreen();
         }
-
       
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -153,6 +202,31 @@ namespace DVLD
         private void loginRecordsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ShowLoginRecordsScreen();
+        }
+
+        private void internationalLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowAddNewInternationalLicenseApplicationScreen();
+        }
+
+        private void internationalDrivingLicenseApplicationsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowInternationalLicenseApplicationsScreen();
+        }
+
+        private void renewDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowRenewLocalLicenseApplicationScreen();
+        }
+
+        private void replacementForLostOrDamagedLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowReplacementForLostOrDamagedLicenseScreen();
+        }
+
+        private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowDetainLicenseScreen();
         }
     }
 }

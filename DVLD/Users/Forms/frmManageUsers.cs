@@ -1,12 +1,7 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -14,7 +9,7 @@ namespace DVLD
     public partial class frmManageUsers : Form
     {
         
-        DataView dvUsersList = new DataView();
+        private DataView _dvUsersList = new DataView();
 
         public frmManageUsers()
         {
@@ -26,19 +21,80 @@ namespace DVLD
             _Refresh();
         }
 
-        private void _RefreshUsersList()
-        {
-            
-            dvUsersList = clsUser.GetUsersList().DefaultView;
-            dgvUsersList.DataSource = dvUsersList;
-
-            //Display number of records
-            lblUsersCount.Text = clsUser.GetUsersCount().ToString();
-        }
-
         private void _Refresh()
         {
+            cbxFilter.SelectedIndex = 0; // Filter default index at (None)
+
             _RefreshUsersList();
+        }
+
+        private void _RefreshUsersList()
+        {
+            Thread RefreshUsersListThread = new Thread(() =>
+            {
+                _dvUsersList = clsUser.GetUsersList().DefaultView;
+
+                // Invoke to update UI from main thread
+                this.Invoke(new Action(() =>
+                {
+                    dgvUsersList.DataSource = _dvUsersList;
+
+                    //Display number of records
+                    lblUsersCount.Text = clsUser.GetUsersCount().ToString();
+                }));
+            });
+
+            RefreshUsersListThread.Start();
+        }
+       
+        private void _Filter()
+        {
+            string filterAttribute = cbxFilter.Text;
+            string filter = txtFilter.Text.Trim();
+
+            if (filterAttribute == "None" || string.IsNullOrEmpty(filter))
+            {
+                _dvUsersList.RowFilter = string.Empty;
+            }
+            else
+            {
+                if (filterAttribute == "Person ID" || filterAttribute == "User ID")
+                {
+                    _dvUsersList.RowFilter = $"[{filterAttribute}] = {filter}";
+                }
+                else
+                {
+                    _dvUsersList.RowFilter = $"[{filterAttribute}] LIKE '{filter}%'";
+                }
+            }
+        }
+
+        private void _FilterUserActivation()
+        {
+            switch (cbxUserActivation.Text)
+            {
+                case "All":
+                    {
+                        _dvUsersList.RowFilter = string.Empty;
+                        break;
+                    }
+                case "Yes": 
+                    {
+                        _dvUsersList.RowFilter = "[Is Active] = 1";
+                        break;
+                    }
+                case "No":
+                    {
+                        _dvUsersList.RowFilter = "[Is Active] = 0";
+                        break;
+                    }
+
+                    default:
+                    {
+                        _dvUsersList.RowFilter = string.Empty;
+                        break;
+                    }
+            }
         }
 
         private void _ShowUserDetails()
@@ -58,9 +114,16 @@ namespace DVLD
         private void _AddNewUser()
         {
             frmAddUpdateUser frm = new frmAddUpdateUser(-1);
-            frm.ShowDialog();
 
-            _RefreshUsersList();
+            frm.SavePerson += (sender, IsSaved) =>
+            {
+                if (IsSaved)
+                {
+                    _RefreshUsersList(); // Refresh users list after saving new user
+                }
+            };
+
+            frm.ShowDialog();
         }
 
         private void _UpdateUser()
@@ -70,9 +133,16 @@ namespace DVLD
                 int SelectedUserID = (int)dgvUsersList.CurrentRow.Cells["User ID"].Value;
 
                 frmAddUpdateUser frm = new frmAddUpdateUser(SelectedUserID);
-                frm.ShowDialog();
 
-                _RefreshUsersList();
+                frm.SavePerson += (sender, IsSaved) =>
+                {
+                    if (IsSaved)
+                    {
+                        _RefreshUsersList(); // Refresh users list after updating user
+                    }
+                };
+
+                frm.ShowDialog();
             }
         }
 
@@ -141,6 +211,47 @@ namespace DVLD
         private void changePasswordToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ChangeUserPassword();
+        }
+
+        private void txtFilter_TextChanged(object sender, EventArgs e)
+        {
+            _Filter();
+        }
+
+        private void txtFilter_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && (cbxFilter.Text == "User ID" || cbxFilter.Text == "Person ID"))
+            {
+                e.Handled = true;// Ensure only digits allowed when User ID and Person ID selected
+            }
+        }
+
+        private void cbxFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Clear filter textBox
+            txtFilter.Text = string.Empty;
+
+            if (cbxFilter.Text == "None")
+            {
+                txtFilter.Visible = false;
+                cbxUserActivation.Visible = false;
+            }
+            else if (cbxFilter.Text == "Is Active")
+            {
+                txtFilter.Visible = false;
+                cbxUserActivation.Visible = true;
+                cbxUserActivation.SelectedIndex = 0; // Filter default index at (All)
+            }
+            else
+            {
+                txtFilter.Visible = true;
+                cbxUserActivation.Visible = false;
+            }
+        }
+
+        private void cbxUserActivation_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _FilterUserActivation();
         }
     }
 }

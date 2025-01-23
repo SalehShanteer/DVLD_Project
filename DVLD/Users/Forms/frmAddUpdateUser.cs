@@ -1,19 +1,20 @@
 ﻿using DVLD_Business;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
 {
     public partial class frmAddUpdateUser : Form
     {
-        
+
+        // define delegate for save event
+        public delegate void SavePersonEventHandler(object sender, bool IsSaved);
+
+        // define event for save
+        public event SavePersonEventHandler SavePerson;
+
         private enum enMode { AddNew = 0, Update = 1}
 
         private enMode _Mode = enMode.AddNew;
@@ -89,6 +90,10 @@ namespace DVLD
                 lblUserID.Text = _User.ID.ToString();
 
                 _Mode = enMode.Update;
+
+                // Raise save event
+                SavePerson?.Invoke(this, IsSaved : true);
+
             }
             else
             {
@@ -123,7 +128,6 @@ namespace DVLD
 
         private void _LoadUserInfo()
         {
-
             _LoadRolesComboBox();
 
             if (_Mode == enMode.AddNew)
@@ -197,5 +201,7 @@ namespace DVLD
         {
             tcUserInfo.SelectedIndex = 0;
         }
+
+   
     }
 }
