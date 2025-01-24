@@ -223,6 +223,11 @@ namespace DVLD_Business
             return clsPersonData.GetPersonIDByNationalNumber(NationalNumber);
         }
 
+        public static string GetPersonNationalNumberByLicenseID(int LicenseID)
+        {
+            return clsPersonData.GetNationalNumberByLicenseID(LicenseID);
+        }
+
         public static DataTable GetPeopleListPerPage(short PageNumber, short RowsPerPage)
         {
             return clsPersonData.GetPeopleListPerPage(PageNumber, RowsPerPage);

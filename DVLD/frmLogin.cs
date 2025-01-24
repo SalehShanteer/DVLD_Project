@@ -1,12 +1,5 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -21,18 +14,19 @@ namespace DVLD
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            _LoadSavedUser();
+            _RetrieveSavedUser();
         }
 
-        private void _LoadSavedUser()
+        private void _RetrieveSavedUser()
         {
-            clsUserSetting SavedUser = clsUserSetting.Find("Saved User");
-
-            if (SavedUser.User != null)
+        
+            if (clsUtility.ReadFromRegistry("SavedUsername") != string.Empty)
             {
-                txtUsername.Text = SavedUser.User.Username;
-                txtPassword.Text = SavedUser.User.Password;
-                ckbRememberMe.Checked = true;
+                string SavedUsername = clsUtility.ReadFromRegistry("SavedUsername");
+                string SavedPassword = clsUtility.ReadFromRegistry("SavedPassword");
+
+                txtUsername.Text = SavedUsername;
+                txtPassword.Text = clsUtility.Decrypt(SavedPassword);
             }
         }
 
@@ -44,16 +38,19 @@ namespace DVLD
             {
                 LoginRecord.User = CurrentUser;
 
+                // Check if the password is correct
                 if (txtPassword.Text == CurrentUser.Password)
                 {
                     if (CurrentUser.IsActive == true)
                     {
+                        // User is active
                         LoginRecord.LoginStatus = true;
 
                         CanPass = true;
                     }
                     else
                     {
+                        // User is not active
                         LoginRecord.LoginStatus = false;
                         LoginRecord.FailureReason = clsUtility.errorLoginNotActiveUser;
                         
@@ -64,6 +61,7 @@ namespace DVLD
                 }
                 else
                 {
+                    // Wrong password
                     LoginRecord.LoginStatus = false;
                     LoginRecord.FailureReason = clsUtility.errorLoginWrongPassword;
 
@@ -76,6 +74,7 @@ namespace DVLD
             }
             else
             {
+                // Username not found
                 errorMessage = clsUtility.errorLoginUsernameNotFound;
 
                 CanPass = false;
@@ -108,21 +107,25 @@ namespace DVLD
 
         }
 
+        private void _SaveUserToRegistry(clsUser user)
+        {
+            string ValueName1 = "SavedUsername";
+            string ValueData1 = user.Username;
+
+            string ValueName2 = "SavedPassword";
+            string ValueData2 = clsUtility.Encrypt(user.Password);
+
+            // Save the user to the registry
+            clsUtility.WriteToRegistry(ValueName1, ValueData1);
+            clsUtility.WriteToRegistry(ValueName2, ValueData2);
+        }
+
         private void _SetSavedUser(clsUser user)
         {
-            clsUserSetting SavedUser = clsUserSetting.Find("Saved User");
-
             if (ckbRememberMe.Checked)
             {
-                SavedUser.User = user;
-            }
-            else
-            {
-                SavedUser.User = null;
-            }
-
-            // Update the saved user
-            SavedUser.Save();
+                _SaveUserToRegistry(user);
+            }          
         }
 
         private void _Login()
@@ -131,8 +134,10 @@ namespace DVLD
             clsLoginRecord LoginRecord = new clsLoginRecord();
             string errorMessage = string.Empty;
 
+            // Check the login process
             if (_CheckLoginProccess(CurrentUser, LoginRecord, ref errorMessage))
             {
+                // Register the current user
                 if (_RegisterCurrentUser(CurrentUser, ref errorMessage))
                 {
                     _SetSavedUser(CurrentUser);
@@ -163,11 +168,13 @@ namespace DVLD
         {
             if (txtPassword.UseSystemPasswordChar == true)
             {
+                // Show password in plain text
                 pbShowHidePassword.Image = Properties.Resources.hide;
                 txtPassword.UseSystemPasswordChar = false;
             }
             else
             {
+                // Hide password in plain text
                 pbShowHidePassword.Image = Properties.Resources.show;
                 txtPassword.UseSystemPasswordChar = true;
             }

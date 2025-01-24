@@ -139,6 +139,18 @@ namespace DVLD
             frm.ShowDialog();
         }
 
+        private void _ShowReleaseDetainedLicenseScreen()
+        {
+            frmReleaseDetainedLicense frm = new frmReleaseDetainedLicense();
+            frm.ShowDialog();
+        }
+
+        private void _ShowManageDetainedLicensesScreen()
+        {
+            frmManageDetainedLicenses frm = new frmManageDetainedLicenses();
+            frm.ShowDialog();
+        }
+
         private void peopleStripDropDownButton_Click(object sender, EventArgs e)
         {
             _ShowManagePeopleScreen();
@@ -176,6 +188,7 @@ namespace DVLD
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
+            // Retrieve the current user
             clsUserSetting CurrentUser = clsUserSetting.Find("Current User");
 
             // Clear the current user
@@ -227,6 +240,21 @@ namespace DVLD
         private void detainLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             _ShowDetainLicenseScreen();
+        }
+
+        private void releaseDetainedLicenseToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            _ShowReleaseDetainedLicenseScreen();
+        }
+
+        private void releaseDetainedDrivingLicenseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowReleaseDetainedLicenseScreen();
+        }
+
+        private void manageDetainedLicensesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            _ShowManageDetainedLicensesScreen();
         }
     }
 }

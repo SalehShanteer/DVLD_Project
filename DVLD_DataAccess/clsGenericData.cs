@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using System.Data.SqlClient;    
 using System.Linq;
+using Global_Variables_Data;
 
 namespace DVLD_DataAccess
 {
@@ -35,7 +37,11 @@ namespace DVLD_DataAccess
                             IsFound = true;
                         }
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex)
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
             return IsFound;
@@ -69,7 +75,11 @@ namespace DVLD_DataAccess
                             IsDeleted = true;
                         }
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
             return IsDeleted;
@@ -102,7 +112,11 @@ namespace DVLD_DataAccess
 
                         reader.Close();
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
             return dt;
@@ -135,7 +149,11 @@ namespace DVLD_DataAccess
                             count = TotalRecords;
                         }
                     }
-                    catch (Exception ex) { }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
             return count;

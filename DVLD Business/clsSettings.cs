@@ -5,7 +5,10 @@ namespace DVLD_Business
 {
     public static class clsSettings
     {
-        public const string SourceName = clsSettingsData.SourceName;
-        public static short peopleListRowsPerPage = clsSettingsData.peopleListRowsPerPage;
+
+        // Manage People
+        public const short peopleListRowsPerPage = clsSettingsData.peopleListRowsPerPage;
+
+      
     }
 }

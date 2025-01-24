@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
 using DVLD_DataAccess;
@@ -61,11 +62,6 @@ namespace DVLD_Business
             return this.ID != -1;
         }
 
-        private bool _DetainedLicense()
-        {
-            return clsDetainedLicenseData.ReleaseDetainedLicense(this.ID);
-        }
-
         public bool Save()
         {
             switch (_Mode)
@@ -77,22 +73,10 @@ namespace DVLD_Business
                             _Mode = enMode.Update;
                             return true;
                         }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-
-                case enMode.Update:
-                    {
-                        return _DetainedLicense();                  
-                    }
-
-                default:
-                    {
-                        return false;
+                        break;
                     }
             }
+            return false;
         }
 
         public static clsDetainedLicense Find(int ID)
@@ -123,7 +107,45 @@ namespace DVLD_Business
             {
                 return null;
             }
+        }
 
+        public bool Release()
+        {
+            int releaseApplicationID = -1;
+            bool result = clsDetainedLicenseData.ReleaseDetainedLicense(this.ID, ref releaseApplicationID);
+            this.ReleaseApplication = clsApplication.Find(releaseApplicationID);
+
+            return result;
+        }
+
+        public static clsDetainedLicense FindNonReleasedByLicenseID(int LicenseID)
+        {
+            // Prepare the variables
+            int ID = -1;
+            DateTime DetainDate = DateTime.MinValue;
+            short FineFees = -1;
+            bool IsReleased = false;
+            DateTime ReleaseDate = DateTime.MinValue;
+            int ReleaseApplicationID = -1;
+            int ReleasedByUserID = -1;
+            int CreatedByUserID = -1;
+
+            if (clsDetainedLicenseData.FindNonReleasedDetainedLicenseByLicenseID(ref ID, LicenseID, ref DetainDate, ref FineFees, ref IsReleased
+                , ref ReleaseDate, ref ReleaseApplicationID, ref ReleasedByUserID, ref CreatedByUserID))
+            {
+                // Prepare the objects
+                clsLicense license = clsLicense.Find(LicenseID);
+                clsApplication releaseApplication = clsApplication.Find(ReleaseApplicationID);
+                clsUser releasedByUser = clsUser.Find(ReleasedByUserID);
+                clsUser createdByUser = clsUser.Find(CreatedByUserID);
+
+                return new clsDetainedLicense(ID, license, DetainDate, FineFees, IsReleased
+                    , ReleaseDate, releaseApplication, releasedByUser, createdByUser);
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public static bool IsExist(int ID)
@@ -134,6 +156,11 @@ namespace DVLD_Business
         public static bool IsDetained(int LicenseID)
         {
             return clsDetainedLicenseData.IsLicenseDetained(LicenseID);
+        }
+
+        public static int GetDetainedLicensesCount()
+        {
+            return clsDetainedLicenseData.GetNumberOfDetainedLicenses();
         }
 
         public static bool Delete(int ID)

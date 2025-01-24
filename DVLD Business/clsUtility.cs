@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using Microsoft.Win32;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using DVLD_DataAccess;
+using Global_Variables_Data;
+using System.Diagnostics;
 
 namespace DVLD_Business
 {
@@ -140,19 +140,60 @@ namespace DVLD_Business
             }
         }
 
-        //public static string GetLicenseRenewStatus(byte Status)
-        //{
-        //    switch (Status)
-        //    {
 
-        //        case 1: { return "Not Latest Driver license"; }
+        // Registry
+        public static void WriteToRegistry(string Key, string Value)
+        {
+            try
+            {
+                // Write the value to the registry
+                Registry.SetValue(clsSettingsData.KeyPath, Key, Value);
+            }
+            catch (Exception ex)
+            {
+                // Log the error in the event log
+                EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+            }
+        }
 
-        //        case 2: { return "The license is already active"; }
+        public static string ReadFromRegistry(string Key)
+        {
+            if (_CheckIfRegistryKeyExists(Key))
+            {
+                try
+                {
+                    // Read the value from the registry
+                    object value = Registry.GetValue(clsSettingsData.KeyPath, Key, null);
 
-        //        case 3: { return "The license need to renew"; }
+                    return value?.ToString() ?? string.Empty;
+                }
+                catch (Exception ex)
+                {
+                    // Log the error in the event log
+                    EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    return string.Empty;
+                }
+            }
+            else
+            {
+                return string.Empty;
+            }
+        }
 
-        //        default: { return "No Result"; }
-        //    }
-        //}
+        private static bool _CheckIfRegistryKeyExists(string Key)
+        {
+            try
+            {
+                // Check if the key exists
+                return Registry.GetValue(clsSettingsData.KeyPath, Key, null) != null;              
+            }
+            catch (Exception ex)
+            {
+                // Log the error in the event log
+                EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                return false;
+            }
+        }
+
     }
 }

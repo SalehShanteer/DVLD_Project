@@ -52,3 +52,5 @@ C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frm
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmRenewLocalDrivingLicense.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmReplacementForDamagedOfLostLicenseApplication.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmDetainLicense.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmReleaseDetainedLicense.resources
+C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmManageDetainedLicenses.resources

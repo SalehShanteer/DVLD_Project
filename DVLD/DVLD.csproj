@@ -46,11 +46,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmDetainLicense.cs">
+    <Compile Include="DetainedLicenses\frmDetainLicense.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmDetainLicense.Designer.cs">
+    <Compile Include="DetainedLicenses\frmDetainLicense.Designer.cs">
       <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetainedLicenses\frmReleaseDetainedLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetainedLicenses\frmReleaseDetainedLicense.Designer.cs">
+      <DependentUpon>frmReleaseDetainedLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DetainedLicenses\frmManageDetainedLicenses.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetainedLicenses\frmManageDetainedLicenses.Designer.cs">
+      <DependentUpon>frmManageDetainedLicenses.cs</DependentUpon>
     </Compile>
     <Compile Include="L.D.L Applications\Forms\frmReplacementForDamagedOfLostLicenseApplication.cs">
       <SubType>Form</SubType>
@@ -288,8 +300,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmDetainLicense.resx">
+    <EmbeddedResource Include="DetainedLicenses\frmDetainLicense.resx">
       <DependentUpon>frmDetainLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetainedLicenses\frmReleaseDetainedLicense.resx">
+      <DependentUpon>frmReleaseDetainedLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetainedLicenses\frmManageDetainedLicenses.resx">
+      <DependentUpon>frmManageDetainedLicenses.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="L.D.L Applications\Forms\frmReplacementForDamagedOfLostLicenseApplication.resx">
       <DependentUpon>frmReplacementForDamagedOfLostLicenseApplication.cs</DependentUpon>

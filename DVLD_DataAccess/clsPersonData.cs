@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Global_Variables_Data;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DVLD_DataAccess
 {
@@ -70,6 +72,7 @@ namespace DVLD_DataAccess
                 {
                     // Add parameters to the command
                     command.Parameters.AddWithValue("@NationalNumber", NationalNumber);
+
                     try
                     {
                         connection.Open();
@@ -78,7 +81,7 @@ namespace DVLD_DataAccess
                         if (reader.Read())
                         {
                             //Set values for person
-                            ID = (int)reader["ID"];
+                            ID = (int)reader["PersonID"];
                             FirstName = (string)reader["FirstName"];
                             SecondName = (string)reader["SecondName"];
                             ThirdName = (string)reader["ThirdName"];
@@ -304,6 +307,40 @@ namespace DVLD_DataAccess
                 }
             }
             return count;
+        }
+
+        public static string GetNationalNumberByLicenseID(int LicenseID)
+        {
+            string NationaNumber = string.Empty;
+
+            string query = "SELECT dbo.GetNationalNumberByLicenseID(@LicenseID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the command
+                    command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+                    try
+                    {
+                        connection.Open();
+
+                        object result = command.ExecuteScalar();
+
+                        if (result != null)
+                        {
+                            NationaNumber = result.ToString();
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
+                }
+            }
+            return NationaNumber;
         }
 
     }

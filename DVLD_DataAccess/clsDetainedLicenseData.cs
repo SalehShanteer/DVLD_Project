@@ -50,6 +50,52 @@ namespace DVLD_DataAccess
             return IsFound;
         }
 
+        public static bool FindNonReleasedDetainedLicenseByLicenseID(ref int ID, int LicenseID, ref DateTime DetainDate
+            , ref short FineFees, ref bool IsReleased, ref DateTime ReleaseDate, ref int ReleaseApplicationID
+            , ref int ReleasedByUserID, ref int CreatedByUserID)
+        {
+            
+            bool IsFound = false;
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand("SP_GetNonReleasedDetainedLicense", connection))
+                {
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Add the parameters
+                    command.Parameters.AddWithValue("@LicenseID", LicenseID);
+
+                    try
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                ID = Convert.ToInt32(reader["DetainID"]);
+                                DetainDate = Convert.ToDateTime(reader["DetainDate"]);
+                                FineFees = Convert.ToInt16(reader["FineFees"]);
+                                IsReleased = Convert.ToBoolean(reader["IsReleased"]);
+                                ReleaseDate = reader["ReleaseDate"] != DBNull.Value ? Convert.ToDateTime(reader["ReleaseDate"]) : DateTime.MinValue;
+                                ReleaseApplicationID = reader["ReleaseApplicationID"] != DBNull.Value ? Convert.ToInt32(reader["ReleaseApplicationID"]) : -1;
+                                ReleasedByUserID = reader["ReleasedByUserID"] != DBNull.Value ? Convert.ToInt32(reader["ReleasedByUserID"]) : -1;
+                                CreatedByUserID = Convert.ToInt32(reader["CreatedByUserID"]);
+
+                                IsFound = true;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
+                }
+            }
+            return IsFound;
+        }
+
         public static bool IsDetainedLicenseExist(int ID)
         {
             return clsGenericData.IsRecordExist("DetainedLicenses", "DetainedLicenseID", ID);
@@ -79,8 +125,11 @@ namespace DVLD_DataAccess
                             IsDetained = Convert.ToBoolean(result);
                         }
                     }
-                    catch (Exception ex) { }
-                    finally { connection.Close(); }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
                 }
             }
             return IsDetained;
@@ -127,7 +176,7 @@ namespace DVLD_DataAccess
             return ID;
         }
 
-        public static bool ReleaseDetainedLicense(int ID)
+        public static bool ReleaseDetainedLicense(int ID, ref int ReleaseApplicationID)
         {
             bool IsReleased = false;
 
@@ -139,20 +188,28 @@ namespace DVLD_DataAccess
 
                     // Add the parameters
                     command.Parameters.AddWithValue("@DetainID", ID);
-
-                    SqlParameter outputIDParameter = new SqlParameter("@IsReleased", SqlDbType.Bit)
+                    
+                    SqlParameter outputParameter1 = new SqlParameter("@IsReleased", SqlDbType.Bit)
                     {
                         Direction = ParameterDirection.Output,
                     };
 
-                    command.Parameters.Add(outputIDParameter);
+                    SqlParameter outputParameter2 = new SqlParameter("@ReleaseApplicationID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output,
+                    };
+
+                    command.Parameters.Add(outputParameter1);
+                    command.Parameters.Add(outputParameter2);
 
                     try
                     {
                         connection.Open();
                         command.ExecuteNonQuery();
-                        
+
+                        // Get the output parameters
                         IsReleased = (bool)command.Parameters["@IsReleased"].Value;
+                        ReleaseApplicationID = (int)command.Parameters["@ReleaseApplicationID"].Value;
 
                         // Log the event to the event log
                         EventLog.WriteEntry(clsSettingsData.SourceName, "Detained License Released Successfully", EventLogEntryType.Information);
@@ -174,11 +231,15 @@ namespace DVLD_DataAccess
 
         public static DataTable GetAllDetainedLicenses()
         {
-            string query = "SELECT * FROM DetainedLicenses";
+            string query = "SELECT * FROM VIEW_DetainedLicensesList";
 
             return clsGenericData.GetDataTable(query);
         }
 
+        public static int GetNumberOfDetainedLicenses()
+        {
+            return clsGenericData.CountRecords("DetainedLicenses");
+        }
 
     }
 }

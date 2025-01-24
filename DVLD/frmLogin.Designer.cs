@@ -125,6 +125,8 @@
             // ckbRememberMe
             // 
             this.ckbRememberMe.AutoSize = true;
+            this.ckbRememberMe.Checked = true;
+            this.ckbRememberMe.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ckbRememberMe.Location = new System.Drawing.Point(210, 281);
             this.ckbRememberMe.Name = "ckbRememberMe";
             this.ckbRememberMe.Size = new System.Drawing.Size(133, 24);

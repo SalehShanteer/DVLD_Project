@@ -5,12 +5,14 @@ namespace Global_Variables_Data
     public static class clsSettingsData
     {
         
-        //Loggin
+        //Logging
         public const string SourceName = "DVLD_Project";
 
+        // Registry
+        public const string KeyPath = @"HKEY_CURRENT_USER\Software\DVLD_Project";
 
         // Manage People
-        public static short peopleListRowsPerPage = 12;
+        public const short peopleListRowsPerPage = 12;
 
        
     }
