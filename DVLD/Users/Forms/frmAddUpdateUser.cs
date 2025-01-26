@@ -21,7 +21,7 @@ namespace DVLD
 
         private int _UserID;
 
-        private int _PersonID;
+        private int _PersonID = -1;
 
         private clsUser _User;
 
@@ -100,6 +100,56 @@ namespace DVLD
                 MessageBox.Show(clsUtility.errorSaveMessage, clsUtility.errorSaveTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private bool _ValidateRequiredField(TextBox ctrl, string name)
+        {
+            if (string.IsNullOrWhiteSpace(ctrl.Text))
+            {
+                errorProvider1.SetError(ctrl, $"Please enter the {name}");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(ctrl, string.Empty);
+                return true;
+            }
+        }
+
+        private bool _IsValidData()
+        {
+            bool isValid = true;
+
+            if (!_ValidateRequiredField(txtUsername, "Username"))
+            {
+                isValid = false;
+            }
+            else if (clsUser.IsUsernameExist(txtUsername.Text))
+            {
+                errorProvider1.SetError(txtUsername, "Username already exists");
+                isValid = false;
+            }
+            if (!_ValidateRequiredField(txtPassword, "Password"))
+            {
+                isValid = false;
+            }
+            else if (!clsUtility.ValidatePassword(txtPassword.Text))
+            {
+                errorProvider1.SetError(txtPassword, "Password must be at least 8 characters, digit, upper case, lower case and special character");
+                isValid = false;
+            }
+
+            if (!_ValidateRequiredField(txtConfirmPassword, "Confirm Password"))
+            {
+                isValid = false;
+            }
+            else if (txtPassword.Text != txtConfirmPassword.Text)
+            {
+                errorProvider1.SetError(txtConfirmPassword, "Password does not match");
+                isValid = false;
+            }
+
+            return isValid;
         }
 
         // Load user info 
@@ -184,7 +234,21 @@ namespace DVLD
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _SaveUser();
+
+            if (_PersonID == -1)
+            {
+                MessageBox.Show("Please select a person", "Person not found", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (_IsValidData())
+            {
+                _SaveUser();
+            }
+            else
+            {
+                MessageBox.Show(clsUtility.errorProviderMessage, clsUtility.errorSaveTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ctrlPersonInfoWithFilter1_OnFindPersonComplete(int obj)
@@ -202,6 +266,30 @@ namespace DVLD
             tcUserInfo.SelectedIndex = 0;
         }
 
-   
+        private void _ShowHidePassword(TextBox textBox, PictureBox pictureBoxShowHide)
+        {
+            if (textBox.UseSystemPasswordChar == true)
+            {
+                // Show password in plain text
+                pictureBoxShowHide.Image = Properties.Resources.show;
+                textBox.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                // Hide password in plain text
+                pictureBoxShowHide.Image = Properties.Resources.hide;
+                textBox.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void pbShowHidePassword_Click(object sender, EventArgs e)
+        {
+            _ShowHidePassword(txtPassword, pbShowHidePassword);
+        }
+
+        private void pbShowHideConfirmPassword_Click(object sender, EventArgs e)
+        {
+            _ShowHidePassword(txtConfirmPassword, pbShowHideConfirmPassword);
+        }
     }
 }

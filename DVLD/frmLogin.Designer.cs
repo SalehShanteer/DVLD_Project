@@ -92,7 +92,7 @@
             // 
             // pbShowHidePassword
             // 
-            this.pbShowHidePassword.Image = global::DVLD.Properties.Resources.show;
+            this.pbShowHidePassword.Image = global::DVLD.Properties.Resources.hide;
             this.pbShowHidePassword.Location = new System.Drawing.Point(409, 240);
             this.pbShowHidePassword.Name = "pbShowHidePassword";
             this.pbShowHidePassword.Size = new System.Drawing.Size(29, 21);

@@ -1,12 +1,5 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -85,6 +78,54 @@ namespace DVLD
             }
         }
 
+        private bool _ValidateRequiredField(TextBox ctrl, string name)
+        {
+            if (string.IsNullOrWhiteSpace(ctrl.Text))
+            {
+                errorProvider1.SetError(ctrl, $"Please enter the {name}");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(ctrl, string.Empty);
+                return true;
+            }
+        }
+
+        private bool _ValidateRequiredField(RichTextBox ctrl, string name)
+        {
+            if (string.IsNullOrWhiteSpace(ctrl.Text))
+            {
+                errorProvider1.SetError(ctrl, $"Please enter the {name}");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(ctrl, string.Empty);
+                return true;
+            }
+        }
+
+        public bool _IsValidData()
+        {
+            bool IsValid = true;
+
+            if (!_ValidateRequiredField(txtTitle, "title"))
+            {
+                IsValid = false;
+            }
+            if (!_ValidateRequiredField(txtFees, "fees"))
+            {
+                IsValid = false;
+            }
+            if (!_ValidateRequiredField(rtxtDescription, "description"))
+            {
+                IsValid = false;
+            }
+
+            return IsValid;
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -95,7 +136,15 @@ namespace DVLD
             if (MessageBox.Show(clsUtility.askForSaveMessage("test type"), "Save?"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                _SaveTestType();
+                if (_IsValidData())
+                {
+                    _SaveTestType();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter the required data", "Error!"
+                        , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

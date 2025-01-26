@@ -248,5 +248,15 @@ namespace DVLD_Business
             return clsPersonData.CountNumberOfPeople(FilterAttribute, Filter);
         }
 
+        public static bool IsNationalNumberExist(string NationalNumber)
+        {
+            return clsPersonData.IsNationalNumberExist(NationalNumber);
+        }
+
+        public static bool IsEmailExist(string Email)
+        {
+            return clsPersonData.IsEmailExist(Email);
+        }
+
     }
 }

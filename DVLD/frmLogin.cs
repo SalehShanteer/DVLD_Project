@@ -169,13 +169,13 @@ namespace DVLD
             if (txtPassword.UseSystemPasswordChar == true)
             {
                 // Show password in plain text
-                pbShowHidePassword.Image = Properties.Resources.hide;
+                pbShowHidePassword.Image = Properties.Resources.show;
                 txtPassword.UseSystemPasswordChar = false;
             }
             else
             {
                 // Hide password in plain text
-                pbShowHidePassword.Image = Properties.Resources.show;
+                pbShowHidePassword.Image = Properties.Resources.hide;
                 txtPassword.UseSystemPasswordChar = true;
             }
         }

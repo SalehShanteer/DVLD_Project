@@ -66,8 +66,8 @@ namespace DVLD_DataAccess
                     command.CommandType = CommandType.StoredProcedure;
 
                     // Add the parameters
-                    command.Parameters.AddWithValue("@AppPersonID", ApplicantPersonID);
-                    command.Parameters.AddWithValue("@AppTypeId", ApplicationTypeID);
+                    command.Parameters.AddWithValue("@ApplicantPersonID ", ApplicantPersonID);
+                    command.Parameters.AddWithValue("@ApplicationTypeID", ApplicationTypeID);
 
                     SqlParameter outputIDParamete = new SqlParameter("@NewApplicationID", SqlDbType.Int)
                     {

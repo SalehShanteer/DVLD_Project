@@ -1,13 +1,7 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Lifetime;
-using System.Security.Policy;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,6 +20,7 @@ namespace DVLD
         private void frmManageDetainedLicenses_Load(object sender, EventArgs e)
         {
             _Refresh();
+
         }
 
         // using async/await instead of Thread
@@ -123,12 +118,32 @@ namespace DVLD
         private void _ShowReleaseDetainedLicenseScreen()
         {
             frmReleaseDetainedLicense frm = new frmReleaseDetainedLicense();
-            frm.ShowDialog();
+
+            // Refresh detained licenses list after releasing a license
+            frm.ReleaseDetainedLicense += (sender, IsReleased) =>
+            {
+                if (IsReleased)
+                {
+                    _RefreshDetainedLicenses();
+                }
+            };
+
+            frm.ShowDialog();         
         }
 
         private void _ShowDetainedLicenseScreen()
         {
             frmDetainLicense frm = new frmDetainLicense();
+
+            // Refresh detained licenses list after detaining a license
+            frm.DetainLicense += (sender, IsDetined) =>
+            {
+                if (IsDetined)
+                {
+                    _RefreshDetainedLicenses();
+                }
+            };
+
             frm.ShowDialog();
         }
 
@@ -172,6 +187,15 @@ namespace DVLD
             {
                 int SelectedLicenseID = (int)dgvDetainedLicensesList.CurrentRow.Cells["L.ID"].Value;
                 frmReleaseDetainedLicense frm = new frmReleaseDetainedLicense(SelectedLicenseID);
+
+                // Refresh detained licenses list after releasing a license
+                frm.ReleaseDetainedLicense += (sender, IsReleased) =>
+                {
+                    if (IsReleased)
+                    {
+                        _RefreshDetainedLicenses();
+                    }
+                };
                 frm.ShowDialog();
             }
         }

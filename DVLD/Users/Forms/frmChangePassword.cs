@@ -37,21 +37,74 @@ namespace DVLD
 
         private void _SaveUserNewPassword()
         {
-            if (_CheckIfCurrentPasswordCorrect())
-            {
-                _User.Password = txtNewPassword.Text;
+            // Save user new password
+            _User.Password = txtNewPassword.Text;
 
-                if (_User.Save())
-                {
-                    MessageBox.Show("User password saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
+            if (_User.Save())
+            {
+                MessageBox.Show("User password saved successfully!", "Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                MessageBox.Show("The inserted Current password is wrong!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(clsUtility.errorSaveMessage, clsUtility.errorSaveTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
+        private bool _ValidateRequiredField(TextBox ctrl, string name)
+        {
+            if (string.IsNullOrWhiteSpace(ctrl.Text))
+            {
+                errorProvider1.SetError(ctrl, $"Please enter the {name}");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(ctrl, string.Empty);
+                return true;
+            }
+        }
+
+        private bool _IsValidData()
+        {
+            bool isValid = true;
+
+            if (!_ValidateRequiredField(txtCurrentPassword, "Current Password"))
+            {
+                isValid = false;
+            }
+            else if (!clsUtility.ValidatePassword(txtCurrentPassword.Text))
+            {
+                errorProvider1.SetError(txtCurrentPassword, "Password must be at least 8 characters, digit, upper case, lower case and special character");
+                isValid = false;
+            }
+            else if (!_CheckIfCurrentPasswordCorrect())
+            {
+                errorProvider1.SetError(txtCurrentPassword, "Current password is not match with user password");
+                isValid = false;
+            }
+
+            if (!_ValidateRequiredField(txtNewPassword, "Password"))
+            {
+                isValid = false;
+            }
+            else if (!clsUtility.ValidatePassword(txtNewPassword.Text))
+            {
+                errorProvider1.SetError(txtNewPassword, "Password must be at least 8 characters, digit, upper case, lower case and special character");
+                isValid = false;
+            }
+
+            if (!_ValidateRequiredField(txtConfirmPassword, "Confirm Password"))
+            {
+                isValid = false;
+            }
+            else if (txtNewPassword.Text != txtConfirmPassword.Text)
+            {
+                errorProvider1.SetError(txtConfirmPassword, "Password does not match");
+                isValid = false;
+            }
+
+            return isValid;
+        }
 
         private void _LoadUserInfo()
         {
@@ -75,7 +128,46 @@ namespace DVLD
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _SaveUserNewPassword();
+            if (_IsValidData())
+            {
+                _SaveUserNewPassword();
+            }
+            else
+            {
+                MessageBox.Show(clsUtility.errorProviderMessage, clsUtility.errorSaveTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void _ShowHidePassword(TextBox textBox, PictureBox pictureBoxShowHide)
+        {
+            if (textBox.UseSystemPasswordChar == true)
+            {
+                // Show password in plain text
+                pictureBoxShowHide.Image = Properties.Resources.show;
+                textBox.UseSystemPasswordChar = false;
+            }
+            else
+            {
+                // Hide password in plain text
+                pictureBoxShowHide.Image = Properties.Resources.hide;
+                textBox.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void pbShowHideCurrentPassword_Click(object sender, EventArgs e)
+        {
+            _ShowHidePassword(txtCurrentPassword, pbShowHideCurrentPassword);
+        }
+
+        private void pbShowHideNewPassword_Click(object sender, EventArgs e)
+        {
+            _ShowHidePassword(txtNewPassword, pbShowHideNewPassword);
+        }
+
+        private void pbShowHideConfirmPassword_Click(object sender, EventArgs e)
+        {
+            _ShowHidePassword(txtConfirmPassword, pbShowHideConfirmPassword);
         }
     }
 }

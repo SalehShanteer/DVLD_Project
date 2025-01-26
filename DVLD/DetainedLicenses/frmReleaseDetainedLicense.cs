@@ -10,6 +10,11 @@ namespace DVLD
 {
     public partial class frmReleaseDetainedLicense : Form
     {
+        // Delegate for releasing detained license
+        public delegate void ReleaseDetainedLicenseEventHandler(object sender, bool IsReleased);
+
+        // Event for releasing detained license
+        public event ReleaseDetainedLicenseEventHandler ReleaseDetainedLicense;
 
         private bool _ReleasedNow = false;
 
@@ -49,6 +54,9 @@ namespace DVLD
                 {
                     MessageBox.Show($"Detained license released successfully", "Release License"
                         , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Raise event
+                    ReleaseDetainedLicense?.Invoke(this, true);
 
                     // Disable detain button
                     btnRelease.Enabled = false;

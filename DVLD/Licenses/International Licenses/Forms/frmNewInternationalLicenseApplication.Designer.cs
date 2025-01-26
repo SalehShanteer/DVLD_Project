@@ -281,6 +281,7 @@
             // 
             // btnIssue
             // 
+            this.btnIssue.Enabled = false;
             this.btnIssue.Location = new System.Drawing.Point(699, 710);
             this.btnIssue.Name = "btnIssue";
             this.btnIssue.Size = new System.Drawing.Size(90, 29);
@@ -299,6 +300,7 @@
             this.llblShowLicensesHistory.TabIndex = 113;
             this.llblShowLicensesHistory.TabStop = true;
             this.llblShowLicensesHistory.Text = "Show Licenses History";
+            this.llblShowLicensesHistory.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblShowLicensesHistory_LinkClicked);
             // 
             // llblShowLicenseInfo
             // 

@@ -39,7 +39,7 @@ namespace DVLD
                     dgvApplicationTypesList.DataSource = dvApplicationTypes;
 
                     //Display number of records
-                    dgvApplicationTypesList.Text = clsApplicationType.GetApplicationTypesCount().ToString();
+                    lblApplicationTypesCount.Text = clsApplicationType.GetApplicationTypesCount().ToString();
                 }));
 
             });

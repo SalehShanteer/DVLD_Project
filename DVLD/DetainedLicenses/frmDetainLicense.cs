@@ -1,11 +1,17 @@
 ﻿using DVLD_Business;
 using System;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace DVLD
 {
     public partial class frmDetainLicense : Form
     {
+        // Delegate for detaining license
+        public delegate void DetainLicenseEventHandler(object sender, bool IsDetained);
+
+        // Event for detaining license
+        public event DetainLicenseEventHandler DetainLicense;
 
         private clsLicense _License;
 
@@ -87,6 +93,9 @@ namespace DVLD
                     MessageBox.Show($"License detained successfully with ID = {detainedLicense.ID}", "Detain License"
                         , MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    // Raise event
+                    DetainLicense?.Invoke(this, true);
+
                     // Disable detain button
                     btnDetain.Enabled = false;
 
@@ -120,7 +129,21 @@ namespace DVLD
             else
             {
                 _LoadLicenseInfo(LicenseID);
+            }
+        }
 
+      
+        private bool _ValidateFineFees()
+        {
+            if (string.IsNullOrWhiteSpace(txtFineFees.Text))
+            {
+                errorProvider1.SetError(txtFineFees, "Please enter the fine fees");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(txtFineFees, string.Empty);
+                return true;
             }
         }
 
@@ -131,7 +154,14 @@ namespace DVLD
 
         private void btnDetain_Click(object sender, EventArgs e)
         {
-            _DetainLicense();
+            if (_ValidateFineFees())
+            {
+                _DetainLicense();
+            }
+            else
+            {
+                MessageBox.Show(clsUtility.errorProviderMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtFineFees_KeyPress(object sender, KeyPressEventArgs e)
@@ -140,6 +170,8 @@ namespace DVLD
             {
                 e.Handled = true; // Ensure that the user can only enter digits
             }
+   
         }
+
     }
 }

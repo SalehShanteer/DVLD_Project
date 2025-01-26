@@ -163,5 +163,10 @@ namespace DVLD_Business
             return clsUserData.CountNumberOfUsers();
         }
 
+        public static bool IsUsernameExist(string Username)
+        {
+            return clsUserData.IsUsernameExist(Username);
+        }
+
     }
 }

@@ -28,11 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tcUserInfo = new System.Windows.Forms.TabControl();
             this.tabPersonInfo = new System.Windows.Forms.TabPage();
             this.btnNext = new System.Windows.Forms.Button();
             this.ctrlPersonInfoWithFilter1 = new DVLD.ctrlPersonInfoWithFilter();
             this.tabAccountSettings = new System.Windows.Forms.TabPage();
+            this.pbShowHideConfirmPassword = new System.Windows.Forms.PictureBox();
+            this.pbShowHidePassword = new System.Windows.Forms.PictureBox();
             this.btnBack = new System.Windows.Forms.Button();
             this.ckbIsActive = new System.Windows.Forms.CheckBox();
             this.lblRoleDescription = new System.Windows.Forms.Label();
@@ -49,9 +52,13 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.lblAddUpdateUser = new System.Windows.Forms.Label();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.tcUserInfo.SuspendLayout();
             this.tabPersonInfo.SuspendLayout();
             this.tabAccountSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShowHideConfirmPassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShowHidePassword)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // tcUserInfo
@@ -98,6 +105,8 @@
             // 
             // tabAccountSettings
             // 
+            this.tabAccountSettings.Controls.Add(this.pbShowHideConfirmPassword);
+            this.tabAccountSettings.Controls.Add(this.pbShowHidePassword);
             this.tabAccountSettings.Controls.Add(this.btnBack);
             this.tabAccountSettings.Controls.Add(this.ckbIsActive);
             this.tabAccountSettings.Controls.Add(this.lblRoleDescription);
@@ -118,6 +127,28 @@
             this.tabAccountSettings.TabIndex = 1;
             this.tabAccountSettings.Text = "Account Settings";
             this.tabAccountSettings.UseVisualStyleBackColor = true;
+            // 
+            // pbShowHideConfirmPassword
+            // 
+            this.pbShowHideConfirmPassword.Image = global::DVLD.Properties.Resources.hide;
+            this.pbShowHideConfirmPassword.Location = new System.Drawing.Point(428, 215);
+            this.pbShowHideConfirmPassword.Name = "pbShowHideConfirmPassword";
+            this.pbShowHideConfirmPassword.Size = new System.Drawing.Size(29, 21);
+            this.pbShowHideConfirmPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbShowHideConfirmPassword.TabIndex = 106;
+            this.pbShowHideConfirmPassword.TabStop = false;
+            this.pbShowHideConfirmPassword.Click += new System.EventHandler(this.pbShowHideConfirmPassword_Click);
+            // 
+            // pbShowHidePassword
+            // 
+            this.pbShowHidePassword.Image = global::DVLD.Properties.Resources.hide;
+            this.pbShowHidePassword.Location = new System.Drawing.Point(428, 159);
+            this.pbShowHidePassword.Name = "pbShowHidePassword";
+            this.pbShowHidePassword.Size = new System.Drawing.Size(29, 21);
+            this.pbShowHidePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbShowHidePassword.TabIndex = 105;
+            this.pbShowHidePassword.TabStop = false;
+            this.pbShowHidePassword.Click += new System.EventHandler(this.pbShowHidePassword_Click);
             // 
             // btnBack
             // 
@@ -180,6 +211,7 @@
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(163, 26);
             this.txtPassword.TabIndex = 93;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // txtConfirmPassword
             // 
@@ -188,6 +220,7 @@
             this.txtConfirmPassword.Name = "txtConfirmPassword";
             this.txtConfirmPassword.Size = new System.Drawing.Size(163, 26);
             this.txtConfirmPassword.TabIndex = 92;
+            this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // txtUsername
             // 
@@ -279,6 +312,10 @@
             this.lblAddUpdateUser.Text = "Add New User";
             this.lblAddUpdateUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmAddUpdateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -299,6 +336,9 @@
             this.tabPersonInfo.ResumeLayout(false);
             this.tabAccountSettings.ResumeLayout(false);
             this.tabAccountSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShowHideConfirmPassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbShowHidePassword)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -326,5 +366,8 @@
         private System.Windows.Forms.Label lblRoleDescription;
         private System.Windows.Forms.CheckBox ckbIsActive;
         private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
+        private System.Windows.Forms.PictureBox pbShowHideConfirmPassword;
+        private System.Windows.Forms.PictureBox pbShowHidePassword;
     }
 }

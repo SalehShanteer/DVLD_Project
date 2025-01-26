@@ -20,7 +20,7 @@ namespace DVLD
 
         private clsLocalDrivingLicenseApplication _LocalDrivingLicenseApplication;
 
-        private int _PersonID;
+        private int _PersonID = -1;
 
 
         public frmAddUpdateLocalDrivingLicenseApplication(int LocalDrivingLicenseApplicationID)
@@ -56,14 +56,10 @@ namespace DVLD
 
             application.ApplicationType = clsApplicationType.Find(1); // New Local Driving License Application
 
-            application.ApplicantPerson = clsPerson.Find(_PersonID);
-
-            application.CreatedByUser = clsUser.Find(clsUserSetting.GetCurrentUserID()); // CurrentUser
-            
+            application.ApplicantPerson = clsPerson.Find(_PersonID);            
 
             if(application.Save())
             {
-                //clsApplication NewApplication = clsApplication.Find(application.ID);
                 _LocalDrivingLicenseApplication.Application = clsApplication.Find(application.ID);
 
                 return true;
@@ -86,20 +82,24 @@ namespace DVLD
             return _SetApplicationInfo() ? true : false;
         }
 
+        private void _SavedSuccessfully()
+        {
+            MessageBox.Show(clsUtility.saveMessage("local driving license application"), clsUtility.saveTitle("Local driving license application")
+                , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            _DisplayLocalDrivingLicenseApplicationInfo();
+
+            // Raise the event shows the application is saved
+            IsSaved?.Invoke(this, IsSaved: true);
+        }
+
         private void _SaveLocalDrivingLicenseApplication()
         {
-            
             if (_SetLocalDrivingLicenseApplicationInfo())
             {
                 if (_LocalDrivingLicenseApplication.Save())
                 {
-                    MessageBox.Show(clsUtility.saveMessage("local driving license application"), clsUtility.saveTitle("Local driving license application")
-                        , MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    _DisplayLocalDrivingLicenseApplicationInfo();
-
-                    // Raise the event shows the application is saved
-                    IsSaved?.Invoke(this, IsSaved : true);
+                    _SavedSuccessfully();
                 }
                 else
                 {
@@ -112,6 +112,57 @@ namespace DVLD
                 MessageBox.Show(clsUtility.errorSaveMessage, clsUtility.errorSaveTitle
                    , MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private bool _CheckIfPersonOldEnough()
+        {
+            int LicenseClassID = cbxLicenseClass.SelectedIndex + 1;
+
+            return clsLicenseClass.CanPersonApplyForLicense(_PersonID, LicenseClassID);
+        }
+
+        private bool _IsValidData(ref string errorMessage)
+        {
+            if (_CheckIfPersonAppliedForSameLicenseClass())
+            {
+                errorMessage = "Person already applied for local driving license on the same license class before.";
+                return false;
+            }
+            if (!_CheckIfPersonOldEnough())
+            {
+                errorMessage = "Person is not old enough to apply for local driving license.";
+                return false;
+            }
+            return true;
+        }
+
+        private void _SaveApplication()
+        {
+            // Check if person is selected
+            if (_PersonID == -1)
+            {
+                MessageBox.Show("Please select the person first."
+                    , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Ask for save the application
+            if (MessageBox.Show(clsUtility.askForSaveMessage("local driving license application"), "Save?"
+                , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string errorMessage = string.Empty;
+
+                if (_IsValidData(ref errorMessage))
+                {
+                    _SaveLocalDrivingLicenseApplication();
+
+                }
+                else
+                {
+                    MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
         }
 
         private void _LoadLicenseClassComboBox()
@@ -192,19 +243,8 @@ namespace DVLD
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(clsUtility.askForSaveMessage("local driving license application"), "Save?"
-                , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                if (!_CheckIfPersonAppliedForSameLicenseClass())
-                {
-                    _SaveLocalDrivingLicenseApplication();
-                }
-                else
-                {                   
-                    MessageBox.Show("Person already applied for local driving license on the same license class before."
-                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            _SaveApplication();
+           
         }
 
         private void btnNext_Click(object sender, EventArgs e)

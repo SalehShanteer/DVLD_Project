@@ -212,6 +212,11 @@ namespace DVLD_DataAccess
         {
             return clsGenericData.CountRecords("Users");
         }
-            
+
+        public static bool IsUsernameExist(string Username)
+        {
+            return clsGenericData.IsRecordExist("Users", "Username", Username);
+        }
+
     }
 }

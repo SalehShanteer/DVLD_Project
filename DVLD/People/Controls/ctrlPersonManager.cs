@@ -143,6 +143,161 @@ namespace DVLD
         }
 
 
+        private bool _ValidateRequiredField(TextBox ctrl, string name)
+        {
+            if (string.IsNullOrWhiteSpace(ctrl.Text))
+            {
+                errorProvider1.SetError(ctrl, $"Please enter the {name}");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(ctrl, string.Empty);
+                return true;
+            }
+        }
+
+        private bool _ValidateRequiredField(RichTextBox ctrl, string name)
+        {
+            if (string.IsNullOrWhiteSpace(ctrl.Text))
+            {
+                errorProvider1.SetError(ctrl, $"Please enter the {name}");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(ctrl, string.Empty);
+                return true;
+            }
+        }
+
+        private bool _ValidatePersonName()
+        {
+            bool isValid = true;
+
+            if (!_ValidateRequiredField(txtFirstName, "first name"))
+            {
+                isValid = false;
+            }
+
+            if (!_ValidateRequiredField(txtSecondName, "second name"))
+            {
+                isValid = false;
+            }
+            if (!_ValidateRequiredField(txtThirdName, "third name"))
+            {
+                isValid = false;
+            }
+
+            if (!_ValidateRequiredField(txtLastName, "last name"))
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private bool _ValidateEmailSyntax()
+        {
+            if (!clsUtility.ValidateEmail(txtEmail.Text))
+            {
+                errorProvider1.SetError(txtEmail, "Please enter a valid email address");
+                return false;
+            }
+            else
+            {
+                errorProvider1.SetError(txtEmail, string.Empty);
+                return true;
+            }
+        }
+
+        private bool _ValidateEmail()
+        {
+            bool isValid = true;
+
+            if (!_ValidateRequiredField(txtEmail, "email"))
+            {
+                isValid = false;
+            }
+            else if (!_ValidateEmailSyntax())
+            {
+                isValid = false;
+            }
+            else if (clsPerson.IsEmailExist(txtEmail.Text))
+            {
+                errorProvider1.SetError(txtEmail, "Email already exists!");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(txtEmail, string.Empty);
+            }
+
+            return isValid;
+        }
+
+        private bool ValidatePersonContact()
+        {
+            bool isValid = true;
+
+            if (!_ValidateRequiredField(txtPhone, "phone number"))
+            {
+                isValid = false;
+            }
+            if (!_ValidateEmail())
+            {
+                isValid = false;
+            }
+
+            if (!_ValidateRequiredField(rtxtAddress, "address"))
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        private bool ValidatePersonNationalNumber()
+        {
+            bool isValid = true;
+
+            if (!_ValidateRequiredField(txtNationalNo, "national number"))
+            {
+                isValid = false;
+            }
+            else if (clsPerson.IsNationalNumberExist(txtNationalNo.Text))
+            {
+                errorProvider1.SetError(txtNationalNo, "National number already exists!");
+                isValid = false;
+            }
+            else
+            {
+                errorProvider1.SetError(txtNationalNo, string.Empty);
+            }
+
+            return isValid;
+        }
+
+        private bool _IsValidData()
+        {
+            bool isValid = true;
+
+            if (!_ValidatePersonName())
+            {
+                isValid = false;
+            }
+            if (!ValidatePersonContact())
+            {
+                isValid = false;
+            }
+            if (!ValidatePersonNationalNumber())
+            {
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
         // Load Person Info
         private void _DisplayPersonGender()
         {
@@ -323,7 +478,15 @@ namespace DVLD
             if (MessageBox.Show(clsUtility.askForSaveMessage("person"), "Save?"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _SavePerson();
+                if (_IsValidData())
+                {
+                    _SavePerson();
+                }
+                else
+                {
+                    MessageBox.Show("Please enter the required data", "Error!"
+                                            , MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

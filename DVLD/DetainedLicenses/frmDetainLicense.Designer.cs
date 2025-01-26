@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblApplicationTitle = new System.Windows.Forms.Label();
             this.ctrlDriverLicenseInfoWithFilter1 = new DVLD.ctrlDriverLicenseInfoWithFilter();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -44,7 +45,9 @@
             this.llblShowLicensesHistory = new System.Windows.Forms.LinkLabel();
             this.btnDetain = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblApplicationTitle
@@ -220,6 +223,10 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
             // frmDetainLicense
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -240,6 +247,7 @@
             this.Load += new System.EventHandler(this.frmDetainLicense_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +271,6 @@
         private System.Windows.Forms.LinkLabel llblShowLicensesHistory;
         private System.Windows.Forms.Button btnDetain;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

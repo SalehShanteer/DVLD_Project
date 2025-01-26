@@ -49,6 +49,12 @@ namespace DVLD
 
             switch (IssueStatus)
             {
+                case 0:
+                    {
+                        ErrorMessage = "Person license is not active or is not license class 3 (Ordinary driving license).";
+                        break;
+                    }
+
                 case 1:
                         {
                         return true;
@@ -60,13 +66,7 @@ namespace DVLD
 
                         ErrorMessage = $"Person already have an active international license with ID = {InternationalLicenseID}.";
                         break;
-                    }
-
-                case 3:
-                    {
-                        ErrorMessage = "Person license is not active or is not license class 3 (Ordinary driving license).";
-                        break;
-                    }
+                    }       
             }
 
             return false;
@@ -112,9 +112,8 @@ namespace DVLD
             btnIssue.Enabled = false;
         }
 
-        private void _DisplayLocalLicenseID(int LocalLicenseID)
+        private void _DisplayLocalLicenseID()
         {
-            _LocalLicenseID = LocalLicenseID;
             lblLocalLicenseID.Text = _LocalLicenseID.ToString();
         }
 
@@ -127,6 +126,14 @@ namespace DVLD
             }
         }
         
+        private void _ShowLicensesHistoryScreen()
+        {
+            string NationalNumber = clsPerson.GetPersonNationalNumberByLicenseID(_LocalLicenseID);
+
+            frmLicenseHistory frm = new frmLicenseHistory(NationalNumber);
+            frm.ShowDialog();
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -134,6 +141,9 @@ namespace DVLD
 
         private void ctrlDriverLicenseInfoWithFilter1_OnFindLicenseComplete(int LicenseID)
         {
+            // Set local license ID to be used in issuing international license
+            _LocalLicenseID = LicenseID;
+
             string ErrorMessage = string.Empty;
 
             //Enable show licenses history link label
@@ -141,7 +151,7 @@ namespace DVLD
 
             if (_CheckIfCanIssueInternationalLicense(LicenseID, ref ErrorMessage))
             {
-                _DisplayLocalLicenseID(LicenseID);
+                _DisplayLocalLicenseID();
 
                 btnIssue.Enabled = true;
             }
@@ -161,6 +171,11 @@ namespace DVLD
         private void llblShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             _ShowInternationalLicenseInfoScreen();
+        }
+
+        private void llblShowLicensesHistory_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _ShowLicensesHistoryScreen();
         }
     }
 }
