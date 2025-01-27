@@ -124,6 +124,13 @@ namespace DVLD
 
         private void _ShowLicensesHistoryScreen()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal + (int)clsSettings.enLicensePermissions.ReadInternational))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             // Get the national number of the person
             string NationalNumber = clsPerson.GetPersonNationalNumberByLicenseID(_LicenseID);
 

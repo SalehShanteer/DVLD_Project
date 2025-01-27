@@ -84,6 +84,7 @@
             this.llblShowLicenseInfo.TabIndex = 93;
             this.llblShowLicenseInfo.TabStop = true;
             this.llblShowLicenseInfo.Text = "Show License Info";
+            this.llblShowLicenseInfo.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.llblShowLicenseInfo_LinkClicked);
             // 
             // lblAppliedForLicense
             // 

@@ -41,11 +41,26 @@ namespace DVLD
 
                 // Display detained licenses records count
                 lblLicenseDetainsCount.Text = clsDetainedLicense.GetDetainedLicensesCount().ToString();
+
+                _PrepareApplicationList();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void _PrepareApplicationList()
+        {
+            //Adjust columns widths
+            dgvDetainedLicensesList.Columns["D.ID"].Width = 50;
+            dgvDetainedLicensesList.Columns["L.ID"].Width = 50;
+            dgvDetainedLicensesList.Columns["D.Date"].Width = 160;
+            dgvDetainedLicensesList.Columns["Fine Fees"].Width = 50;
+            dgvDetainedLicensesList.Columns["Release Date"].Width = 160;
+            dgvDetainedLicensesList.Columns["N.No."].Width = 54;
+            dgvDetainedLicensesList.Columns["Full Name"].Width = 350;
+            dgvDetainedLicensesList.Columns["Release App.ID"].Width = 90;
         }
 
         private string _GetFilterAttributes(int filterIndex)
@@ -117,6 +132,12 @@ namespace DVLD
 
         private void _ShowReleaseDetainedLicenseScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicenseOperationPermissions.Release))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmReleaseDetainedLicense frm = new frmReleaseDetainedLicense();
 
             // Refresh detained licenses list after releasing a license
@@ -133,6 +154,12 @@ namespace DVLD
 
         private void _ShowDetainedLicenseScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicenseOperationPermissions.Detain))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmDetainLicense frm = new frmDetainLicense();
 
             // Refresh detained licenses list after detaining a license
@@ -149,6 +176,12 @@ namespace DVLD
 
         private void _ShowPersonDetailsScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enPeoplePermissions.Read))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvDetainedLicensesList.SelectedCells.Count > 0)
             {
                 string NationalNumber = (string)dgvDetainedLicensesList.CurrentRow.Cells["N.No."].Value;
@@ -161,6 +194,12 @@ namespace DVLD
 
         private void _ShowLicenseDetailsScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvDetainedLicensesList.SelectedCells.Count > 0)
             {
                 int SelectedLocalLicenseID = (int)dgvDetainedLicensesList.CurrentRow.Cells["L.ID"].Value;
@@ -172,6 +211,12 @@ namespace DVLD
 
         private void _ShowPersonLicenseHistoryScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal + (int)clsSettings.enLicensePermissions.ReadInternational))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvDetainedLicensesList.SelectedCells.Count > 0)
             {
                 string NationalNumber = (string)dgvDetainedLicensesList.CurrentRow.Cells["N.No."].Value;
@@ -183,6 +228,12 @@ namespace DVLD
 
         private void _ShowReleaseDetainedLicenseForSpecificDetainScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicenseOperationPermissions.Detain))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvDetainedLicensesList.SelectedCells.Count > 0)
             {
                 int SelectedLicenseID = (int)dgvDetainedLicensesList.CurrentRow.Cells["L.ID"].Value;

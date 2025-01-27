@@ -50,10 +50,22 @@ namespace DVLD
 
                     // Display Local Driving License Applications Count
                     lblLocalDrivingLicenseApplicationsCount.Text = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationsCount().ToString();
+
+                    _PrepareApplicationList();
                 }));
             });   
 
             RefreshThread.Start();
+        }
+
+        private void _PrepareApplicationList()
+        {
+            //Adjust columns widths
+            dgvLocalDrivingLicenseApplicationsList.Columns["Driving Class"].Width = 250;
+            dgvLocalDrivingLicenseApplicationsList.Columns["National No."].Width = 120;
+            dgvLocalDrivingLicenseApplicationsList.Columns["Full Name"].Width = 340;
+            dgvLocalDrivingLicenseApplicationsList.Columns["Application Date"].Width = 180;
+            dgvLocalDrivingLicenseApplicationsList.Columns["Passed Tests"].Width = 98;
         }
 
         private void _Filter()
@@ -87,9 +99,14 @@ namespace DVLD
 
         private void _ShowApplicationDetails()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLocalLicenseApplicationPermissions.Read))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
-
                 int SelectedLocalDrivingLicenseApplicationID = Convert.ToInt32(dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["L.D.L.AppID"].Value);
 
                 frmLocalDrivingLicenseApplicationInfo frm = new frmLocalDrivingLicenseApplicationInfo(SelectedLocalDrivingLicenseApplicationID);
@@ -101,8 +118,14 @@ namespace DVLD
 
         private void _AddNewLocalDrivingLicenseApplication()
         {
-            frmAddUpdateLocalDrivingLicenseApplication frm = new frmAddUpdateLocalDrivingLicenseApplication(-1);
+            if (!clsSettings.CheckPermission((int)clsSettings.enLocalLicenseApplicationPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
 
+            frmAddUpdateLocalDrivingLicenseApplication frm = new frmAddUpdateLocalDrivingLicenseApplication(-1);
+            
             frm.IsSaved += (sender, IsSaved) =>
             {
                 if (IsSaved)
@@ -116,6 +139,13 @@ namespace DVLD
 
         private void _UpdateLocalDrivingLicenseApplication()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enLocalLicenseApplicationPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
                 
@@ -137,6 +167,12 @@ namespace DVLD
 
         private void _DeleteLocalDrivingLicenseApplication()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLocalLicenseApplicationPermissions.Delete))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
 
@@ -163,6 +199,13 @@ namespace DVLD
 
         private void _CancelLocalDrivingLicenseApplication()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enLocalLicenseApplicationPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
                 int SelectedLocalDrivingLicenseApplicationID = Convert.ToInt32(dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["L.D.L.AppID"].Value);
@@ -185,6 +228,12 @@ namespace DVLD
 
         private void _ShowTestAppointments(enTestType TestType)
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enTestPermissions.Read))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
                 int SelectedLocalDrivingLicenseApplicationID = Convert.ToInt32(dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["L.D.L.AppID"].Value);
@@ -198,6 +247,13 @@ namespace DVLD
 
         private void _ShowIssueDrivingLicenseScreen()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.IssueLocal))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
                 int SelectedLocalDrivingLicenseApplicationID = Convert.ToInt32(dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["L.D.L.AppID"].Value);
@@ -218,6 +274,13 @@ namespace DVLD
 
         private void _ShowLicenseScreen()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
                 int SelectedLocalDrivingLicenseApplicationID = Convert.ToInt32(dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["L.D.L.AppID"].Value);
@@ -231,6 +294,12 @@ namespace DVLD
 
         private void _ShowPersonLicenseHistory()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal + (int)clsSettings.enLicensePermissions.ReadInternational))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvLocalDrivingLicenseApplicationsList.SelectedCells.Count > 0)
             {
                 string SelectedNationalNumber = dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["National No."].Value.ToString();

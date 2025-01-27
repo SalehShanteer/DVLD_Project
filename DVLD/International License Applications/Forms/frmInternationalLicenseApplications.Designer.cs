@@ -51,7 +51,7 @@
             // 
             // btnAddNewInternationalLicenseApplication
             // 
-            this.btnAddNewInternationalLicenseApplication.Location = new System.Drawing.Point(954, 317);
+            this.btnAddNewInternationalLicenseApplication.Location = new System.Drawing.Point(705, 295);
             this.btnAddNewInternationalLicenseApplication.Name = "btnAddNewInternationalLicenseApplication";
             this.btnAddNewInternationalLicenseApplication.Size = new System.Drawing.Size(223, 37);
             this.btnAddNewInternationalLicenseApplication.TabIndex = 115;
@@ -63,7 +63,7 @@
             // 
             this.lblInternationalLicenseApplicationsCount.AutoSize = true;
             this.lblInternationalLicenseApplicationsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInternationalLicenseApplicationsCount.Location = new System.Drawing.Point(115, 702);
+            this.lblInternationalLicenseApplicationsCount.Location = new System.Drawing.Point(115, 629);
             this.lblInternationalLicenseApplicationsCount.Name = "lblInternationalLicenseApplicationsCount";
             this.lblInternationalLicenseApplicationsCount.Size = new System.Drawing.Size(19, 20);
             this.lblInternationalLicenseApplicationsCount.TabIndex = 114;
@@ -73,7 +73,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 701);
+            this.label2.Location = new System.Drawing.Point(20, 628);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 113;
@@ -82,18 +82,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(327, 261);
+            this.label1.Location = new System.Drawing.Point(224, 239);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(567, 39);
+            this.label1.Size = new System.Drawing.Size(528, 37);
             this.label1.TabIndex = 111;
             this.label1.Text = "International License Applications";
             // 
             // txtFilter
             // 
-            this.txtFilter.Location = new System.Drawing.Point(342, 329);
+            this.txtFilter.Location = new System.Drawing.Point(342, 304);
             this.txtFilter.MaxLength = 50;
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(207, 26);
@@ -113,7 +113,7 @@
             "Driver ID",
             "Local License ID",
             "Is Active"});
-            this.cbxFilter.Location = new System.Drawing.Point(137, 328);
+            this.cbxFilter.Location = new System.Drawing.Point(137, 303);
             this.cbxFilter.Name = "cbxFilter";
             this.cbxFilter.Size = new System.Drawing.Size(186, 28);
             this.cbxFilter.TabIndex = 109;
@@ -123,7 +123,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(36, 334);
+            this.label3.Location = new System.Drawing.Point(36, 309);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 20);
             this.label3.TabIndex = 108;
@@ -136,11 +136,11 @@
             this.dgvInternationalLicenseApplicationsList.AllowUserToOrderColumns = true;
             this.dgvInternationalLicenseApplicationsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInternationalLicenseApplicationsList.ContextMenuStrip = this.cmsInternationalLicenseApplications;
-            this.dgvInternationalLicenseApplicationsList.Location = new System.Drawing.Point(22, 371);
+            this.dgvInternationalLicenseApplicationsList.Location = new System.Drawing.Point(22, 346);
             this.dgvInternationalLicenseApplicationsList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvInternationalLicenseApplicationsList.Name = "dgvInternationalLicenseApplicationsList";
             this.dgvInternationalLicenseApplicationsList.ReadOnly = true;
-            this.dgvInternationalLicenseApplicationsList.Size = new System.Drawing.Size(1180, 318);
+            this.dgvInternationalLicenseApplicationsList.Size = new System.Drawing.Size(909, 276);
             this.dgvInternationalLicenseApplicationsList.TabIndex = 107;
             // 
             // cmsInternationalLicenseApplications
@@ -179,7 +179,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1093, 693);
+            this.btnClose.Location = new System.Drawing.Point(832, 625);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(99, 32);
             this.btnClose.TabIndex = 116;
@@ -190,7 +190,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.Manage_International;
-            this.pictureBox1.Location = new System.Drawing.Point(498, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(395, 15);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(224, 207);
@@ -206,7 +206,7 @@
             "All",
             "Yes",
             "No"});
-            this.cbxIsActive.Location = new System.Drawing.Point(342, 329);
+            this.cbxIsActive.Location = new System.Drawing.Point(342, 304);
             this.cbxIsActive.Name = "cbxIsActive";
             this.cbxIsActive.Size = new System.Drawing.Size(99, 28);
             this.cbxIsActive.TabIndex = 118;
@@ -217,7 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1226, 728);
+            this.ClientSize = new System.Drawing.Size(967, 660);
             this.Controls.Add(this.cbxIsActive);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAddNewInternationalLicenseApplication);

@@ -73,7 +73,7 @@
             this.dgvApplicationTypesList.Location = new System.Drawing.Point(20, 280);
             this.dgvApplicationTypesList.Name = "dgvApplicationTypesList";
             this.dgvApplicationTypesList.ReadOnly = true;
-            this.dgvApplicationTypesList.Size = new System.Drawing.Size(515, 170);
+            this.dgvApplicationTypesList.Size = new System.Drawing.Size(498, 164);
             this.dgvApplicationTypesList.TabIndex = 11;
             // 
             // cmsManageApplicationTypes

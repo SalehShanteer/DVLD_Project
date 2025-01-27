@@ -141,12 +141,24 @@ namespace DVLD
 
         private void _ShowLicensesHistoryScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal + (int)clsSettings.enLicensePermissions.ReadInternational))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmLicenseHistory frm = new frmLicenseHistory(_OldLicense.Driver.Person.NationalNumber);
             frm.ShowDialog();
         }
 
         private void _ShowNewLicenseInfoScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmLicenseInfo frm = new frmLicenseInfo(_NewLicense.ID);
             frm.ShowDialog();
         }

@@ -104,6 +104,12 @@ namespace DVLD
 
         private void _AddNewTestAppointment()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enTestPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (clsTestAppointment.CheckTestAppointmentAvailability(_LocalDrivingLicenseApplicationID, (int)_TestType))
             {
                 frmScheduleTest frm = new frmScheduleTest(-1, _LocalDrivingLicenseApplicationID, (byte)_TestType);
@@ -127,6 +133,13 @@ namespace DVLD
 
         private void _UpdateTestAppointment()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enTestPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvTestAppointmentsList.SelectedCells.Count > 0)
             {
                 int SelectedAppointmentID = (int)dgvTestAppointmentsList.CurrentRow.Cells["Appointment ID"].Value;
@@ -147,6 +160,13 @@ namespace DVLD
 
         private void _TakeTest()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enTestPermissions.TakeTest))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvTestAppointmentsList.SelectedCells.Count > 0)
             {
                 int SelectedAppointmentID = (int)dgvTestAppointmentsList.CurrentRow.Cells["Appointment ID"].Value;

@@ -47,6 +47,7 @@
             this.cbxFilter = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbxUserActivation = new System.Windows.Forms.ComboBox();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsersList)).BeginInit();
             this.cmsManageUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -63,7 +64,7 @@
             this.dgvUsersList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvUsersList.Name = "dgvUsersList";
             this.dgvUsersList.ReadOnly = true;
-            this.dgvUsersList.Size = new System.Drawing.Size(826, 291);
+            this.dgvUsersList.Size = new System.Drawing.Size(698, 291);
             this.dgvUsersList.TabIndex = 5;
             // 
             // cmsManageUsers
@@ -133,18 +134,18 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.label1.Location = new System.Drawing.Point(280, 260);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(274, 42);
+            this.label1.Size = new System.Drawing.Size(254, 39);
             this.label1.TabIndex = 3;
             this.label1.Text = "Manage Users";
             // 
             // btnAddNewUser
             // 
-            this.btnAddNewUser.Location = new System.Drawing.Point(713, 314);
+            this.btnAddNewUser.Location = new System.Drawing.Point(591, 318);
             this.btnAddNewUser.Name = "btnAddNewUser";
             this.btnAddNewUser.Size = new System.Drawing.Size(113, 29);
             this.btnAddNewUser.TabIndex = 6;
@@ -235,11 +236,22 @@
             this.cbxUserActivation.TabIndex = 101;
             this.cbxUserActivation.SelectedIndexChanged += new System.EventHandler(this.cbxUserActivation_SelectedIndexChanged);
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(600, 651);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(109, 30);
+            this.btnClose.TabIndex = 109;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmManageUsers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(857, 680);
+            this.ClientSize = new System.Drawing.Size(728, 680);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.cbxUserActivation);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.cbxFilter);
@@ -251,6 +263,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmManageUsers";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
@@ -284,5 +297,6 @@
         private System.Windows.Forms.ComboBox cbxFilter;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbxUserActivation;
+        private System.Windows.Forms.Button btnClose;
     }
 }

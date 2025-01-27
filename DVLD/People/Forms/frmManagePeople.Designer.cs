@@ -49,6 +49,7 @@
             this.cbxFilter = new System.Windows.Forms.ComboBox();
             this.txtFilter = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPeopleList)).BeginInit();
             this.cmsManagePeople.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -65,7 +66,7 @@
             this.dgvPeopleList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPeopleList.Name = "dgvPeopleList";
             this.dgvPeopleList.ReadOnly = true;
-            this.dgvPeopleList.Size = new System.Drawing.Size(1180, 318);
+            this.dgvPeopleList.Size = new System.Drawing.Size(1160, 318);
             this.dgvPeopleList.TabIndex = 2;
             // 
             // cmsManagePeople
@@ -131,7 +132,7 @@
             // 
             // btnAddNewPerson
             // 
-            this.btnAddNewPerson.Location = new System.Drawing.Point(1065, 312);
+            this.btnAddNewPerson.Location = new System.Drawing.Point(1042, 312);
             this.btnAddNewPerson.Name = "btnAddNewPerson";
             this.btnAddNewPerson.Size = new System.Drawing.Size(136, 37);
             this.btnAddNewPerson.TabIndex = 5;
@@ -154,7 +155,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(20, 705);
+            this.label2.Location = new System.Drawing.Point(20, 696);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 6;
@@ -164,7 +165,7 @@
             // 
             this.lblPeopleCount.AutoSize = true;
             this.lblPeopleCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPeopleCount.Location = new System.Drawing.Point(115, 706);
+            this.lblPeopleCount.Location = new System.Drawing.Point(115, 697);
             this.lblPeopleCount.Name = "lblPeopleCount";
             this.lblPeopleCount.Size = new System.Drawing.Size(19, 20);
             this.lblPeopleCount.TabIndex = 7;
@@ -172,7 +173,7 @@
             // 
             // btnPreviousPage
             // 
-            this.btnPreviousPage.Location = new System.Drawing.Point(464, 696);
+            this.btnPreviousPage.Location = new System.Drawing.Point(464, 687);
             this.btnPreviousPage.Name = "btnPreviousPage";
             this.btnPreviousPage.Size = new System.Drawing.Size(121, 33);
             this.btnPreviousPage.TabIndex = 8;
@@ -182,7 +183,7 @@
             // 
             // btnNextPage
             // 
-            this.btnNextPage.Location = new System.Drawing.Point(686, 696);
+            this.btnNextPage.Location = new System.Drawing.Point(686, 687);
             this.btnNextPage.Name = "btnNextPage";
             this.btnNextPage.Size = new System.Drawing.Size(121, 33);
             this.btnNextPage.TabIndex = 9;
@@ -194,7 +195,7 @@
             // 
             this.lblPageNumber.AutoSize = true;
             this.lblPageNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPageNumber.Location = new System.Drawing.Point(627, 702);
+            this.lblPageNumber.Location = new System.Drawing.Point(627, 693);
             this.lblPageNumber.Name = "lblPageNumber";
             this.lblPageNumber.Size = new System.Drawing.Size(21, 24);
             this.lblPageNumber.TabIndex = 10;
@@ -204,7 +205,7 @@
             // 
             this.lblNumberOfPages.AutoSize = true;
             this.lblNumberOfPages.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfPages.Location = new System.Drawing.Point(843, 702);
+            this.lblNumberOfPages.Location = new System.Drawing.Point(843, 693);
             this.lblNumberOfPages.Name = "lblNumberOfPages";
             this.lblNumberOfPages.Size = new System.Drawing.Size(21, 24);
             this.lblNumberOfPages.TabIndex = 11;
@@ -264,12 +265,23 @@
             this.btnSearch.Visible = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(1078, 686);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(99, 32);
+            this.btnClose.TabIndex = 129;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmManagePeople
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1238, 741);
+            this.ClientSize = new System.Drawing.Size(1204, 726);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtFilter);
             this.Controls.Add(this.cbxFilter);
@@ -320,5 +332,6 @@
         private System.Windows.Forms.ComboBox cbxFilter;
         private System.Windows.Forms.TextBox txtFilter;
         private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnClose;
     }
 }

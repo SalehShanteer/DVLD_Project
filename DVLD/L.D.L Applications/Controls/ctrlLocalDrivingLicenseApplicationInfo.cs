@@ -86,8 +86,36 @@ namespace DVLD
 
         private void _ShowPersonInfo()
         {
+            // Check permission
+            if (!clsSettings.CheckPermission((int)clsSettings.enPeoplePermissions.Read))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmPersonDetails frm = new frmPersonDetails(_PersonID);
             frm.ShowDialog();
+        }
+
+        private void _ShowLicenseInfo()
+        {
+            // Check permission
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
+            int LicenseID = clsLicense.GetLicenseIDByLocalLicenseApplicationID(_LocalDrivingLicenseApplicationID);
+            if (LicenseID != -1)
+            {
+                frmLicenseInfo frm = new frmLicenseInfo(LicenseID);
+                frm.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("License does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void llblShowPersonInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -95,6 +123,9 @@ namespace DVLD
             _ShowPersonInfo();
         }
 
-      
+        private void llblShowLicenseInfo_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            _ShowLicenseInfo();
+        }
     }
 }

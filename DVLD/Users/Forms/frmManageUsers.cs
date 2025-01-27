@@ -41,12 +41,22 @@ namespace DVLD
 
                     //Display number of records
                     lblUsersCount.Text = clsUser.GetUsersCount().ToString();
+
+                    _PrepareApplicationList();
                 }));
             });
 
             RefreshUsersListThread.Start();
         }
-       
+
+        private void _PrepareApplicationList()
+        {
+            //Adjust columns widths
+            dgvUsersList.Columns["User ID"].Width = 50;
+            dgvUsersList.Columns["Person ID"].Width = 62;
+            dgvUsersList.Columns["Full Name"].Width = 343;
+        }
+
         private void _Filter()
         {
             string filterAttribute = cbxFilter.Text;
@@ -99,6 +109,13 @@ namespace DVLD
 
         private void _ShowUserDetails()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enUserPermissions.Read))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvUsersList.SelectedCells.Count > 0)
             {
                 int SelectedUserID = (int)dgvUsersList.CurrentRow.Cells["User ID"].Value;
@@ -113,6 +130,12 @@ namespace DVLD
 
         private void _AddNewUser()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enUserPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmAddUpdateUser frm = new frmAddUpdateUser(-1);
 
             frm.SavePerson += (sender, IsSaved) =>
@@ -128,6 +151,12 @@ namespace DVLD
 
         private void _UpdateUser()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enUserPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvUsersList.SelectedCells.Count > 0)
             {
                 int SelectedUserID = (int)dgvUsersList.CurrentRow.Cells["User ID"].Value;
@@ -148,6 +177,12 @@ namespace DVLD
 
         private void _DeleteUser()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enUserPermissions.Delete))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvUsersList.SelectedCells.Count > 0)
             {
                 int SelectedUserID = (int)dgvUsersList.CurrentRow.Cells["User ID"].Value;
@@ -172,6 +207,12 @@ namespace DVLD
 
         private void _ChangeUserPassword()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enUserPermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvUsersList.SelectedCells.Count > 0)
             {
                 int SelectedUserID = (int)dgvUsersList.CurrentRow.Cells["User ID"].Value;
@@ -252,6 +293,11 @@ namespace DVLD
         private void cbxUserActivation_SelectedIndexChanged(object sender, EventArgs e)
         {
             _FilterUserActivation();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

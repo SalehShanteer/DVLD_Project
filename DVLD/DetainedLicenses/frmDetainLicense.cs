@@ -111,6 +111,12 @@ namespace DVLD
 
         private void _ShowLicensesHistoryScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal + (int)clsSettings.enLicensePermissions.ReadInternational))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmLicenseHistory frm = new frmLicenseHistory(_License.Driver.Person.NationalNumber);
             frm.ShowDialog();
         }

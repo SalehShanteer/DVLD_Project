@@ -1,12 +1,5 @@
 ﻿using DVLD_Business;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -119,6 +112,12 @@ namespace DVLD
 
         private void _ShowInternationalLicenseInfoScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadInternational))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (_InternationalLicense != null)
             {
                 frmInternationalLicenseInfo frm = new frmInternationalLicenseInfo(_InternationalLicense.ID);
@@ -128,6 +127,12 @@ namespace DVLD
         
         private void _ShowLicensesHistoryScreen()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enLicensePermissions.ReadLocal + (int)clsSettings.enLicensePermissions.ReadInternational))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             string NationalNumber = clsPerson.GetPersonNationalNumberByLicenseID(_LocalLicenseID);
 
             frmLicenseHistory frm = new frmLicenseHistory(NationalNumber);

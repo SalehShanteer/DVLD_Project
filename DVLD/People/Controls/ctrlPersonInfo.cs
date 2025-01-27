@@ -1,13 +1,5 @@
-﻿    using DVLD.Properties;
+﻿using DVLD.Properties;
 using DVLD_Business;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -19,11 +11,9 @@ namespace DVLD
 
         private clsPerson _Person;
 
-
         public delegate void DataBackEventHandler(object sender, clsPerson Person);
 
         public event DataBackEventHandler DataBack;
-
 
         public ctrlPersonInfo() : this(-1) {}
 
@@ -105,6 +95,12 @@ namespace DVLD
 
         private void _UpdatePerson()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enPeoplePermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             frmAddUpdatePerson frm = new frmAddUpdatePerson(_Person.ID);
             frm.ShowDialog();
         }

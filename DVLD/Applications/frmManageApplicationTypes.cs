@@ -10,7 +10,7 @@ namespace DVLD
     public partial class frmManageApplicationTypes : Form
     {
         
-        private DataView dvApplicationTypes;
+        private DataView _dvApplicationTypes;
         
         public frmManageApplicationTypes()
         {
@@ -31,20 +31,30 @@ namespace DVLD
         {
             Thread RefreshApplicationTypesThread = new Thread(() =>
             {
-                dvApplicationTypes = clsApplicationType.GetApplicationTypesList().DefaultView;
+                _dvApplicationTypes = clsApplicationType.GetApplicationTypesList().DefaultView;
 
                 // To ensure that the data grid view is updated from the main thread
                 this.Invoke(new Action(() =>
                 {
-                    dgvApplicationTypesList.DataSource = dvApplicationTypes;
+                    dgvApplicationTypesList.DataSource = _dvApplicationTypes;
 
                     //Display number of records
                     lblApplicationTypesCount.Text = clsApplicationType.GetApplicationTypesCount().ToString();
+
+                    _PrepareApplicationList();
                 }));
 
             });
 
             RefreshApplicationTypesThread.Start();
+        }
+
+        private void _PrepareApplicationList()
+        {
+            //Adjust columns widths
+            dgvApplicationTypesList.Columns["ID"].Width = 50;
+            dgvApplicationTypesList.Columns["Title"].Width = 350;
+            dgvApplicationTypesList.Columns["Fees"].Width = 50;
         }
 
         private void _UpdateApplicationType()

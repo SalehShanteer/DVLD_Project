@@ -40,13 +40,13 @@
             this.cbxFilter = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.dgvDetainedLicensesList = new System.Windows.Forms.DataGridView();
-            this.btnReleaseDetainedLicense = new System.Windows.Forms.Button();
             this.cmsDetainedLicenses = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showPersonDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showLicenseDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.showPersonLicensesHistoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.releaseDetainedLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.releaseDetainedLicenseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnReleaseDetainedLicense = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDetainedLicensesList)).BeginInit();
             this.cmsDetainedLicenses.SuspendLayout();
@@ -69,7 +69,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1083, 668);
+            this.btnClose.Location = new System.Drawing.Point(1020, 667);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(99, 32);
             this.btnClose.TabIndex = 128;
@@ -79,7 +79,7 @@
             // 
             // btnDetainLicense
             // 
-            this.btnDetainLicense.Location = new System.Drawing.Point(1047, 301);
+            this.btnDetainLicense.Location = new System.Drawing.Point(991, 301);
             this.btnDetainLicense.Name = "btnDetainLicense";
             this.btnDetainLicense.Size = new System.Drawing.Size(123, 37);
             this.btnDetainLicense.TabIndex = 127;
@@ -91,7 +91,7 @@
             // 
             this.lblLicenseDetainsCount.AutoSize = true;
             this.lblLicenseDetainsCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLicenseDetainsCount.Location = new System.Drawing.Point(105, 677);
+            this.lblLicenseDetainsCount.Location = new System.Drawing.Point(105, 674);
             this.lblLicenseDetainsCount.Name = "lblLicenseDetainsCount";
             this.lblLicenseDetainsCount.Size = new System.Drawing.Size(19, 20);
             this.lblLicenseDetainsCount.TabIndex = 126;
@@ -101,7 +101,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(10, 676);
+            this.label2.Location = new System.Drawing.Point(10, 673);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 125;
@@ -112,7 +112,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(320, 236);
+            this.label1.Location = new System.Drawing.Point(321, 236);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(459, 39);
@@ -122,7 +122,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.Detain;
-            this.pictureBox1.Location = new System.Drawing.Point(491, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(439, 14);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(224, 207);
@@ -179,18 +179,8 @@
             this.dgvDetainedLicensesList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvDetainedLicensesList.Name = "dgvDetainedLicensesList";
             this.dgvDetainedLicensesList.ReadOnly = true;
-            this.dgvDetainedLicensesList.Size = new System.Drawing.Size(1180, 318);
+            this.dgvDetainedLicensesList.Size = new System.Drawing.Size(1109, 318);
             this.dgvDetainedLicensesList.TabIndex = 119;
-            // 
-            // btnReleaseDetainedLicense
-            // 
-            this.btnReleaseDetainedLicense.Location = new System.Drawing.Point(821, 301);
-            this.btnReleaseDetainedLicense.Name = "btnReleaseDetainedLicense";
-            this.btnReleaseDetainedLicense.Size = new System.Drawing.Size(202, 37);
-            this.btnReleaseDetainedLicense.TabIndex = 130;
-            this.btnReleaseDetainedLicense.Text = "Release Detained license";
-            this.btnReleaseDetainedLicense.UseVisualStyleBackColor = true;
-            this.btnReleaseDetainedLicense.Click += new System.EventHandler(this.btnReleaseDetainedLicense_Click);
             // 
             // cmsDetainedLicenses
             // 
@@ -202,7 +192,7 @@
             this.toolStripSeparator1,
             this.releaseDetainedLicenseToolStripMenuItem});
             this.cmsDetainedLicenses.Name = "cmsDetainedLicenses";
-            this.cmsDetainedLicenses.Size = new System.Drawing.Size(332, 176);
+            this.cmsDetainedLicenses.Size = new System.Drawing.Size(332, 154);
             this.cmsDetainedLicenses.Opening += new System.ComponentModel.CancelEventHandler(this.cmsDetainedLicenses_Opening);
             // 
             // showPersonDetailsToolStripMenuItem
@@ -229,6 +219,11 @@
             this.showPersonLicensesHistoryToolStripMenuItem.Text = "Show Person Licenses History";
             this.showPersonLicensesHistoryToolStripMenuItem.Click += new System.EventHandler(this.showPersonLicensesHistoryToolStripMenuItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(328, 6);
+            // 
             // releaseDetainedLicenseToolStripMenuItem
             // 
             this.releaseDetainedLicenseToolStripMenuItem.Image = global::DVLD.Properties.Resources.ReleaseHand;
@@ -237,16 +232,21 @@
             this.releaseDetainedLicenseToolStripMenuItem.Text = "Release Detained License";
             this.releaseDetainedLicenseToolStripMenuItem.Click += new System.EventHandler(this.releaseDetainedLicenseToolStripMenuItem_Click);
             // 
-            // toolStripSeparator1
+            // btnReleaseDetainedLicense
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(328, 6);
+            this.btnReleaseDetainedLicense.Location = new System.Drawing.Point(765, 301);
+            this.btnReleaseDetainedLicense.Name = "btnReleaseDetainedLicense";
+            this.btnReleaseDetainedLicense.Size = new System.Drawing.Size(202, 37);
+            this.btnReleaseDetainedLicense.TabIndex = 130;
+            this.btnReleaseDetainedLicense.Text = "Release Detained license";
+            this.btnReleaseDetainedLicense.UseVisualStyleBackColor = true;
+            this.btnReleaseDetainedLicense.Click += new System.EventHandler(this.btnReleaseDetainedLicense_Click);
             // 
             // frmManageDetainedLicenses
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1206, 704);
+            this.ClientSize = new System.Drawing.Size(1136, 702);
             this.Controls.Add(this.btnReleaseDetainedLicense);
             this.Controls.Add(this.cbxIsReleased);
             this.Controls.Add(this.btnClose);

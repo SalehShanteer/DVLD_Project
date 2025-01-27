@@ -39,14 +39,31 @@ namespace DVLD
                     dgvTestTypesList.DataSource = _dvTestTypesList;
                     //Display number of records
                     lblTestTypesCount.Text = clsTestType.GetTestTypesCount().ToString();
+
+                    _PrepareApplicationList();
                 }));
             });
 
             RefreshTestTypesThread.Start();
         }
 
+        private void _PrepareApplicationList()
+        {
+            //Adjust columns widths
+            dgvTestTypesList.Columns["ID"].Width = 40;
+            dgvTestTypesList.Columns["Title"].Width = 170;
+            dgvTestTypesList.Columns["Description"].Width = 405;
+            dgvTestTypesList.Columns["Fees"].Width = 45;
+        }
+
         private void _UpdateTestType()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enTestPermissions.UpdateTestInfo))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvTestTypesList.SelectedCells.Count > 0)
             {
                 int SelectedTestTypeID = (int)dgvTestTypesList.CurrentRow.Cells["ID"].Value;

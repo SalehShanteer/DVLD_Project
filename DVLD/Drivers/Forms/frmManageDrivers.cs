@@ -46,11 +46,24 @@ namespace DVLD
 
                     //Display drivers records count
                     lblDriversCount.Text = clsDriver.GetDriversCount().ToString();
+
+                    _PrepareApplicationList();
                 }
                 ));
             });
             
             RefreshThread.Start();
+        }
+
+        private void _PrepareApplicationList()
+        {
+            //Adjust columns widths
+            dgvDriversList.Columns["Driver ID"].Width = 65;
+            dgvDriversList.Columns["Person ID"].Width = 62;
+            dgvDriversList.Columns["National No."].Width = 70;
+            dgvDriversList.Columns["Full Name"].Width = 343;
+            dgvDriversList.Columns["Date"].Width = 170;
+            dgvDriversList.Columns["Active Licenses"].Width = 85;          
         }
 
         private void _Filter()
@@ -170,5 +183,9 @@ namespace DVLD
             _ShowLicensesHistory();
         }
 
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

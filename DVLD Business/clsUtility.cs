@@ -125,6 +125,12 @@ namespace DVLD_Business
         // Error provider
         public static string errorProviderMessage = "Please ensure all required fields are filled out correctly. Check the error beside the field with the issue.";
 
+        // Permissions messages
+        public static string errorPermissionMessage = "You do not have permission to perform this action.";
+        public static string errorPermissionTitle = "Permission Denied";
+
+
+
 
         // Validation
 
@@ -160,8 +166,6 @@ namespace DVLD_Business
             }
             return HasUpper && HasLower && HasDigit && HasSpecial;
         }
-
-
 
 
         // License

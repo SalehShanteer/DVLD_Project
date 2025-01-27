@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Threading;
+using System.IO;
 using System.Windows.Forms;
 using DVLD_Business;
 
@@ -101,10 +102,23 @@ namespace DVLD
             _DisplayNumberOfFilteredPages();
         }
 
+        private void _DeletePersonImage(string ImagePath)
+        {
+            if (!string.IsNullOrEmpty(ImagePath))
+            {
+                File.Delete(ImagePath);
+            }
+        }
 
         // Managing People
         private void _ShowPersonDetails()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enPeoplePermissions.Read))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvPeopleList.SelectedCells.Count > 0)
             {
                 int SelectedPersonID = (int)dgvPeopleList.CurrentRow.Cells["Person ID"].Value;
@@ -119,6 +133,12 @@ namespace DVLD
 
         private void _AddNewPerson()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enPeoplePermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             //Open add/update person form
             frmAddUpdatePerson frm = new frmAddUpdatePerson(-1);
 
@@ -132,6 +152,13 @@ namespace DVLD
 
         private void _UpdatePerson()
         {
+
+            if (!clsSettings.CheckPermission((int)clsSettings.enPeoplePermissions.AddUpdate))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvPeopleList.SelectedCells.Count > 0)
             {
                 int SelectedPersonID = (int)dgvPeopleList.CurrentRow.Cells["Person ID"].Value;
@@ -150,6 +177,12 @@ namespace DVLD
 
         private void _DeletePerson()
         {
+            if (!clsSettings.CheckPermission((int)clsSettings.enPeoplePermissions.Delete))
+            {
+                MessageBox.Show(clsUtility.errorPermissionMessage, clsUtility.errorPermissionTitle, MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                return;
+            }
+
             if (dgvPeopleList.SelectedCells.Count > 0)
             {
                 int SelectedPersonID = (int)dgvPeopleList.CurrentRow.Cells["Person ID"].Value;
@@ -157,10 +190,14 @@ namespace DVLD
                 if (MessageBox.Show(clsUtility.askForDeleteMessage("person", SelectedPersonID), "Delete?"
                     , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
+                    string imagePath = clsPerson.Find(SelectedPersonID).ImagePath;
+                    _DeletePersonImage(imagePath);
+
                     if (clsPerson.Delete(SelectedPersonID))
                     {
                         MessageBox.Show(clsUtility.deleteMessage("person", SelectedPersonID), clsUtility.deleteTitle("Person")
                             , MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 
                         _RefreshPeopleList();
                     }
@@ -289,6 +326,11 @@ namespace DVLD
             {
                 _RefreshPeopleList();
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

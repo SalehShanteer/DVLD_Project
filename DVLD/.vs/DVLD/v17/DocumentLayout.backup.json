@@ -3,20 +3,15 @@
   "WorkspaceRootPath": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\users\\forms\\frmchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:users\\forms\\frmchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\users\\forms\\frmaddupdateuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:users\\forms\\frmaddupdateuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{C6DD46F9-CA97-4163-A396-09F8A703D996}|..\\DVLD Business\\DVLD_Business.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld business\\clssettings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\users\\forms\\frmchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:users\\forms\\frmchangepassword.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\users\\forms\\frmaddupdateuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:users\\forms\\frmaddupdateuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|c:\\users\\saleh\\desktop\\programming\\projects\\dvld project\\dvld\\frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{18C0CB9F-B5FB-476C-8BDC-4D53A15432AA}|DVLD.csproj|solutionrelative:frmmain.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,57 +21,45 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmChangePassword.cs",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmChangePassword.cs",
-              "RelativeDocumentMoniker": "Users\\Forms\\frmChangePassword.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmChangePassword.cs",
-              "RelativeToolTip": "Users\\Forms\\frmChangePassword.cs",
-              "ViewState": "AgIAAIUAAAAAAAAAAEBAwJwAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "frmMain.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmMain.cs",
+              "RelativeDocumentMoniker": "frmMain.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmMain.cs",
+              "RelativeToolTip": "frmMain.cs",
+              "ViewState": "AgIAAAsBAAAAAAAAAAAowOcAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T08:13:04.902Z",
+              "WhenOpened": "2025-01-27T19:25:52.603Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmChangePassword.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmChangePassword.cs",
-              "RelativeDocumentMoniker": "Users\\Forms\\frmChangePassword.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmChangePassword.cs [Design]",
-              "RelativeToolTip": "Users\\Forms\\frmChangePassword.cs [Design]",
+              "DocumentIndex": 0,
+              "Title": "frmMain.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmMain.cs",
+              "RelativeDocumentMoniker": "frmMain.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\frmMain.cs [Design]",
+              "RelativeToolTip": "frmMain.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T08:12:17.881Z",
+              "WhenOpened": "2025-01-27T19:25:30.4Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "frmAddUpdateUser.cs",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmAddUpdateUser.cs",
-              "RelativeDocumentMoniker": "Users\\Forms\\frmAddUpdateUser.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmAddUpdateUser.cs",
-              "RelativeToolTip": "Users\\Forms\\frmAddUpdateUser.cs",
-              "ViewState": "AgIAAAYBAAAAAAAAAIA7wBoBAAAJAAAAAAAAAA==",
+              "Title": "clsSettings.cs",
+              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsSettings.cs",
+              "RelativeDocumentMoniker": "..\\DVLD Business\\clsSettings.cs",
+              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD Business\\clsSettings.cs",
+              "RelativeToolTip": "..\\DVLD Business\\clsSettings.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwBoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T07:34:52.272Z",
+              "WhenOpened": "2025-01-27T18:39:00.288Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "frmAddUpdateUser.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmAddUpdateUser.cs",
-              "RelativeDocumentMoniker": "Users\\Forms\\frmAddUpdateUser.cs",
-              "ToolTip": "C:\\Users\\saleh\\Desktop\\Programming\\Projects\\DVLD Project\\DVLD\\Users\\Forms\\frmAddUpdateUser.cs [Design]",
-              "RelativeToolTip": "Users\\Forms\\frmAddUpdateUser.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-26T07:34:45.053Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }

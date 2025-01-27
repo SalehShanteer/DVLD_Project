@@ -39,6 +39,8 @@ namespace DVLD
 
                 // Display international licenses records count
                 lblInternationalLicenseApplicationsCount.Text = clsInternationalLicense.GetRecordsCount().ToString();
+
+                _PrepareApplicationList();
             }
             catch (Exception ex)
             {
@@ -46,6 +48,18 @@ namespace DVLD
             }
         }
 
+        private void _PrepareApplicationList()
+        {
+            //Adjust columns widths
+            dgvInternationalLicenseApplicationsList.Columns["Int.License ID"].Width = 140;
+            dgvInternationalLicenseApplicationsList.Columns["Application ID"].Width = 140;
+            dgvInternationalLicenseApplicationsList.Columns["Driver ID"].Width = 100;
+            dgvInternationalLicenseApplicationsList.Columns["L.License ID"].Width = 130;
+            dgvInternationalLicenseApplicationsList.Columns["Issue Date"].Width = 120;
+            dgvInternationalLicenseApplicationsList.Columns["Expiration Date"].Width = 150;
+            dgvInternationalLicenseApplicationsList.Columns["Is Active"].Width = 90;
+
+        }
 
         private void _Filter()
         {
