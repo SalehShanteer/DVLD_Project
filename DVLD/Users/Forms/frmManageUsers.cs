@@ -57,9 +57,10 @@ namespace DVLD
         private void _PrepareApplicationList()
         {
             //Adjust columns widths
-            dgvUsersList.Columns["User ID"].Width = 50;
-            dgvUsersList.Columns["Person ID"].Width = 62;
-            dgvUsersList.Columns["Full Name"].Width = 343;
+            dgvUsersList.Columns["User ID"].Width = 60;
+            dgvUsersList.Columns["Person ID"].Width = 70;
+            dgvUsersList.Columns["Full Name"].Width = 350;
+            dgvUsersList.Columns["Role"].Width = 200;
         }
 
         private void _Filter()

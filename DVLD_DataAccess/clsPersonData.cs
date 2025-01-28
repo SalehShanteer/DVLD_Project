@@ -379,6 +379,44 @@ namespace DVLD_DataAccess
             return IsExist;
         }
 
+        public static bool IsNationalNumberExist(string NationalNumber, int PersonID)
+        {
+            bool IsExist = false;
+
+            string query = "SELECT COUNT(PersonID) FROM People " +
+                            "WHERE NationalNumber = @NationalNumber AND PersonID != @PersonID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the command
+                    command.Parameters.AddWithValue("@NationalNumber", NationalNumber);
+                    command.Parameters.AddWithValue("@PersonID", PersonID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int TotalRecords))
+                        {
+                            if (TotalRecords > 0)
+                            {
+                                IsExist = true;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
+                }
+            }
+            return IsExist;
+        }
+
         public static bool IsEmailExist(string Email)
         {
             bool IsExist = false;
@@ -391,6 +429,44 @@ namespace DVLD_DataAccess
                 {
                     // Add parameters to the command
                     command.Parameters.AddWithValue("@Email", Email);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int TotalRecords))
+                        {
+                            if (TotalRecords > 0)
+                            {
+                                IsExist = true;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
+                }
+            }
+            return IsExist;
+        }
+
+        public static bool IsEmailExist(string Email, int PersonID)
+        {
+            bool IsExist = false;
+
+            string query = "SELECT COUNT(PersonID) FROM People " +
+                           "WHERE Email = @Email and PersonID != @PersonID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the command
+                    command.Parameters.AddWithValue("@Email", Email);
+                    command.Parameters.AddWithValue("@PersonID", PersonID);
 
                     try
                     {

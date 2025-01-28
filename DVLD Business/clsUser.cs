@@ -168,5 +168,10 @@ namespace DVLD_Business
             return clsUserData.IsUsernameExist(Username);
         }
 
+        public bool IsSameUsername(string Username)
+        {
+            return clsUserData.IsUsernameExist(Username, this.ID);
+        }
+
     }
 }

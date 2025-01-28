@@ -131,7 +131,7 @@
             // pbShowHideConfirmPassword
             // 
             this.pbShowHideConfirmPassword.Image = global::DVLD.Properties.Resources.hide;
-            this.pbShowHideConfirmPassword.Location = new System.Drawing.Point(428, 215);
+            this.pbShowHideConfirmPassword.Location = new System.Drawing.Point(481, 215);
             this.pbShowHideConfirmPassword.Name = "pbShowHideConfirmPassword";
             this.pbShowHideConfirmPassword.Size = new System.Drawing.Size(29, 21);
             this.pbShowHideConfirmPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -142,7 +142,7 @@
             // pbShowHidePassword
             // 
             this.pbShowHidePassword.Image = global::DVLD.Properties.Resources.hide;
-            this.pbShowHidePassword.Location = new System.Drawing.Point(428, 159);
+            this.pbShowHidePassword.Location = new System.Drawing.Point(481, 159);
             this.pbShowHidePassword.Name = "pbShowHidePassword";
             this.pbShowHidePassword.Size = new System.Drawing.Size(29, 21);
             this.pbShowHidePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -209,7 +209,7 @@
             this.txtPassword.Location = new System.Drawing.Point(249, 154);
             this.txtPassword.MaxLength = 320;
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(163, 26);
+            this.txtPassword.Size = new System.Drawing.Size(215, 26);
             this.txtPassword.TabIndex = 93;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -218,7 +218,7 @@
             this.txtConfirmPassword.Location = new System.Drawing.Point(249, 211);
             this.txtConfirmPassword.MaxLength = 320;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(163, 26);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(215, 26);
             this.txtConfirmPassword.TabIndex = 92;
             this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
@@ -227,7 +227,7 @@
             this.txtUsername.Location = new System.Drawing.Point(249, 98);
             this.txtUsername.MaxLength = 50;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(163, 26);
+            this.txtUsername.Size = new System.Drawing.Size(215, 26);
             this.txtUsername.TabIndex = 91;
             // 
             // lblUserID

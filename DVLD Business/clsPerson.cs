@@ -253,9 +253,19 @@ namespace DVLD_Business
             return clsPersonData.IsNationalNumberExist(NationalNumber);
         }
 
+        public bool IsSameNationalNumber(string NationalNumber)
+        {
+            return clsPersonData.IsNationalNumberExist(NationalNumber, this.ID);
+        }
+
         public static bool IsEmailExist(string Email)
         {
             return clsPersonData.IsEmailExist(Email);
+        }
+
+        public bool IsSameEmail(string Email)
+        {
+            return clsPersonData.IsEmailExist(Email, this.ID);
         }
 
     }

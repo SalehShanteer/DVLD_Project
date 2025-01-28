@@ -49,23 +49,9 @@ namespace DVLD
             }
         }
 
-
-        public ctrlPersonManager() : this(-1) { }
-
-        public ctrlPersonManager(int PersonID)
+        public ctrlPersonManager()
         {
             InitializeComponent();
-
-            _PersonID = PersonID;
-
-            if (_PersonID != -1)
-            {
-                _Mode = enMode.Update;
-            }
-            else
-            {
-                _Mode = enMode.AddNew;
-            }
         }
 
         //Save the person
@@ -223,7 +209,9 @@ namespace DVLD
             {
                 isValid = false;
             }
-            else if (clsPerson.IsEmailExist(txtEmail.Text))
+            else if ((_Mode == enMode.AddNew && clsPerson.IsEmailExist(txtEmail.Text))
+               || (_Mode == enMode.Update && _Person.IsSameEmail(txtEmail.Text)))
+
             {
                 errorProvider1.SetError(txtEmail, "Email already exists!");
                 isValid = false;
@@ -265,7 +253,8 @@ namespace DVLD
             {
                 isValid = false;
             }
-            else if (clsPerson.IsNationalNumberExist(txtNationalNo.Text))
+            else if ((_Mode == enMode.AddNew && clsPerson.IsNationalNumberExist(txtNationalNo.Text))
+                || (_Mode == enMode.Update && _Person.IsSameNationalNumber(txtNationalNo.Text)))
             {
                 errorProvider1.SetError(txtNationalNo, "National number already exists!");
                 isValid = false;
@@ -347,6 +336,7 @@ namespace DVLD
         {
             //Retrieve the person data
             _Person = clsPerson.Find(PersonID);
+            _Mode = enMode.Update;
 
             txtNationalNo.Text = _Person.NationalNumber;
             txtFirstName.Text = _Person.FirstName;

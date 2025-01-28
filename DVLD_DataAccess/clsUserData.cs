@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Global_Variables_Data;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 
 namespace DVLD_DataAccess
@@ -216,6 +218,44 @@ namespace DVLD_DataAccess
         public static bool IsUsernameExist(string Username)
         {
             return clsGenericData.IsRecordExist("Users", "Username", Username);
+        }
+
+        public static bool IsUsernameExist(string Username, int UserID)
+        {
+            bool IsExist = false;
+
+            string query = "SELECT COUNT(UserID) FROM Users " +
+                            "WHERE Username = @Username AND UserID != @UserID";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to the command
+                    command.Parameters.AddWithValue("@Username", Username);
+                    command.Parameters.AddWithValue("@UserID", UserID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int TotalRecords))
+                        {
+                            if (TotalRecords > 0)
+                            {
+                                IsExist = true;
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
+                }
+            }
+            return IsExist;
         }
 
     }

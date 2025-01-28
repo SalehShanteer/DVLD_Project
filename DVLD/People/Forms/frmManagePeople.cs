@@ -83,6 +83,7 @@ namespace DVLD
 
                 this.Invoke(new Action(() => { dgvPeopleList.DataSource = _dvPeopleList; }));
             });
+            GetPeopleListThread.Start();
         }
 
         private void _ShowFilteredPage(short PageNumber)

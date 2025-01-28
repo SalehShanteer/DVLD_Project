@@ -1235,6 +1235,20 @@ BEGIN
 
 	RETURN @TestAppointmentCount
 END
+--------------
+
+CREATE FUNCTION dbo.GetTestAppointmentCountByLDLAppIDAndTestTypeID(@LDLAppID INT, @TestTypeID INT)
+RETURNS INT
+AS
+BEGIN
+	DECLARE @TestAppointmentCount INT
+
+	SELECT @TestAppointmentCount = COUNT(TestAppointmentID)
+	FROM TestAppointments 
+	WHERE LocalDrivingLicenseApplicationID = @LDLAppID AND TestTypeID = @TestTypeID
+
+	RETURN @TestAppointmentCount
+END
 
 
 
@@ -1303,8 +1317,11 @@ ON Countries.CountryID = People.NationalityCountryID
 CREATE VIEW VIEW_UsersList AS
 SELECT UserID AS 'User ID', Users.PersonID AS 'Person ID', 
 (People.FirstName + ' ' + People.SecondName + ' ' + People.ThirdName + ' ' + People.LastName) AS 'Full Name',
-Username, IsActive AS 'Is Active'
+Username,
+Roles.Title AS [Role],
+IsActive AS 'Is Active'
 FROM Users
+INNER JOIN Roles ON Roles.RoleID = Users.RoleID
 INNER JOIN People
 ON People.PersonID = Users.PersonID
 --------------

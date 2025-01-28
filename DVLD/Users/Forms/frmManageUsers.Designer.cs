@@ -60,11 +60,11 @@
             this.dgvUsersList.AllowUserToOrderColumns = true;
             this.dgvUsersList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUsersList.ContextMenuStrip = this.cmsManageUsers;
-            this.dgvUsersList.Location = new System.Drawing.Point(16, 357);
+            this.dgvUsersList.Location = new System.Drawing.Point(16, 340);
             this.dgvUsersList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvUsersList.Name = "dgvUsersList";
             this.dgvUsersList.ReadOnly = true;
-            this.dgvUsersList.Size = new System.Drawing.Size(698, 291);
+            this.dgvUsersList.Size = new System.Drawing.Size(923, 308);
             this.dgvUsersList.TabIndex = 5;
             // 
             // cmsManageUsers
@@ -136,7 +136,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(238, 260);
+            this.label1.Location = new System.Drawing.Point(355, 247);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 39);
@@ -145,7 +145,7 @@
             // 
             // btnAddNewUser
             // 
-            this.btnAddNewUser.Location = new System.Drawing.Point(591, 318);
+            this.btnAddNewUser.Location = new System.Drawing.Point(826, 303);
             this.btnAddNewUser.Name = "btnAddNewUser";
             this.btnAddNewUser.Size = new System.Drawing.Size(113, 29);
             this.btnAddNewUser.TabIndex = 6;
@@ -176,17 +176,17 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.Users;
-            this.pictureBox1.Location = new System.Drawing.Point(248, 14);
+            this.pictureBox1.Location = new System.Drawing.Point(365, 15);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(228, 233);
+            this.pictureBox1.Size = new System.Drawing.Size(228, 215);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
             // 
             // txtFilter
             // 
-            this.txtFilter.Location = new System.Drawing.Point(339, 319);
+            this.txtFilter.Location = new System.Drawing.Point(339, 305);
             this.txtFilter.MaxLength = 50;
             this.txtFilter.Name = "txtFilter";
             this.txtFilter.Size = new System.Drawing.Size(207, 26);
@@ -206,7 +206,7 @@
             "Full Name",
             "Username",
             "Is Active"});
-            this.cbxFilter.Location = new System.Drawing.Point(129, 317);
+            this.cbxFilter.Location = new System.Drawing.Point(129, 303);
             this.cbxFilter.Name = "cbxFilter";
             this.cbxFilter.Size = new System.Drawing.Size(186, 28);
             this.cbxFilter.TabIndex = 99;
@@ -216,7 +216,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 323);
+            this.label3.Location = new System.Drawing.Point(28, 309);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 20);
             this.label3.TabIndex = 98;
@@ -230,7 +230,7 @@
             "All",
             "Yes",
             "No"});
-            this.cbxUserActivation.Location = new System.Drawing.Point(339, 317);
+            this.cbxUserActivation.Location = new System.Drawing.Point(339, 303);
             this.cbxUserActivation.Name = "cbxUserActivation";
             this.cbxUserActivation.Size = new System.Drawing.Size(106, 28);
             this.cbxUserActivation.TabIndex = 101;
@@ -238,9 +238,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(600, 651);
+            this.btnClose.Location = new System.Drawing.Point(843, 650);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(109, 30);
+            this.btnClose.Size = new System.Drawing.Size(96, 30);
             this.btnClose.TabIndex = 109;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -251,7 +251,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(728, 686);
+            this.ClientSize = new System.Drawing.Size(959, 686);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.cbxUserActivation);
             this.Controls.Add(this.txtFilter);

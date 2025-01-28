@@ -124,7 +124,8 @@ namespace DVLD
             {
                 isValid = false;
             }
-            else if (clsUser.IsUsernameExist(txtUsername.Text))
+            else if ((_Mode == enMode.AddNew && clsUser.IsUsernameExist(txtUsername.Text))
+                || (_Mode == enMode.Update && _User.IsSameUsername(txtUsername.Text)))
             {
                 errorProvider1.SetError(txtUsername, "Username already exists");
                 isValid = false;
