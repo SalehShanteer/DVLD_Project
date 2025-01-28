@@ -575,9 +575,14 @@
   <ItemGroup>
     <None Include="Resources\street test.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\drivers-license.png" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Manage International.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Close Login.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

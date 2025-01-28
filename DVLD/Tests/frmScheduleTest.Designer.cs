@@ -78,9 +78,9 @@
             this.gbTestType.Controls.Add(this.label2);
             this.gbTestType.Controls.Add(this.lblTitle);
             this.gbTestType.Controls.Add(this.pbTestType);
-            this.gbTestType.Location = new System.Drawing.Point(12, 24);
+            this.gbTestType.Location = new System.Drawing.Point(12, 16);
             this.gbTestType.Name = "gbTestType";
-            this.gbTestType.Size = new System.Drawing.Size(606, 669);
+            this.gbTestType.Size = new System.Drawing.Size(606, 662);
             this.gbTestType.TabIndex = 0;
             this.gbTestType.TabStop = false;
             this.gbTestType.Text = "Test Type";
@@ -102,7 +102,7 @@
             // 
             this.btnSave.Location = new System.Drawing.Point(474, 623);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 40);
+            this.btnSave.Size = new System.Drawing.Size(110, 31);
             this.btnSave.TabIndex = 103;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@
             // 
             this.btnClose.Location = new System.Drawing.Point(346, 624);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 40);
+            this.btnClose.Size = new System.Drawing.Size(110, 31);
             this.btnClose.TabIndex = 102;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -346,7 +346,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(630, 698);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(630, 686);
             this.Controls.Add(this.gbTestType);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

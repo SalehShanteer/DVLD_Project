@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.ctrlLocalDrivingLicenseApplicationInfo1 = new DVLD.ctrlLocalDrivingLicenseApplicationInfo();
+            this.btnClose = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ctrlLocalDrivingLicenseApplicationInfo1
@@ -40,11 +41,23 @@
             this.ctrlLocalDrivingLicenseApplicationInfo1.Size = new System.Drawing.Size(738, 364);
             this.ctrlLocalDrivingLicenseApplicationInfo1.TabIndex = 0;
             // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(622, 368);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(110, 31);
+            this.btnClose.TabIndex = 8;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
             // frmLocalDrivingLicenseApplicationInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 374);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(744, 406);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlLocalDrivingLicenseApplicationInfo1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -60,5 +73,6 @@
         #endregion
 
         private ctrlLocalDrivingLicenseApplicationInfo ctrlLocalDrivingLicenseApplicationInfo1;
+        private System.Windows.Forms.Button btnClose;
     }
 }

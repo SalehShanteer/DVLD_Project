@@ -56,9 +56,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(700, 490);
+            this.btnClose.Location = new System.Drawing.Point(721, 489);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 40);
+            this.btnClose.Size = new System.Drawing.Size(108, 37);
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -68,7 +68,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(842, 536);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(842, 532);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.ctrlUserInfo1);
             this.Controls.Add(this.label1);

@@ -72,14 +72,14 @@
             this.editToolStripMenuItem,
             this.takeTestToolStripMenuItem});
             this.cmsTestAppointment.Name = "cmsTestAppointment";
-            this.cmsTestAppointment.Size = new System.Drawing.Size(195, 98);
+            this.cmsTestAppointment.Size = new System.Drawing.Size(168, 76);
             this.cmsTestAppointment.Opening += new System.ComponentModel.CancelEventHandler(this.cmsTestAppointment_Opening);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = global::DVLD.Properties.Resources.Edit;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(194, 36);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(167, 36);
             this.editToolStripMenuItem.Text = "Edit";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
@@ -87,7 +87,7 @@
             // 
             this.takeTestToolStripMenuItem.Image = global::DVLD.Properties.Resources.Retake;
             this.takeTestToolStripMenuItem.Name = "takeTestToolStripMenuItem";
-            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(194, 36);
+            this.takeTestToolStripMenuItem.Size = new System.Drawing.Size(167, 36);
             this.takeTestToolStripMenuItem.Text = "Take Test";
             this.takeTestToolStripMenuItem.Click += new System.EventHandler(this.takeTestToolStripMenuItem_Click);
             // 
@@ -126,6 +126,7 @@
             // 
             // ctrlLocalDrivingLicenseApplicationInfo1
             // 
+            this.ctrlLocalDrivingLicenseApplicationInfo1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ctrlLocalDrivingLicenseApplicationInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlLocalDrivingLicenseApplicationInfo1.Location = new System.Drawing.Point(13, 221);
             this.ctrlLocalDrivingLicenseApplicationInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -137,6 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(763, 804);
             this.Controls.Add(this.dgvTestAppointmentsList);
             this.Controls.Add(this.btnClose);

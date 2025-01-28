@@ -66,9 +66,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(428, 359);
+            this.btnClose.Location = new System.Drawing.Point(448, 359);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(109, 38);
+            this.btnClose.Size = new System.Drawing.Size(101, 38);
             this.btnClose.TabIndex = 58;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -76,9 +76,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(575, 359);
+            this.btnSave.Location = new System.Drawing.Point(580, 359);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(109, 38);
+            this.btnSave.Size = new System.Drawing.Size(101, 38);
             this.btnSave.TabIndex = 57;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -342,7 +342,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.llblRemove);

@@ -40,9 +40,14 @@ namespace DVLD
                     dgvUsersList.DataSource = _dvUsersList;
 
                     //Display number of records
-                    lblUsersCount.Text = clsUser.GetUsersCount().ToString();
+                    int recordsCount = dgvUsersList.Rows.Count;
+                    lblUsersCount.Text = recordsCount.ToString();
 
-                    _PrepareApplicationList();
+                    // If there are records
+                    if (recordsCount > 0)
+                    {
+                        _PrepareApplicationList();
+                    }
                 }));
             });
 

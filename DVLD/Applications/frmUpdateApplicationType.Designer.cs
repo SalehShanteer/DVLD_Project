@@ -44,9 +44,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(263, 242);
+            this.btnSave.Location = new System.Drawing.Point(235, 240);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 40);
+            this.btnSave.Size = new System.Drawing.Size(93, 34);
             this.btnSave.TabIndex = 111;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -54,9 +54,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(135, 243);
+            this.btnClose.Location = new System.Drawing.Point(117, 240);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 40);
+            this.btnClose.Size = new System.Drawing.Size(93, 34);
             this.btnClose.TabIndex = 110;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -65,7 +65,7 @@
             // txtFees
             // 
             this.txtFees.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFees.Location = new System.Drawing.Point(160, 197);
+            this.txtFees.Location = new System.Drawing.Point(118, 197);
             this.txtFees.MaxLength = 50;
             this.txtFees.Name = "txtFees";
             this.txtFees.Size = new System.Drawing.Size(213, 22);
@@ -74,7 +74,7 @@
             // txtTitle
             // 
             this.txtTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitle.Location = new System.Drawing.Point(160, 155);
+            this.txtTitle.Location = new System.Drawing.Point(118, 155);
             this.txtTitle.MaxLength = 50;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(213, 22);
@@ -104,7 +104,7 @@
             // 
             this.lblID.AutoSize = true;
             this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.Location = new System.Drawing.Point(167, 117);
+            this.lblID.Location = new System.Drawing.Point(125, 117);
             this.lblID.Name = "lblID";
             this.lblID.Size = new System.Drawing.Size(49, 20);
             this.lblID.TabIndex = 103;
@@ -123,12 +123,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(20, 40);
+            this.label1.Location = new System.Drawing.Point(50, 40);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(332, 42);
+            this.label1.Size = new System.Drawing.Size(266, 36);
             this.label1.TabIndex = 101;
             this.label1.Text = "Update Test Type";
             // 
@@ -140,7 +140,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(403, 302);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(364, 286);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtFees);

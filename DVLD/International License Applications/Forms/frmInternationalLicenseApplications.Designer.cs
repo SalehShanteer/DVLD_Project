@@ -190,7 +190,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.Manage_International;
-            this.pictureBox1.Location = new System.Drawing.Point(395, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(388, 15);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(224, 207);
@@ -217,7 +217,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(967, 660);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(954, 660);
             this.Controls.Add(this.cbxIsActive);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAddNewInternationalLicenseApplication);

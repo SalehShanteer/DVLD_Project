@@ -45,9 +45,14 @@ namespace DVLD
                     dgvDriversList.DataSource = _dvDriversList;
 
                     //Display drivers records count
-                    lblDriversCount.Text = clsDriver.GetDriversCount().ToString();
+                    int driversCount = clsDriver.GetDriversCount();
+                    lblDriversCount.Text = driversCount.ToString();
 
-                    _PrepareApplicationList();
+                    //Check if there are drivers records
+                    if (driversCount != 0)
+                    {
+                        _PrepareApplicationList();
+                    }
                 }
                 ));
             });
@@ -59,9 +64,9 @@ namespace DVLD
         {
             //Adjust columns widths
             dgvDriversList.Columns["Driver ID"].Width = 65;
-            dgvDriversList.Columns["Person ID"].Width = 62;
+            dgvDriversList.Columns["Person ID"].Width = 65;
             dgvDriversList.Columns["National No."].Width = 70;
-            dgvDriversList.Columns["Full Name"].Width = 343;
+            dgvDriversList.Columns["Full Name"].Width = 345;
             dgvDriversList.Columns["Date"].Width = 170;
             dgvDriversList.Columns["Active Licenses"].Width = 85;          
         }

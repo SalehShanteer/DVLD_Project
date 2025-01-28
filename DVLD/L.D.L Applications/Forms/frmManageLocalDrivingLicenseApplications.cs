@@ -49,9 +49,14 @@ namespace DVLD
                     dgvLocalDrivingLicenseApplicationsList.DataSource = _dvLocalDrivingLicenseApplicationList;
 
                     // Display Local Driving License Applications Count
-                    lblLocalDrivingLicenseApplicationsCount.Text = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationsCount().ToString();
+                    int LocalDrivingLicenseApplicationsCount = clsLocalDrivingLicenseApplication.GetLocalDrivingLicenseApplicationsCount();
+                    lblLocalDrivingLicenseApplicationsCount.Text = LocalDrivingLicenseApplicationsCount.ToString();
 
-                    _PrepareApplicationList();
+                    // If there are records
+                    if (LocalDrivingLicenseApplicationsCount > 0)
+                    {
+                        _PrepareApplicationList();
+                    }
                 }));
             });   
 
@@ -395,10 +400,15 @@ namespace DVLD
         private void _NewStatus()
         {
             byte SelectedPassedTests = (byte)dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["Passed Tests"].Value;
+            int SelectedLocalDrivingLicenseApplicationID = Convert.ToInt32(dgvLocalDrivingLicenseApplicationsList.CurrentRow.Cells["L.D.L.AppID"].Value);
 
+            // Check if there are test appointments for this application to prevent delete
+            bool CanDelete = clsTestAppointment.GetTestAppointmentsCount(SelectedLocalDrivingLicenseApplicationID) > 0 ? false : true;
+
+            // Set context menu strip
             showApplicationDetailsToolStripMenuItem.Enabled = true;
             editApplicationToolStripMenuItem.Enabled = true;
-            deleteApplicationToolStripMenuItem.Enabled = true;
+            deleteApplicationToolStripMenuItem.Enabled = CanDelete;
             cancelApplicationToolStripMenuItem.Enabled = true;
             scheduleTestsToolStripMenuItem.Enabled = true;
             issueDrivingLicenseFirstTimeToolStripMenuItem.Enabled = false;

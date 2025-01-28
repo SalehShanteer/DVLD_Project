@@ -50,19 +50,19 @@
             // 
             // txtCurrentPassword
             // 
-            this.txtCurrentPassword.Location = new System.Drawing.Point(236, 411);
+            this.txtCurrentPassword.Location = new System.Drawing.Point(229, 411);
             this.txtCurrentPassword.MaxLength = 320;
             this.txtCurrentPassword.Name = "txtCurrentPassword";
-            this.txtCurrentPassword.Size = new System.Drawing.Size(163, 26);
+            this.txtCurrentPassword.Size = new System.Drawing.Size(220, 26);
             this.txtCurrentPassword.TabIndex = 97;
             this.txtCurrentPassword.UseSystemPasswordChar = true;
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(236, 454);
+            this.txtNewPassword.Location = new System.Drawing.Point(229, 454);
             this.txtNewPassword.MaxLength = 320;
             this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.Size = new System.Drawing.Size(163, 26);
+            this.txtNewPassword.Size = new System.Drawing.Size(220, 26);
             this.txtNewPassword.TabIndex = 96;
             this.txtNewPassword.UseSystemPasswordChar = true;
             // 
@@ -88,10 +88,10 @@
             // 
             // txtConfirmPassword
             // 
-            this.txtConfirmPassword.Location = new System.Drawing.Point(236, 496);
+            this.txtConfirmPassword.Location = new System.Drawing.Point(229, 496);
             this.txtConfirmPassword.MaxLength = 320;
             this.txtConfirmPassword.Name = "txtConfirmPassword";
-            this.txtConfirmPassword.Size = new System.Drawing.Size(163, 26);
+            this.txtConfirmPassword.Size = new System.Drawing.Size(220, 26);
             this.txtConfirmPassword.TabIndex = 99;
             this.txtConfirmPassword.UseSystemPasswordChar = true;
             // 
@@ -107,7 +107,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(566, 541);
+            this.btnClose.Location = new System.Drawing.Point(575, 539);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(109, 38);
             this.btnClose.TabIndex = 101;
@@ -117,7 +117,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(713, 541);
+            this.btnSave.Location = new System.Drawing.Point(713, 539);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(109, 38);
             this.btnSave.TabIndex = 100;
@@ -141,7 +141,7 @@
             // pbShowHideConfirmPassword
             // 
             this.pbShowHideConfirmPassword.Image = global::DVLD.Properties.Resources.hide;
-            this.pbShowHideConfirmPassword.Location = new System.Drawing.Point(435, 500);
+            this.pbShowHideConfirmPassword.Location = new System.Drawing.Point(468, 500);
             this.pbShowHideConfirmPassword.Name = "pbShowHideConfirmPassword";
             this.pbShowHideConfirmPassword.Size = new System.Drawing.Size(29, 21);
             this.pbShowHideConfirmPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -152,7 +152,7 @@
             // pbShowHideNewPassword
             // 
             this.pbShowHideNewPassword.Image = global::DVLD.Properties.Resources.hide;
-            this.pbShowHideNewPassword.Location = new System.Drawing.Point(435, 459);
+            this.pbShowHideNewPassword.Location = new System.Drawing.Point(468, 459);
             this.pbShowHideNewPassword.Name = "pbShowHideNewPassword";
             this.pbShowHideNewPassword.Size = new System.Drawing.Size(29, 21);
             this.pbShowHideNewPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -163,7 +163,7 @@
             // pbShowHideCurrentPassword
             // 
             this.pbShowHideCurrentPassword.Image = global::DVLD.Properties.Resources.hide;
-            this.pbShowHideCurrentPassword.Location = new System.Drawing.Point(435, 414);
+            this.pbShowHideCurrentPassword.Location = new System.Drawing.Point(468, 414);
             this.pbShowHideCurrentPassword.Name = "pbShowHideCurrentPassword";
             this.pbShowHideCurrentPassword.Size = new System.Drawing.Size(29, 21);
             this.pbShowHideCurrentPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -175,7 +175,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 602);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(852, 586);
             this.Controls.Add(this.pbShowHideCurrentPassword);
             this.Controls.Add(this.pbShowHideNewPassword);
             this.Controls.Add(this.pbShowHideConfirmPassword);

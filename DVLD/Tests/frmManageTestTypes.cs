@@ -38,9 +38,15 @@ namespace DVLD
                 {
                     dgvTestTypesList.DataSource = _dvTestTypesList;
                     //Display number of records
-                    lblTestTypesCount.Text = clsTestType.GetTestTypesCount().ToString();
+                    int TestTypesCount = clsTestType.GetTestTypesCount();
+                    lblTestTypesCount.Text = TestTypesCount.ToString();
 
-                    _PrepareApplicationList();
+                    // If there are records
+                    if (TestTypesCount > 0)
+                    {
+                        _PrepareApplicationList();
+                    }
+
                 }));
             });
 

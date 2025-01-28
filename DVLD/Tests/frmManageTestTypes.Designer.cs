@@ -46,7 +46,7 @@
             // 
             this.lblAddUpdatePerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddUpdatePerson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAddUpdatePerson.Location = new System.Drawing.Point(190, 220);
+            this.lblAddUpdatePerson.Location = new System.Drawing.Point(183, 198);
             this.lblAddUpdatePerson.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddUpdatePerson.Name = "lblAddUpdatePerson";
             this.lblAddUpdatePerson.Size = new System.Drawing.Size(370, 43);
@@ -61,7 +61,7 @@
             this.dgvTestTypesList.AllowUserToOrderColumns = true;
             this.dgvTestTypesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTestTypesList.ContextMenuStrip = this.cmsManageTestTypes;
-            this.dgvTestTypesList.Location = new System.Drawing.Point(13, 271);
+            this.dgvTestTypesList.Location = new System.Drawing.Point(13, 251);
             this.dgvTestTypesList.Name = "dgvTestTypesList";
             this.dgvTestTypesList.ReadOnly = true;
             this.dgvTestTypesList.Size = new System.Drawing.Size(703, 98);
@@ -94,7 +94,7 @@
             this.pictureBox1.Image = global::DVLD.Properties.Resources.ManageTestTypes;
             this.pictureBox1.Location = new System.Drawing.Point(273, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(201, 197);
+            this.pictureBox1.Size = new System.Drawing.Size(188, 176);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
@@ -103,7 +103,7 @@
             // 
             this.lblTestTypesCount.AutoSize = true;
             this.lblTestTypesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTestTypesCount.Location = new System.Drawing.Point(104, 375);
+            this.lblTestTypesCount.Location = new System.Drawing.Point(104, 361);
             this.lblTestTypesCount.Name = "lblTestTypesCount";
             this.lblTestTypesCount.Size = new System.Drawing.Size(19, 20);
             this.lblTestTypesCount.TabIndex = 9;
@@ -113,7 +113,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 374);
+            this.label2.Location = new System.Drawing.Point(9, 360);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 8;
@@ -123,7 +123,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(728, 399);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(728, 387);
             this.Controls.Add(this.lblTestTypesCount);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);

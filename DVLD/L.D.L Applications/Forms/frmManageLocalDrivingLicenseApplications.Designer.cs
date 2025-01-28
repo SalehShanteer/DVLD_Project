@@ -120,7 +120,7 @@
             this.showLicenseToolStripMenuItem,
             this.showPersonLicenseHistoryToolStripMenuItem});
             this.cmsLocalDrivingLicenseApplications.Name = "cmsLocalDrivingLicenseApplications";
-            this.cmsLocalDrivingLicenseApplications.Size = new System.Drawing.Size(353, 292);
+            this.cmsLocalDrivingLicenseApplications.Size = new System.Drawing.Size(353, 314);
             this.cmsLocalDrivingLicenseApplications.Opening += new System.ComponentModel.CancelEventHandler(this.cmsLocalDrivingLicenseApplications_Opening);
             // 
             // showApplicationDetailsToolStripMenuItem
@@ -248,7 +248,7 @@
             // 
             // btnAddNewLocalDrivingLicenseApplication
             // 
-            this.btnAddNewLocalDrivingLicenseApplication.Location = new System.Drawing.Point(952, 311);
+            this.btnAddNewLocalDrivingLicenseApplication.Location = new System.Drawing.Point(1020, 311);
             this.btnAddNewLocalDrivingLicenseApplication.Name = "btnAddNewLocalDrivingLicenseApplication";
             this.btnAddNewLocalDrivingLicenseApplication.Size = new System.Drawing.Size(223, 37);
             this.btnAddNewLocalDrivingLicenseApplication.TabIndex = 106;
@@ -269,9 +269,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1101, 695);
+            this.btnClose.Location = new System.Drawing.Point(1142, 690);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(99, 32);
+            this.btnClose.Size = new System.Drawing.Size(101, 36);
             this.btnClose.TabIndex = 111;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -281,7 +281,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1273, 733);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1273, 729);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAddNewLocalDrivingLicenseApplication);
             this.Controls.Add(this.lblLocalDrivingLicenseApplicationsCount);

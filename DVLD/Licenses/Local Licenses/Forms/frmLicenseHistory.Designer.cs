@@ -37,7 +37,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.History;
-            this.pictureBox1.Location = new System.Drawing.Point(22, 166);
+            this.pictureBox1.Location = new System.Drawing.Point(22, 142);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(172, 171);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -66,6 +66,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(1034, 702);
             this.Controls.Add(this.ctrlDriverLicenses1);
             this.Controls.Add(this.pictureBox1);

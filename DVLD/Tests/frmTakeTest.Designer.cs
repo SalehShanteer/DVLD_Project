@@ -29,6 +29,9 @@
         private void InitializeComponent()
         {
             this.gbTestTitle = new System.Windows.Forms.GroupBox();
+            this.lblDate = new System.Windows.Forms.Label();
+            this.lblTestID = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblFees = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -42,8 +45,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pbTestType = new System.Windows.Forms.PictureBox();
-            this.lblTestID = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.rbPass = new System.Windows.Forms.RadioButton();
             this.rbFail = new System.Windows.Forms.RadioButton();
@@ -51,7 +52,6 @@
             this.rtxtNotes = new System.Windows.Forms.RichTextBox();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.lblDate = new System.Windows.Forms.Label();
             this.gbTestTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbTestType)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +80,38 @@
             this.gbTestTitle.TabIndex = 0;
             this.gbTestTitle.TabStop = false;
             this.gbTestTitle.Text = "Test Title";
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDate.ForeColor = System.Drawing.Color.Black;
+            this.lblDate.Location = new System.Drawing.Point(186, 411);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(99, 20);
+            this.lblDate.TabIndex = 121;
+            this.lblDate.Text = "mm/dd/yyyy";
+            // 
+            // lblTestID
+            // 
+            this.lblTestID.AutoSize = true;
+            this.lblTestID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTestID.ForeColor = System.Drawing.Color.Black;
+            this.lblTestID.Location = new System.Drawing.Point(188, 495);
+            this.lblTestID.Name = "lblTestID";
+            this.lblTestID.Size = new System.Drawing.Size(124, 20);
+            this.lblTestID.TabIndex = 120;
+            this.lblTestID.Text = "Not Taken Yet";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(57, 495);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(73, 20);
+            this.label3.TabIndex = 119;
+            this.label3.Text = "Test ID:";
             // 
             // label11
             // 
@@ -218,27 +250,6 @@
             this.pbTestType.TabIndex = 105;
             this.pbTestType.TabStop = false;
             // 
-            // lblTestID
-            // 
-            this.lblTestID.AutoSize = true;
-            this.lblTestID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTestID.ForeColor = System.Drawing.Color.Black;
-            this.lblTestID.Location = new System.Drawing.Point(188, 495);
-            this.lblTestID.Name = "lblTestID";
-            this.lblTestID.Size = new System.Drawing.Size(124, 20);
-            this.lblTestID.TabIndex = 120;
-            this.lblTestID.Text = "Not Taken Yet";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(57, 495);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(73, 20);
-            this.label3.TabIndex = 119;
-            this.label3.Text = "Test ID:";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -293,9 +304,9 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(442, 701);
+            this.btnSave.Location = new System.Drawing.Point(448, 701);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(110, 40);
+            this.btnSave.Size = new System.Drawing.Size(104, 37);
             this.btnSave.TabIndex = 127;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -303,30 +314,20 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(314, 702);
+            this.btnClose.Location = new System.Drawing.Point(320, 702);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 40);
+            this.btnClose.Size = new System.Drawing.Size(104, 37);
             this.btnClose.TabIndex = 126;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.ForeColor = System.Drawing.Color.Black;
-            this.lblDate.Location = new System.Drawing.Point(186, 411);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(99, 20);
-            this.lblDate.TabIndex = 121;
-            this.lblDate.Text = "mm/dd/yyyy";
-            // 
             // frmTakeTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(577, 750);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(577, 744);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.rtxtNotes);

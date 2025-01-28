@@ -66,7 +66,7 @@
             this.dgvPeopleList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvPeopleList.Name = "dgvPeopleList";
             this.dgvPeopleList.ReadOnly = true;
-            this.dgvPeopleList.Size = new System.Drawing.Size(1160, 318);
+            this.dgvPeopleList.Size = new System.Drawing.Size(1145, 314);
             this.dgvPeopleList.TabIndex = 2;
             // 
             // cmsManagePeople
@@ -132,7 +132,7 @@
             // 
             // btnAddNewPerson
             // 
-            this.btnAddNewPerson.Location = new System.Drawing.Point(1042, 312);
+            this.btnAddNewPerson.Location = new System.Drawing.Point(1028, 312);
             this.btnAddNewPerson.Name = "btnAddNewPerson";
             this.btnAddNewPerson.Size = new System.Drawing.Size(136, 37);
             this.btnAddNewPerson.TabIndex = 5;
@@ -267,7 +267,7 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(1078, 686);
+            this.btnClose.Location = new System.Drawing.Point(1068, 682);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(99, 32);
             this.btnClose.TabIndex = 129;
@@ -279,8 +279,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1204, 726);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(1186, 726);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtFilter);

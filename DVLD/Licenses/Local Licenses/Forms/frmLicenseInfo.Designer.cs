@@ -37,6 +37,7 @@
             // 
             // ctrlDriverLicenseInfo1
             // 
+            this.ctrlDriverLicenseInfo1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ctrlDriverLicenseInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlDriverLicenseInfo1.Location = new System.Drawing.Point(8, 206);
             this.ctrlDriverLicenseInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -80,6 +81,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(802, 597);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pbImage);

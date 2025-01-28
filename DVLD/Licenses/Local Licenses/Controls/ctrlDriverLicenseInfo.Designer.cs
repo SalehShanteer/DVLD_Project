@@ -101,7 +101,7 @@
             this.lblIsDetained.AutoSize = true;
             this.lblIsDetained.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsDetained.ForeColor = System.Drawing.Color.Black;
-            this.lblIsDetained.Location = new System.Drawing.Point(456, 267);
+            this.lblIsDetained.Location = new System.Drawing.Point(482, 267);
             this.lblIsDetained.Name = "lblIsDetained";
             this.lblIsDetained.Size = new System.Drawing.Size(49, 20);
             this.lblIsDetained.TabIndex = 123;
@@ -111,7 +111,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(316, 267);
+            this.label17.Location = new System.Drawing.Point(342, 267);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(107, 20);
             this.label17.TabIndex = 122;
@@ -122,7 +122,7 @@
             this.lblExpirationDate.AutoSize = true;
             this.lblExpirationDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblExpirationDate.ForeColor = System.Drawing.Color.Black;
-            this.lblExpirationDate.Location = new System.Drawing.Point(456, 228);
+            this.lblExpirationDate.Location = new System.Drawing.Point(482, 228);
             this.lblExpirationDate.Name = "lblExpirationDate";
             this.lblExpirationDate.Size = new System.Drawing.Size(49, 20);
             this.lblExpirationDate.TabIndex = 121;
@@ -132,7 +132,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(316, 228);
+            this.label19.Location = new System.Drawing.Point(342, 228);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(138, 20);
             this.label19.TabIndex = 120;
@@ -143,7 +143,7 @@
             this.lblDriverID.AutoSize = true;
             this.lblDriverID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDriverID.ForeColor = System.Drawing.Color.Black;
-            this.lblDriverID.Location = new System.Drawing.Point(456, 192);
+            this.lblDriverID.Location = new System.Drawing.Point(482, 192);
             this.lblDriverID.Name = "lblDriverID";
             this.lblDriverID.Size = new System.Drawing.Size(49, 20);
             this.lblDriverID.TabIndex = 119;
@@ -153,7 +153,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(316, 192);
+            this.label21.Location = new System.Drawing.Point(342, 192);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(85, 20);
             this.label21.TabIndex = 118;
@@ -164,7 +164,7 @@
             this.lblDateOfBirth.AutoSize = true;
             this.lblDateOfBirth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDateOfBirth.ForeColor = System.Drawing.Color.Black;
-            this.lblDateOfBirth.Location = new System.Drawing.Point(456, 155);
+            this.lblDateOfBirth.Location = new System.Drawing.Point(482, 155);
             this.lblDateOfBirth.Name = "lblDateOfBirth";
             this.lblDateOfBirth.Size = new System.Drawing.Size(49, 20);
             this.lblDateOfBirth.TabIndex = 117;
@@ -174,7 +174,7 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(316, 155);
+            this.label23.Location = new System.Drawing.Point(342, 155);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(120, 20);
             this.label23.TabIndex = 116;
@@ -185,7 +185,7 @@
             this.lblIsActive.AutoSize = true;
             this.lblIsActive.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblIsActive.ForeColor = System.Drawing.Color.Black;
-            this.lblIsActive.Location = new System.Drawing.Point(456, 119);
+            this.lblIsActive.Location = new System.Drawing.Point(482, 119);
             this.lblIsActive.Name = "lblIsActive";
             this.lblIsActive.Size = new System.Drawing.Size(49, 20);
             this.lblIsActive.TabIndex = 115;
@@ -195,7 +195,7 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(316, 119);
+            this.label25.Location = new System.Drawing.Point(342, 119);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(83, 20);
             this.label25.TabIndex = 114;
@@ -204,7 +204,7 @@
             // pbImage
             // 
             this.pbImage.Image = global::DVLD.Properties.Resources.Male;
-            this.pbImage.Location = new System.Drawing.Point(587, 103);
+            this.pbImage.Location = new System.Drawing.Point(604, 102);
             this.pbImage.Name = "pbImage";
             this.pbImage.Size = new System.Drawing.Size(163, 182);
             this.pbImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -383,6 +383,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);

@@ -58,7 +58,7 @@
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label1.Location = new System.Drawing.Point(160, 27);
+            this.label1.Location = new System.Drawing.Point(151, 27);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(506, 43);
@@ -68,9 +68,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(576, 710);
+            this.btnClose.Location = new System.Drawing.Point(567, 710);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(90, 29);
+            this.btnClose.Size = new System.Drawing.Size(106, 34);
             this.btnClose.TabIndex = 13;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -79,7 +79,7 @@
             // ctrlDriverLicenseInfoWithFilter1
             // 
             this.ctrlDriverLicenseInfoWithFilter1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(26, 83);
+            this.ctrlDriverLicenseInfoWithFilter1.Location = new System.Drawing.Point(17, 83);
             this.ctrlDriverLicenseInfoWithFilter1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.ctrlDriverLicenseInfoWithFilter1.Name = "ctrlDriverLicenseInfoWithFilter1";
             this.ctrlDriverLicenseInfoWithFilter1.Size = new System.Drawing.Size(785, 431);
@@ -104,7 +104,7 @@
             this.groupBox1.Controls.Add(this.label);
             this.groupBox1.Controls.Add(this.lblFees);
             this.groupBox1.Controls.Add(this.label17);
-            this.groupBox1.Location = new System.Drawing.Point(29, 511);
+            this.groupBox1.Location = new System.Drawing.Point(20, 511);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(776, 193);
             this.groupBox1.TabIndex = 111;
@@ -282,9 +282,9 @@
             // btnIssue
             // 
             this.btnIssue.Enabled = false;
-            this.btnIssue.Location = new System.Drawing.Point(699, 710);
+            this.btnIssue.Location = new System.Drawing.Point(690, 710);
             this.btnIssue.Name = "btnIssue";
-            this.btnIssue.Size = new System.Drawing.Size(90, 29);
+            this.btnIssue.Size = new System.Drawing.Size(106, 34);
             this.btnIssue.TabIndex = 112;
             this.btnIssue.Text = "Issue";
             this.btnIssue.UseVisualStyleBackColor = true;
@@ -294,7 +294,7 @@
             // 
             this.llblShowLicensesHistory.AutoSize = true;
             this.llblShowLicensesHistory.Enabled = false;
-            this.llblShowLicensesHistory.Location = new System.Drawing.Point(28, 716);
+            this.llblShowLicensesHistory.Location = new System.Drawing.Point(19, 716);
             this.llblShowLicensesHistory.Name = "llblShowLicensesHistory";
             this.llblShowLicensesHistory.Size = new System.Drawing.Size(169, 20);
             this.llblShowLicensesHistory.TabIndex = 113;
@@ -306,7 +306,7 @@
             // 
             this.llblShowLicenseInfo.AutoSize = true;
             this.llblShowLicenseInfo.Enabled = false;
-            this.llblShowLicenseInfo.Location = new System.Drawing.Point(220, 716);
+            this.llblShowLicenseInfo.Location = new System.Drawing.Point(211, 716);
             this.llblShowLicenseInfo.Name = "llblShowLicenseInfo";
             this.llblShowLicenseInfo.Size = new System.Drawing.Size(140, 20);
             this.llblShowLicenseInfo.TabIndex = 114;
@@ -318,7 +318,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(826, 749);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(819, 749);
             this.Controls.Add(this.llblShowLicenseInfo);
             this.Controls.Add(this.llblShowLicensesHistory);
             this.Controls.Add(this.btnIssue);
@@ -327,6 +328,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ctrlDriverLicenseInfoWithFilter1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmNewInternationalLicenseApplication";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

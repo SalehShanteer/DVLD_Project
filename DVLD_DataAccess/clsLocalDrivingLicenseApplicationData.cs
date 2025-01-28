@@ -117,13 +117,14 @@ namespace DVLD_DataAccess
         {
             int RowsAffected = 0;
 
-            string query = "EXEC SP_DeleteLocalDrivingLicenseApplication @LocalDrivingLicenseApplicationID = @ID ";                           
-
             using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
             {
-                using (SqlCommand command = new SqlCommand(query, connection))
+                using (SqlCommand command = new SqlCommand("SP_DeleteLocalDrivingLicenseApplication", connection))
                 {
-                    command.Parameters.AddWithValue("@ID", ID);
+                    command.CommandType = CommandType.StoredProcedure;
+
+                    // Add the parameters
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", ID);
                     try
                     {
                         connection.Open();
@@ -131,7 +132,6 @@ namespace DVLD_DataAccess
                         RowsAffected = command.ExecuteNonQuery();
                     }
                     catch (Exception ex) { }
-                    finally { connection.Close(); }
                 }
             }
             return RowsAffected > 1;// Two records should affected 1- application 2- L.D.L.App

@@ -103,5 +103,10 @@ namespace DVLD
                 e.Handled = true;// Ensure only digits allowed when L.D.L.AppID selected
             }
         }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

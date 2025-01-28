@@ -47,7 +47,7 @@
             // 
             this.lblApplicationTypesCount.AutoSize = true;
             this.lblApplicationTypesCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApplicationTypesCount.Location = new System.Drawing.Point(114, 461);
+            this.lblApplicationTypesCount.Location = new System.Drawing.Point(114, 427);
             this.lblApplicationTypesCount.Name = "lblApplicationTypesCount";
             this.lblApplicationTypesCount.Size = new System.Drawing.Size(19, 20);
             this.lblApplicationTypesCount.TabIndex = 14;
@@ -57,7 +57,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(19, 460);
+            this.label2.Location = new System.Drawing.Point(19, 426);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 20);
             this.label2.TabIndex = 13;
@@ -70,7 +70,7 @@
             this.dgvApplicationTypesList.AllowUserToOrderColumns = true;
             this.dgvApplicationTypesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvApplicationTypesList.ContextMenuStrip = this.cmsManageApplicationTypes;
-            this.dgvApplicationTypesList.Location = new System.Drawing.Point(20, 280);
+            this.dgvApplicationTypesList.Location = new System.Drawing.Point(20, 251);
             this.dgvApplicationTypesList.Name = "dgvApplicationTypesList";
             this.dgvApplicationTypesList.ReadOnly = true;
             this.dgvApplicationTypesList.Size = new System.Drawing.Size(498, 164);
@@ -100,9 +100,9 @@
             // 
             // lblAddUpdatePerson
             // 
-            this.lblAddUpdatePerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAddUpdatePerson.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAddUpdatePerson.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblAddUpdatePerson.Location = new System.Drawing.Point(27, 231);
+            this.lblAddUpdatePerson.Location = new System.Drawing.Point(27, 194);
             this.lblAddUpdatePerson.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAddUpdatePerson.Name = "lblAddUpdatePerson";
             this.lblAddUpdatePerson.Size = new System.Drawing.Size(487, 43);
@@ -112,9 +112,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(425, 456);
+            this.btnClose.Location = new System.Drawing.Point(408, 421);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 40);
+            this.btnClose.Size = new System.Drawing.Size(106, 30);
             this.btnClose.TabIndex = 100;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -123,9 +123,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::DVLD.Properties.Resources.ManageApplicationTypes;
-            this.pictureBox1.Location = new System.Drawing.Point(174, 22);
+            this.pictureBox1.Location = new System.Drawing.Point(191, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(199, 197);
+            this.pictureBox1.Size = new System.Drawing.Size(177, 170);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
@@ -134,7 +134,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(555, 503);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(539, 456);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.lblApplicationTypesCount);
             this.Controls.Add(this.label2);

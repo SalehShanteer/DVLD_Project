@@ -68,7 +68,7 @@
             // 
             // ctrlPersonManager1
             // 
-            this.ctrlPersonManager1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ctrlPersonManager1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ctrlPersonManager1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlPersonManager1.Location = new System.Drawing.Point(9, 114);
             this.ctrlPersonManager1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -82,7 +82,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(906, 524);
             this.Controls.Add(this.ctrlPersonManager1);
             this.Controls.Add(this.lblPersonID);

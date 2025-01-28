@@ -39,7 +39,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(25, 394);
+            this.label3.Location = new System.Drawing.Point(25, 390);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 20);
             this.label3.TabIndex = 100;
@@ -47,7 +47,7 @@
             // 
             // rtxtNotes
             // 
-            this.rtxtNotes.Location = new System.Drawing.Point(95, 394);
+            this.rtxtNotes.Location = new System.Drawing.Point(95, 390);
             this.rtxtNotes.Name = "rtxtNotes";
             this.rtxtNotes.Size = new System.Drawing.Size(647, 96);
             this.rtxtNotes.TabIndex = 101;
@@ -55,9 +55,9 @@
             // 
             // btnIssue
             // 
-            this.btnIssue.Location = new System.Drawing.Point(632, 497);
+            this.btnIssue.Location = new System.Drawing.Point(637, 491);
             this.btnIssue.Name = "btnIssue";
-            this.btnIssue.Size = new System.Drawing.Size(110, 36);
+            this.btnIssue.Size = new System.Drawing.Size(104, 36);
             this.btnIssue.TabIndex = 103;
             this.btnIssue.Text = "Issue";
             this.btnIssue.UseVisualStyleBackColor = true;
@@ -65,9 +65,9 @@
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(504, 498);
+            this.btnClose.Location = new System.Drawing.Point(516, 492);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(110, 36);
+            this.btnClose.Size = new System.Drawing.Size(104, 36);
             this.btnClose.TabIndex = 102;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -75,6 +75,7 @@
             // 
             // ctrlLocalDrivingLicenseApplicationInfo1
             // 
+            this.ctrlLocalDrivingLicenseApplicationInfo1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ctrlLocalDrivingLicenseApplicationInfo1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctrlLocalDrivingLicenseApplicationInfo1.Location = new System.Drawing.Point(13, 14);
             this.ctrlLocalDrivingLicenseApplicationInfo1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -86,7 +87,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(762, 544);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.ClientSize = new System.Drawing.Size(762, 534);
             this.Controls.Add(this.btnIssue);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.rtxtNotes);

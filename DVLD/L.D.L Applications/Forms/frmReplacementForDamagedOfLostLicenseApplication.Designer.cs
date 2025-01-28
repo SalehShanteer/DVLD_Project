@@ -301,6 +301,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(802, 685);
             this.Controls.Add(this.gbReplacementOptions);
             this.Controls.Add(this.llblShowNewLicenseInfo);

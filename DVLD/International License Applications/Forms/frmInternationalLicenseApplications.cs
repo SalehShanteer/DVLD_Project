@@ -38,9 +38,14 @@ namespace DVLD
                 dgvInternationalLicenseApplicationsList.DataSource = _dvInternationalLicensesList;
 
                 // Display international licenses records count
-                lblInternationalLicenseApplicationsCount.Text = clsInternationalLicense.GetRecordsCount().ToString();
+                int InternationalLicensesCount = clsInternationalLicense.GetRecordsCount();
+                lblInternationalLicenseApplicationsCount.Text = InternationalLicensesCount.ToString();
 
-                _PrepareApplicationList();
+                // If there are records
+                if (InternationalLicensesCount > 0)
+                {
+                    _PrepareApplicationList();
+                }
             }
             catch (Exception ex)
             {

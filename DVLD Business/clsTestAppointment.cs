@@ -131,5 +131,15 @@ namespace DVLD_Business
             return clsTestAppointmentData.GetRetakeFees();
         }
 
+        public static int GetTestAppointmentsCount(int LocalDrivingLicenseApplicationID)
+        {
+            return clsTestAppointmentData.GetTestAppointmentsCount(LocalDrivingLicenseApplicationID);
+        }
+
+        public static int GetTestAppointmentsCount(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            return clsTestAppointmentData.GetTestAppointmentsCount(LocalDrivingLicenseApplicationID, TestTypeID);
+        }
+
     }
 }

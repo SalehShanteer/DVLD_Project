@@ -32,6 +32,9 @@ namespace DVLD
             ctrlLocalDrivingLicenseApplicationInfo1.DisplayLocalDrivingLicenseApplicationInfoOutside(_LocalDrivingLicenseApplicationID);
         }
 
-      
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -96,10 +96,29 @@ namespace DVLD
                 _dvTestAppointments = clsTestAppointment.GetTestAppointmentsListByLDLAppIDAndTestTypeID(_LocalDrivingLicenseApplicationID, (int)_TestType).DefaultView;
 
                 // To ensure that the data grid view is updated from the main thread
-                this.Invoke(new Action(() => { dgvTestAppointmentsList.DataSource = _dvTestAppointments; }));
+                this.Invoke(new Action(() => 
+                {
+                    dgvTestAppointmentsList.DataSource = _dvTestAppointments;
+                    int TestAppointmentsCount = clsTestAppointment.GetTestAppointmentsCount(_LocalDrivingLicenseApplicationID, (int)_TestType);
+
+                    // If there are test appointments, prepare the list
+                    if (TestAppointmentsCount > 0)
+                    {
+                        _PrepareTestAppointmentsList();
+                    }
+                }));
             });
-            
+
             RefreshTestAppointmentThread.Start();
+        }
+
+        private void _PrepareTestAppointmentsList()
+        {
+            //Adjust columns widths
+            dgvTestAppointmentsList.Columns["Appointment ID"].Width = 170;
+            dgvTestAppointmentsList.Columns["Appointment Date"].Width = 210;
+            dgvTestAppointmentsList.Columns["Paid Fees"].Width = 125;
+            dgvTestAppointmentsList.Columns["Is Locked"].Width = 125;
         }
 
         private void _AddNewTestAppointment()

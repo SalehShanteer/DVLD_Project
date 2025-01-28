@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Global_Variables_Data;
+using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 
 namespace DVLD_DataAccess
 {
@@ -211,6 +213,72 @@ namespace DVLD_DataAccess
                 }
             }
             return Fees;
+        }
+
+        public static int GetTestAppointmentsCount(int LocalDrivingLicenseApplicationID)
+        {
+            int Count = 0;
+
+            string query = "SELECT dbo.GetTestAppointmentCountByLDLAppID(@LocalDrivingLicenseApplicationID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to query
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int count))
+                        {
+                            Count = count;
+                        }
+                    }
+                    catch (Exception ex) 
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
+                }
+            }
+            return Count;
+        }
+
+        public static int GetTestAppointmentsCount(int LocalDrivingLicenseApplicationID, int TestTypeID)
+        {
+            int Count = 0;
+
+            string query = "SELECT dbo.GetTestAppointmentCountByLDLAppIDAndTestTypeID(@LocalDrivingLicenseApplicationID, @TestTypeID)";
+
+            using (SqlConnection connection = new SqlConnection(clsDVLD_Settings.ConnectionString))
+            {
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    // Add parameters to query
+                    command.Parameters.AddWithValue("@LocalDrivingLicenseApplicationID", LocalDrivingLicenseApplicationID);
+                    command.Parameters.AddWithValue("@TestTypeID", TestTypeID);
+
+                    try
+                    {
+                        connection.Open();
+                        object result = command.ExecuteScalar();
+
+                        if (result != null && int.TryParse(result.ToString(), out int count))
+                        {
+                            Count = count;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Log the exception to the event log
+                        EventLog.WriteEntry(clsSettingsData.SourceName, ex.Message, EventLogEntryType.Error);
+                    }
+                }
+            }
+            return Count;
         }
 
     }

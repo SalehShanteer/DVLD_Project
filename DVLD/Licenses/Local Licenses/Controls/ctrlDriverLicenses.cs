@@ -48,7 +48,14 @@ namespace DVLD
                     dgvLocalLicensesList.DataSource = _dvLocalLicensesList;
 
                     //Display local licenses records count
-                    lblLocalLicensesCount.Text = clsLicense.GetLicensesCountByDriverID(_DriverID).ToString();
+                    int LocalLicensesCount = clsLicense.GetLicensesCountByDriverID(_DriverID);
+                    lblLocalLicensesCount.Text = LocalLicensesCount.ToString();
+
+                    // Check if there are local licenses
+                    if (LocalLicensesCount != 0)
+                    {
+                        _PrepareLocalLicensesList();
+                    }
                 }));
             });
             RefreshLocalLicensesThread.Start();
@@ -65,10 +72,39 @@ namespace DVLD
                     dgvInternationalLicensesList.DataSource = _dvInternationalLicensesList;
 
                     //Display international licenses count
-                    lblInternationalLicensesCount.Text = clsInternationalLicense.GetInternationalLicensesCountByDriverID(_DriverID).ToString();
+                    int InternationalLicensesCount = clsInternationalLicense.GetInternationalLicensesCountByDriverID(_DriverID);
+                    lblInternationalLicensesCount.Text = InternationalLicensesCount.ToString();
+
+                    // Check if there are international licenses
+                    if (InternationalLicensesCount != 0)
+                    {
+                        _PrepareInternationalLicensesList();
+                    }
                 }));
             });
             RefreshInternationalLicensesThread.Start();
+        }
+
+        private void _PrepareLocalLicensesList()
+        {
+            //Adjust columns widths
+            dgvLocalLicensesList.Columns["Lic.ID"].Width = 85;
+            dgvLocalLicensesList.Columns["App.ID"].Width = 85;
+            dgvLocalLicensesList.Columns["Class Name"].Width = 270;
+            dgvLocalLicensesList.Columns["Issue Date"].Width = 130;
+            dgvLocalLicensesList.Columns["Expiration Date"].Width = 150;
+            dgvLocalLicensesList.Columns["Is Active"].Width = 85;
+        }
+
+        private void _PrepareInternationalLicensesList()
+        {
+            //Adjust columns widths
+            dgvInternationalLicensesList.Columns["int.License ID"].Width = 140;
+            dgvInternationalLicensesList.Columns["Application ID"].Width = 140;
+            dgvInternationalLicensesList.Columns["L.License ID"].Width = 140;
+            dgvInternationalLicensesList.Columns["Issue Date"].Width = 140;
+            dgvInternationalLicensesList.Columns["Expiration Date"].Width = 150;
+            dgvInternationalLicensesList.Columns["Is Active"].Width = 93;
         }
 
         private void _ShowLicenseInfo()

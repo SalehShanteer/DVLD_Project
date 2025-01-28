@@ -40,9 +40,14 @@ namespace DVLD
                 dgvDetainedLicensesList.DataSource = _dvDetainedLicensesList;
 
                 // Display detained licenses records count
-                lblLicenseDetainsCount.Text = clsDetainedLicense.GetDetainedLicensesCount().ToString();
+                int DetainedLicensesCount = clsDetainedLicense.GetDetainedLicensesCount();
+                lblLicenseDetainsCount.Text = DetainedLicensesCount.ToString();
 
-                _PrepareApplicationList();
+                // If there are records
+                if (DetainedLicensesCount > 0)
+                {
+                    _PrepareApplicationList();
+                }
             }
             catch (Exception ex)
             {
