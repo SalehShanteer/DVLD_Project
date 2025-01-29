@@ -106,12 +106,6 @@
     <Compile Include="Licenses\Local Licenses\Controls\ctrlDriverLicenses.Designer.cs">
       <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
     </Compile>
-    <Compile Include="International License Applications\Controls\ctrlInternationalLicenseApplicationInfo.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="International License Applications\Controls\ctrlInternationalLicenseApplicationInfo.Designer.cs">
-      <DependentUpon>ctrlInternationalLicenseApplicationInfo.cs</DependentUpon>
-    </Compile>
     <Compile Include="Licenses\International Licenses\Controls\ctrlInternationalLicenseInfo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -329,9 +323,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\Local Licenses\Controls\ctrlDriverLicenses.resx">
       <DependentUpon>ctrlDriverLicenses.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="International License Applications\Controls\ctrlInternationalLicenseApplicationInfo.resx">
-      <DependentUpon>ctrlInternationalLicenseApplicationInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Licenses\International Licenses\Controls\ctrlInternationalLicenseInfo.resx">
       <DependentUpon>ctrlInternationalLicenseInfo.cs</DependentUpon>

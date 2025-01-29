@@ -20,8 +20,6 @@ namespace DVLD
 
         private enMode _Mode = enMode.AddNew;
 
-        private int _PersonID;
-
         private clsPerson _Person;
 
         //Define the event
@@ -383,7 +381,7 @@ namespace DVLD
             }
             else
             {              
-                DisplayPersonInfo(_PersonID);
+                DisplayPersonInfo(_Person.ID);
             }
         }
 

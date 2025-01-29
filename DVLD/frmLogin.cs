@@ -1,5 +1,8 @@
 ﻿using DVLD_Business;
 using System;
+using System.Runtime.CompilerServices;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -22,8 +25,14 @@ namespace DVLD
         
             if (clsUtility.ReadFromRegistry("SavedUsername") != string.Empty)
             {
-                string SavedUsername = clsUtility.ReadFromRegistry("SavedUsername");
-                string SavedPassword = clsUtility.ReadFromRegistry("SavedPassword");
+                // Making task to retrieve username and password from registry 
+                var SavedUsernameTask = Task.Run (() => clsUtility.ReadFromRegistry("SavedUsername"));
+                var SavedPasswordTask = Task.Run (() => clsUtility.ReadFromRegistry("SavedPassword"));
+
+                Task.WaitAll(SavedPasswordTask, SavedPasswordTask);
+
+                string SavedUsername = SavedUsernameTask.Result.ToString();
+                string SavedPassword = SavedPasswordTask.Result.ToString();
 
                 txtUsername.Text = SavedUsername;
                 txtPassword.Text = clsUtility.Decrypt(SavedPassword);
@@ -107,31 +116,41 @@ namespace DVLD
 
         }
 
-        private void _SaveUserToRegistry(clsUser user)
+        private async Task _SaveUserToRegistryAsync(clsUser user)
         {
-            string ValueName1 = "SavedUsername";
-            string ValueData1 = user.Username;
+            string SavedUsernameName = "SavedUsername";
+            string SavedUsernameData = user.Username;
 
-            string ValueName2 = "SavedPassword";
-            string ValueData2 = clsUtility.Encrypt(user.Password);
+            string SavedPasswordName = "SavedPassword";
+            string SavedPasswordData = clsUtility.Encrypt(user.Password);
 
             // Save the user to the registry
-            clsUtility.WriteToRegistry(ValueName1, ValueData1);
-            clsUtility.WriteToRegistry(ValueName2, ValueData2);
+            Task SaveUsernameTask = Task.Run (() => clsUtility.WriteToRegistry(SavedUsernameName, SavedUsernameData));
+            Task SavePasswordTask = Task.Run (() => clsUtility.WriteToRegistry(SavedPasswordName, SavedPasswordData));
+
+            await Task.WhenAll(SaveUsernameTask, SavePasswordTask);
         }
 
-        private void _SetSavedUser(clsUser user)
+        private async Task _SetSavedUserAsync(clsUser user)
         {
             if (ckbRememberMe.Checked)
             {
-                _SaveUserToRegistry(user);
+                await _SaveUserToRegistryAsync(user);
             }          
         }
 
-        private void _Login()
+        private async Task _LoginAsync()
         {
-            clsUser CurrentUser = clsUser.Find(txtUsername.Text);
-            clsLoginRecord LoginRecord = new clsLoginRecord();
+
+            clsUser CurrentUser = null;
+            clsLoginRecord LoginRecord = null;
+
+            // Retrieve current user and prepare login record concurrently
+            Task GetCurrentUserTask = Task.Run(() => CurrentUser = clsUser.Find(txtUsername.Text));
+            Task PrepareLoginRecord = Task.Run(() => LoginRecord = new clsLoginRecord());
+
+            Task.WaitAll(GetCurrentUserTask, PrepareLoginRecord);
+
             string errorMessage = string.Empty;
 
             // Check the login process
@@ -140,7 +159,7 @@ namespace DVLD
                 // Register the current user
                 if (_RegisterCurrentUser(CurrentUser, ref errorMessage))
                 {
-                    _SetSavedUser(CurrentUser);
+                    await _SetSavedUserAsync(CurrentUser);
                     _EnterMainScreen();
                 }
                 else
@@ -153,15 +172,15 @@ namespace DVLD
                 MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+            
         private void pbExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
-            _Login();
+            await _LoginAsync();
         }
 
         private void pbShowHidePassword_Click(object sender, EventArgs e)

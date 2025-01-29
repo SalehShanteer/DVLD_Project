@@ -1,5 +1,6 @@
 ﻿using DVLD_Business;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -50,6 +51,7 @@ namespace DVLD
             {
                 IsValid = false;
             }
+
             if (!_ValidateRequiredField(txtFees, "fees"))
             {
                 IsValid = false;

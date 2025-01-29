@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -132,13 +133,26 @@ namespace DVLD
             }
         }
 
-        private void _SetTestAppointmentInfo()
+        private async Task _SetTestAppointmentInfo()
         {
             if (_ScheduleTest.Mode == enMode.AddNew)
             {
+                clsTestType TestType = null;
+                clsUser User = null;
+
                 // Retrieve objects info
-                clsTestType TestType = clsTestType.Find((int)_ScheduleTest.TestType);
-                clsUser User = clsUser.Find(clsUserSetting.GetCurrentUserID());
+
+                Task GetTestTypeTask = Task.Run(() =>
+                {
+                    TestType = clsTestType.Find((int)_ScheduleTest.TestType);
+                });
+
+                Task GetCurrentUser = Task.Run(() =>
+                {
+                    User = clsUser.Find(clsUserSetting.GetCurrentUserID());
+                });
+
+                await Task.WhenAll(GetTestTypeTask, GetCurrentUser);
 
                 // Set the objects info
                 _ScheduleTest.TestAppointment.TestType = TestType;
@@ -148,12 +162,12 @@ namespace DVLD
             _ScheduleTest.TestAppointment.AppointmentDate = dtpTestDate.Value;
         }
 
-        private void _SaveTestAppointment()
+        private async void _SaveTestAppointment()
         {
             if (MessageBox.Show(clsUtility.askForSaveMessage("test appointment"), "Save?"
                 , MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                _SetTestAppointmentInfo();
+                await _SetTestAppointmentInfo();
 
                 if (_ScheduleTest.TestAppointment.Save())
                 {

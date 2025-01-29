@@ -1,5 +1,6 @@
 ﻿using DVLD_Business;
 using System;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DVLD
@@ -16,17 +17,33 @@ namespace DVLD
             InitializeComponent();
         }
 
-        private void frmRenewLocalDrivingLicense_Load(object sender, EventArgs e)
+        private async void frmRenewLocalDrivingLicense_Load(object sender, EventArgs e)
         {
-            _DisplayInitialRenewApplicationInfo();
+            await _DisplayInitialRenewApplicationInfo();
         }
 
-        private void _DisplayInitialRenewApplicationInfo()
+        private async Task _DisplayInitialRenewApplicationInfo()
         {
             lblApplicationDate.Text = DateTime.Now.ToString("M/dd/yyyy");
             lblIssueDate.Text = DateTime.Now.ToString("M/dd/yyyy");
-            lblApplicationFees.Text = clsApplicationType.GetFees(2).ToString();// 2 for Renew application type
-            lblCreatedBy.Text = clsUserSetting.GetCurrentUserUsername();
+
+            short Fees = 0;
+            string CurrentUserUsername = string.Empty;
+
+            Task GetFeesTask = Task.Run(() =>
+            {
+                Fees = clsApplicationType.GetFees(2);
+            });
+
+            Task GetCurrentUserUsername = Task.Run(() =>
+            {
+                CurrentUserUsername = clsUserSetting.GetCurrentUserUsername();
+            });
+
+            await Task.WhenAll(GetFeesTask, GetCurrentUserUsername);
+
+            lblApplicationFees.Text = Fees.ToString();// 2 for Renew application type
+            lblCreatedBy.Text = CurrentUserUsername;
         }
 
         private void _DisplayInitialLicenseInfo()
@@ -194,5 +211,6 @@ namespace DVLD
             _ShowNewLicenseInfoScreen();
         }
 
+       
     }
 }

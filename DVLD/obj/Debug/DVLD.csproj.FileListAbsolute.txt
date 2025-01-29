@@ -42,7 +42,6 @@ C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frm
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlDriverLicenseInfo.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmLicenseInfo.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlDriverLicenseInfoWithFilter.resources
-C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlInternationalLicenseApplicationInfo.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmNewInternationalLicenseApplication.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.ctrlInternationalLicenseInfo.resources
 C:\Users\saleh\Desktop\Programming\Projects\DVLD Project\DVLD\obj\Debug\DVLD.frmInternationalLicenseInfo.resources

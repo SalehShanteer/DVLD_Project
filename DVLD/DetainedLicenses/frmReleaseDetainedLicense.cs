@@ -33,7 +33,8 @@ namespace DVLD
                 ctrlDriverLicenseInfoWithFilter1.DisableFilterFromOutside();
             }
         }
-       
+      
+        
         private void _RefreshDriverLicenseInfo()
         {
             // Refresh driver license info

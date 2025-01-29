@@ -81,7 +81,7 @@ namespace DVLD
         {
             _LocalDrivingLicenseApplicationID = LocalDrivingLicenseApplicationID;
 
-            return (_DisplayLocalDrivingLicenseApplicationInfo()) ? true : false;
+            return _DisplayLocalDrivingLicenseApplicationInfo() ? true : false;
         }
 
         private void _ShowPersonInfo()
@@ -107,6 +107,7 @@ namespace DVLD
             }
 
             int LicenseID = clsLicense.GetLicenseIDByLocalLicenseApplicationID(_LocalDrivingLicenseApplicationID);
+
             if (LicenseID != -1)
             {
                 frmLicenseInfo frm = new frmLicenseInfo(LicenseID);
